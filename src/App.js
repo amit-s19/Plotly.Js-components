@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import BarGraphForm from './forms/BarGraphForm';
+import BubbleChartForm from './forms/BubbleChartForm';
+import AreaChartForm from './forms/AreaChartForm';
+import LineChartForm from './forms/LineChartForm';
+import BoxPlotForm from './forms/BoxPlotForm';
+import {Navigation} from "./forms/Navigation";
+
+import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
+import "./App.css";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <Router >
+      <div>
+        <Navigation />
+        <Switch>
+          <Route exact path ="/BarGraph" >
+            <BarGraphForm />
+          </Route>
+          <Route exact path ="/BubbleChart" >
+            <BubbleChartForm />
+          </Route>
+          <Route exact path ="/AreaChart" >
+            <AreaChartForm />
+          </Route>
+          <Route exact path ="/LineChart" >
+            <LineChartForm />
+          </Route>
+          <Route exact path ="/BoxPlot" >
+            <BoxPlotForm />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+
   );
 }
 
