@@ -3,14 +3,18 @@ import BubbleChartForm from './forms/BubbleChartForm';
 import AreaChartForm from './forms/AreaChartForm';
 import LineChartForm from './forms/LineChartForm';
 import BoxPlotForm from './forms/BoxPlotForm';
-import {Navigation} from "./forms/Navigation";
+import PieChartForm from './forms/PieChartForm';
+import IndicatorTraceForm from './forms/IndicatorTraceForm';
 
+import {Navigation} from "./forms/Navigation";
 import React, { Component } from "react";
+
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from "react-router-dom";
+
 import "./App.css";
 
 
@@ -37,10 +41,16 @@ function App() {
           <Route exact path ="/BoxPlot" >
             <BoxPlotForm />
           </Route>
+          <Route exact path ="/PieChart" >
+            <PieChartForm />
+          </Route>
+          <Route exact path ="/IndicatorTrace" >
+            <IndicatorTraceForm />
+          </Route>
         </Switch>
       </div>
     </Router>
-
+    
   );
 }
 

@@ -238,3 +238,18 @@ BarGraphForm.propTypes = {
 
 export default BarGraphForm;
 
+/*
+
+PROBLEM STATEMENT : 
+
+Attendance Management System is software developed for daily student attendance in
+schools, colleges and institutes. It facilitates to access the attendance information
+of a particular student in a particular class. This system will also help in evaluating attendance
+eligibility criteria of a student. By just a click on the mouse, the system will be able to produce
+the student's report thus reducing the need for manual labour which is prone to human errors and time
+consuming. The student can only view the attendance record on weekly, monthly and whole semester basis.
+The staff can view as well as modify the attendance record. 
+
+*/
+
+

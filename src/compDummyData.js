@@ -52,4 +52,17 @@ export const bubbleChartData = [
   },
 ];
 
+export const indicatorTracedata =  [
+    {title: 'Revenue', value: 180, threshold: 170, axis: [null, 300], range1: [0, 150], range2: [150, 200], domain: { x: [0.25, 1], y: [0.08, 0.25] } },
+    {title: 'Profit', value: 35, threshold: 50, axis: [null, 100], range1: [0, 25], range2: [25, 75], domain: { x: [0.25, 1], y: [0.4, 0.6] } },
+    {title: 'Satisfaction', value: 220, threshold: 210, axis: [null, 300], range1: [0, 150], range2: [150, 250], domain: { x: [0.25, 1], y: [0.7, 0.9] } },
+];
+      
+export const pieDummydata = [
+  {"A": 70},
+  {"B": 20},
+  {"C": 17},
+  {"D": 76},
+  {"E": 99},
+]
 
