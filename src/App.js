@@ -5,9 +5,13 @@ import LineChartForm from './forms/LineChartForm';
 import BoxPlotForm from './forms/BoxPlotForm';
 import PieChartForm from './forms/PieChartForm';
 import IndicatorTraceForm from './forms/IndicatorTraceForm';
+import DotPlotForm from './forms/DotPlotForm';
+import TableChartForm from './forms/TableChartForm';
+import CandleChartForm from './forms/CandleChartForm';
+import {Navigation} from './forms/Navigation';
+import LandingPage from './LandingPage';
 
-import {Navigation} from "./forms/Navigation";
-import React, { Component } from "react";
+import React from "react";
 
 import {
   BrowserRouter as Router,
@@ -19,13 +23,17 @@ import "./App.css";
 
 
 
+
 function App() {
-  return (
-    
+  return (   
+  
     <Router >
       <div>
         <Navigation />
         <Switch>
+          <Route exact path ="/" >
+            <LandingPage />
+          </Route>
           <Route exact path ="/BarGraph" >
             <BarGraphForm />
           </Route>
@@ -46,6 +54,15 @@ function App() {
           </Route>
           <Route exact path ="/IndicatorTrace" >
             <IndicatorTraceForm />
+          </Route>
+          <Route exact path ="/DotPlot" >
+            <DotPlotForm />
+          </Route>
+          <Route exact path ="/TableChart" >
+            <TableChartForm />
+          </Route>
+          <Route exact path ="/CandleChart" >
+            <CandleChartForm />
           </Route>
         </Switch>
       </div>

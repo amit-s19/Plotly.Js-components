@@ -5,7 +5,7 @@ class LandingPage extends Component {
     render() {
         return (
         <>
-            <section class="wrapper">
+        <div class="wrapper">
             <div id="stars"></div>
             <div id="stars2"></div>
             <div id="stars3"></div>
@@ -14,7 +14,7 @@ class LandingPage extends Component {
                 <br></br>
                 <span>Cogniviz</span>
             </div>
-        </section>
+        </div>
         </>
         );
     }

@@ -25,7 +25,7 @@ class BarGraph extends Component {
       if (dataset && dataset.length > 0) {
         
         const keys = Object.keys(dataset[0]);
-        console.log("keys", keys);
+
         procData = keys.slice(1, keys.length).map((d, i) => ({
           x: [],
           y: [],
@@ -38,9 +38,8 @@ class BarGraph extends Component {
           hovertemplate: hoverTemplate,
           orientation,
         }));
-        console.log(procData);
+
         dataset.forEach((field) => {
-          console.log(field);
           procData.forEach((d) => {
             d.x.push(field[keys[0]]);
             d.y.push(field[d.name]);

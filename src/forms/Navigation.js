@@ -6,7 +6,7 @@ export class Navigation extends Component{
     render(){
       return(
         <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#"> Chart Components </Navbar.Brand>
+        <Navbar.Brand href="/"> Chart Components </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
@@ -18,6 +18,9 @@ export class Navigation extends Component{
                 <NavDropdown.Item href="/BoxPlot">Box Plot </NavDropdown.Item>
                 <NavDropdown.Item href="/PieChart">Pie Chart </NavDropdown.Item>
                 <NavDropdown.Item href="/IndicatorTrace">Indicator Trace </NavDropdown.Item>
+                <NavDropdown.Item href="/DotPlot">Dot Plot </NavDropdown.Item>
+                <NavDropdown.Item href="/TableChart">Table Chart </NavDropdown.Item>
+                <NavDropdown.Item href="/CandleChart">Candlestick Chart </NavDropdown.Item>
                 </NavDropdown>
         </Nav>
       </Navbar.Collapse>

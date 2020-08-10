@@ -1,12 +1,15 @@
-html {
-    height: 100%;
-    overflow: hidden;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
-  }
+
+
+.wrapper {
+  height: 698px;
+  position: relative;
+  overflow-y: hidden;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
+}
   
   #title {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 0;
     right: 0;
     color: #fff;
