@@ -21,6 +21,9 @@ export class Navigation extends Component{
                 <NavDropdown.Item href="/DotPlot">Dot Plot </NavDropdown.Item>
                 <NavDropdown.Item href="/TableChart">Table Chart </NavDropdown.Item>
                 <NavDropdown.Item href="/CandleChart">Candlestick Chart </NavDropdown.Item>
+                <NavDropdown.Item href="/Histogram">Histogram </NavDropdown.Item>
+                <NavDropdown.Item href="/OhlcChart">Ohlc Chart </NavDropdown.Item>
+                <NavDropdown.Item href="/FunnelChart">Funnel Chart </NavDropdown.Item>
                 </NavDropdown>
         </Nav>
       </Navbar.Collapse>

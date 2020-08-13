@@ -7,7 +7,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import BarGraph from '../components/BarGraph';
 import { makeStyles } from '@material-ui/core/styles';
 import {pieDummydata as pcd} from '../compDummyData';
 import PieChart from '../components/PieChart';

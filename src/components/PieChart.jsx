@@ -84,7 +84,7 @@ class PieChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-      h, w,
+      showLegend,
     } = this.props;
 
     return (
@@ -92,7 +92,8 @@ class PieChart extends Component {
         data={procData}
         layout={{ 
           height: undefined,
-          width: undefined
+          width: undefined,
+          showlegend: showLegend,
         }}
       />
     );

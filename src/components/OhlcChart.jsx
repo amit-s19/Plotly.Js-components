@@ -6,7 +6,7 @@ import {candleDummydata as cdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 
-class CandleChart extends Component {
+class OhlcChart extends Component {
   constructor(props) {
     super(props);
     this.state = { procData: [] };
@@ -14,7 +14,7 @@ class CandleChart extends Component {
 
   processData = () => {
     const {
-      dataset, colorArray, calType, calName,
+      dataset, colorArray, calType, calName, 
     } = this.props;
 
     try {
@@ -31,11 +31,11 @@ class CandleChart extends Component {
           close: [],
           high: [],
           low: [],
-          type: 'candlestick',
-          name: calName, 
-          increasing: {line: {color: newColorArr[0]}, fillcolor: newColorArr[1]}, 
+          type: 'ohlc', 
+          name: calName,
+          increasing: {line: {color: newColorArr[0]} }, 
           whiskerwidth: 0,
-          decreasing: {line: {color: newColorArr[2]}, fillcolor: newColorArr[3]},
+          decreasing: {line: {color: newColorArr[1]} },
           xcalendar: calType,
         }));
         
@@ -112,7 +112,7 @@ class CandleChart extends Component {
   }
 }
 
-CandleChart.propTypes = {
+OhlcChart.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
   colorArray: PropTypes.string, 
   xAxisLabel: PropTypes.string, 
@@ -124,7 +124,7 @@ CandleChart.propTypes = {
   calName: PropTypes.string,
 };
 
-CandleChart.defaultProps = {
+OhlcChart.defaultProps = {
   dataset: cdd, 
   colorArray:'black,orange', 
   xAxisLabel:'', 
@@ -138,9 +138,9 @@ CandleChart.defaultProps = {
 
 
 
-// CandleChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
+// OhlcChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 
-export default CandleChart;
+export default OhlcChart;
 
 
 

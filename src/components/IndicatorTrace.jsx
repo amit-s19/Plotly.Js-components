@@ -22,10 +22,6 @@ class IndicatorTrace extends Component {
       const newColorArr = colorArray.split(',');
 
       if (dataset && dataset.length > 0) {
-
-        for(let element in dataset) {
-
-        }
         let keys = [...Array(dataset.length).keys()];
         procData = keys.map((d, i) => ({
           type: "indicator",
@@ -99,7 +95,7 @@ class IndicatorTrace extends Component {
   render() {
     const { procData } = this.state;
     const {
-      h, w,
+      showLegend,
     } = this.props;
 
     return (
@@ -108,7 +104,8 @@ class IndicatorTrace extends Component {
         layout={{ 
           height: 250,
           width: 600,
-          margin: { t: 10, r: 25, l: 25, b: 10 }
+          margin: { t: 10, r: 25, l: 25, b: 10 },
+          showlegend: showLegend,
         }}
       />
     );

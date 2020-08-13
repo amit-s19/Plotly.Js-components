@@ -7,11 +7,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import CandleChart from '../components/CandleChart';
+import OhlcChart from '../components/OhlcChart';
 import { makeStyles } from '@material-ui/core/styles';
 import { candleDummydata as cdd} from '../compDummyData';
 import './Styles.css';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const CandleChartForm = () => {
+const OhlcChartForm = () => {
 
 const handleInputChange = e => {  
   const {name, value} = e.target ;
@@ -31,7 +30,7 @@ const handleInputChange = e => {
 };
 
 const [config, setConfig] = useState({
-    dataset: cdd, colorArray:'seagreen,seagreen,crimson,crimson', xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 0, 
+    dataset: cdd, colorArray:'black,orange', xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 0, 
     yAxisTickAngle: 0, calType: 'gregorian', showLegend: true, calName: 'Trace 0',
 });
 
@@ -39,9 +38,9 @@ const classes = useStyles();
 
   return (
     <>
-    <div className="CandleChartForm">
+    <div className="OhlcChartForm">
       <div className="Form">
-      <h1>Candlestick Chart </h1>
+      <h1>OHLC Chart </h1>
       <form >
       <TextField
         fullWidth
@@ -132,7 +131,7 @@ const classes = useStyles();
       </form>
       </div> 
     <div className="Graph">
-    <CandleChart  {...config} />
+    <OhlcChart  {...config} />
      
       </div>
     </div>
@@ -144,7 +143,7 @@ const classes = useStyles();
 
 
 
-CandleChartForm.propTypes = {
+OhlcChartForm.propTypes = {
   config: PropTypes.shape({
     orientation: PropTypes.string,
     textPosition: PropTypes.string,
@@ -163,7 +162,7 @@ CandleChartForm.propTypes = {
   }),
 };
 
-//CandleChartForm.defaultProps = { config: {} };
+//OhlcChartForm.defaultProps = { config: {} };
 
-export default CandleChartForm;
+export default OhlcChartForm;
 

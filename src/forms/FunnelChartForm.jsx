@@ -7,9 +7,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import CandleChart from '../components/CandleChart';
+import FunnelChart from '../components/FunnelChart';
 import { makeStyles } from '@material-ui/core/styles';
-import { candleDummydata as cdd} from '../compDummyData';
+import {barDummydata as bgd} from '../compDummyData';
 import './Styles.css';
 
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const CandleChartForm = () => {
+const FunnelChartForm = () => {
 
 const handleInputChange = e => {  
   const {name, value} = e.target ;
@@ -31,17 +31,18 @@ const handleInputChange = e => {
 };
 
 const [config, setConfig] = useState({
-    dataset: cdd, colorArray:'seagreen,seagreen,crimson,crimson', xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 0, 
-    yAxisTickAngle: 0, calType: 'gregorian', showLegend: true, calName: 'Trace 0',
+    dataset: bgd, yAxisLabel:'', orientation: 'h', textPosition: 'inside', textAngle: 0, 
+    colorArray: 'cornflowerblue,orange,pink,seagreen,yellow', hoverTemplate :'%{x}<br>%{y}', 
+    showLegend : true, barWidth : 0.7, barOpacity : 0.8,textInfo: 'label+value+text+percent initial', 
 });
 
 const classes = useStyles();
 
   return (
     <>
-    <div className="CandleChartForm">
+    <div className="FunnelChartForm">
       <div className="Form">
-      <h1>Candlestick Chart </h1>
+      <h1>Funnel Chart </h1>
       <form >
       <TextField
         fullWidth
@@ -55,24 +56,40 @@ const classes = useStyles();
       />
       <TextField
         fullWidth
-        label="Trace Name"
-        name="calName"
+        label="Hover Template"
+        name="hoverTemplate"
         variant="outlined"
         onChange={handleInputChange}
-        value={config.calName}
+        value={config.hoverTemplate}
         size="small"
         className={classes.root}
       />
       <TextField
         fullWidth
-        label="X-axis Label"
-        name="xAxisLabel"
+        label="Text Template"
+        name="textTemplate"
         variant="outlined"
         onChange={handleInputChange}
-        value={config.xAxisLabel}
+        value={config.textTemplate}
         size="small"
         className={classes.root}
       />
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Text Info</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.textInfo}
+          name="textInfo"
+          onChange={handleInputChange}
+          label="Text Info"
+      >
+          <MenuItem value="label+value+text+percent initial">Label + Value + Text + Percent Initial</MenuItem>
+          <MenuItem value="label+text+percent initial">Label + Text + Percent Initial</MenuItem>
+          <MenuItem value="label+value+percent initial">Label + Value + Percent Initial</MenuItem>
+          <MenuItem value="label+value">Label + Value</MenuItem>
+          <MenuItem value="label+text">Label + Text</MenuItem>
+        </Select>
+      </FormControl>
       <TextField
         fullWidth
         label="Y-axis Label"
@@ -86,11 +103,11 @@ const classes = useStyles();
       <TextField
         fullWidth
         type="number"
-        label="X-axis Tick Angle"
-        name="xAxisTickAngle"
+        label="Text Angle"
+        name="textAngle"
         variant="outlined"
         onChange={handleInputChange}
-        value={config.xAxisTickAngle}
+        value={config.textAngle}
         size="small"
         InputProps={{ inputProps: { min: -180, max: 180 } }}
         className={classes.root}
@@ -98,33 +115,55 @@ const classes = useStyles();
       <TextField
         fullWidth
         type="number"
-        label="Y-axis Tick Angle"
-        name="yAxisTickAngle"
+        label="Bar Width"
+        name="barWidth"
         variant="outlined"
         onChange={handleInputChange}
-        value={config.yAxisTickAngle}
+        value={config.barWidth}
         size="small"
-        InputProps={{ inputProps: { min: -180, max: 180 } }}
+        InputProps={{ inputProps: { min: 0 } }}
         className={classes.root}
       />
-    
       <FormControl className={classes.root} fullWidth variant="outlined" size="small">
-        <InputLabel>Calendar Format</InputLabel>
+        <InputLabel>Orientation</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          value={config.calType}
-          name="calType"
+          value={config.orientation}
+          name="orientation"
           onChange={handleInputChange}
-          label="Calendar format"
+          label="Orientation"
         >
-          <MenuItem value="gregorian">Gregorian</MenuItem>
-          <MenuItem value="chinese">Chinese</MenuItem>
-          <MenuItem value="hebrew">Hebrew</MenuItem>
-          <MenuItem value="mayan">Mayan</MenuItem>
-          <MenuItem value="islamic">Islamic</MenuItem>
+          <MenuItem value="v">Vertical</MenuItem>
+          <MenuItem value="h">Horizontal</MenuItem>
         </Select>
       </FormControl>
-      
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Text Position</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.textPosition}
+          name="textPosition"
+          onChange={handleInputChange}
+          label="Text Position"
+        >
+          <MenuItem value="inside">Inside</MenuItem>
+          <MenuItem value="outside">Outside</MenuItem>
+          <MenuItem value="auto">Auto</MenuItem>
+          <MenuItem value="none">None</MenuItem>
+        </Select>
+      </FormControl>
+      <TextField
+        fullWidth
+        type="number"
+        label="Bar Opacity"
+        name="barOpacity"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.barOpacity}
+        size="small"
+        InputProps={{ inputProps: { min: 0, max: 1 } }}
+        className={classes.root}
+      />
       <FormControlLabel
         control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
         label="Show Legend"
@@ -132,7 +171,7 @@ const classes = useStyles();
       </form>
       </div> 
     <div className="Graph">
-    <CandleChart  {...config} />
+    <FunnelChart  {...config} />
      
       </div>
     </div>
@@ -144,7 +183,7 @@ const classes = useStyles();
 
 
 
-CandleChartForm.propTypes = {
+FunnelChartForm.propTypes = {
   config: PropTypes.shape({
     orientation: PropTypes.string,
     textPosition: PropTypes.string,
@@ -163,7 +202,7 @@ CandleChartForm.propTypes = {
   }),
 };
 
-//CandleChartForm.defaultProps = { config: {} };
+//FunnelChartForm.defaultProps = { config: {} };
 
-export default CandleChartForm;
+export default FunnelChartForm;
 

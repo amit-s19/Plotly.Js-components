@@ -39,6 +39,7 @@ class BarGraph extends Component {
           orientation,
         }));
 
+        
         dataset.forEach((field) => {
           procData.forEach((d) => {
             d.x.push(field[keys[0]]);

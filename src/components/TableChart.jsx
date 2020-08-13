@@ -54,7 +54,7 @@ class TableChart extends Component {
                 let y = []
                 let i = parseInt(key);
                 console.log(key);
-                if(i%2 == 0 )
+                if(i%2 === 0 )
                         d.cells.fill.color.push(rowEvenColor);
                     else
                         d.cells.fill.color.push(rowOddColor);
