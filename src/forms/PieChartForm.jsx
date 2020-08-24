@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      //width: '50ch',
+      width: '100%',
     },
   },
 }));
@@ -40,9 +40,11 @@ const PieChartForm = () => {
 
     return (
         <>
-        <div className="PieChartForm">
-            <div className="Form">
-              <h1>Pie Chart</h1>
+        <div className="container-fluid">
+      <div className="row">
+        <div className='col-md-1'></div>
+        <div className="col-md-4">
+        <h1>Pie Chart </h1>
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Text Position</InputLabel>
             <Select
@@ -180,9 +182,13 @@ const PieChartForm = () => {
             />  
 
             </div>
+            <div className="col-md-7">
             <div className="Graph">
             <PieChart {...config} />
+
             </div>
+            </div>
+        </div>
         </div>
         </>
     );

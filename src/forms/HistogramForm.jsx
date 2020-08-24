@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1), 
+      width: '100%',
     },
   },
 }));
@@ -31,17 +32,19 @@ const handleInputChange = e => {
 
 const [config, setConfig] = useState({
     dataset: hdd,   histNames: 'Trace 0,Trace 1,Trace 2,Trace 3', xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 45, yAxisTickAngle: 0,
-    orientation: 'v', barGap: 0.2, colorArray: 'black,orange', barMode: 'group', hoverTemplate :'%{x}<br>%{y}',
-    showLegend : true, barOpacity : 0.8, histCumulative: true,histFunc: 'count', histNorm: 'percent',
+    orientation: 'v', barGap: 0, colorArray: 'black,orange', barMode: 'group', hoverTemplate :'%{x}<br>%{y}',
+    showLegend : true, barOpacity : 0.8, histCumulative: false,histFunc: 'count', histNorm: 'percent',
 });
 
 const classes = useStyles();
 
   return (
     <>
-    <div className="HistogramForm">
-      <div className="Form">
-      <h1>Histogram </h1>
+    <div className="container-fluid">
+      <div className="row">
+        <div className='col-md-1'></div>
+        <div className="col-md-4">
+        <h1>Histogram </h1>
       <form >
       <TextField
         fullWidth
@@ -218,10 +221,13 @@ const classes = useStyles();
         label="Show Legend"
       />  
       </form>
-      </div> 
-    <div className="Graph">
+        </div>
+      <div className="col-md-7">
+      <div className="Graph">
     <Histogram  {...config} />
       </div>
+      </div>
+      </div> 
     </div>
     
     </>

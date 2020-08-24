@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      //width: '50ch',
+      width: '100%',
     },
   },
 }));
@@ -36,9 +36,11 @@ const classes = useStyles();
 
   return (
     <>
-    <div className="DotPlotForm">
-      <div className="Form">
-      <h1>Dot Plot </h1>
+    <div className="container-fluid">
+      <div className="row">
+        <div className='col-md-1'></div>
+        <div className="col-md-4">
+        <h1>Dot Plot </h1>
       <form >
       <TextField
         fullWidth
@@ -127,12 +129,13 @@ const classes = useStyles();
       />  
       </form>
       </div> 
+      <div className="col-md-7">
     <div className="Graph">
     <DotPlot  {...config} />
-     
+      </div>
       </div>
     </div>
-    
+    </div>
     </>
     
   );

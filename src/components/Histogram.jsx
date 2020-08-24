@@ -30,6 +30,7 @@ class Histogram extends Component {
         procData = keys.slice(0, (keys.length/2)).map((d, i) => ({
             x: [],
             y: [],
+            autobinx : false,
             name: newNames[i],
             histfunc: histFunc, 
             histnorm: histNorm, 
@@ -51,6 +52,7 @@ class Histogram extends Component {
           });
         });
       }
+      console.log(procData);
 
       this.setState({ procData });
     } catch (error) {
@@ -89,7 +91,7 @@ class Histogram extends Component {
         data={procData}
         layout={{
             bargap: barGap, 
-            bargroupgap: 0.2, 
+            bargroupgap: 0.02, 
             barmode: barMode, 
             xaxis: {
               title: xAxisLabel,
@@ -135,13 +137,13 @@ Histogram.defaultProps = {
   xAxisTickAngle: 45, 
   yAxisTickAngle: 0,
   orientation: 'v', 
-  barGap: 0.2, 
+  barGap: 0, 
   colorArray: 'black,orange', 
   barMode: 'group', 
   hoverTemplate :'%{x}<br>%{y}',
   showLegend : true, 
   barOpacity : 0.8, 
-  histCumulative: true,
+  histCumulative: false,
   histFunc: 'count', 
   histNorm: 'percent',
 };

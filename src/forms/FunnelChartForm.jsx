@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      //width: '50ch',
+      width: '100%',
     },
   },
 }));
@@ -40,9 +40,11 @@ const classes = useStyles();
 
   return (
     <>
-    <div className="FunnelChartForm">
-      <div className="Form">
-      <h1>Funnel Chart </h1>
+    <div className="container-fluid">
+      <div className="row">
+        <div className='col-md-1'></div>
+        <div className="col-md-4">
+        <h1>Funnel Chart </h1>
       <form >
       <TextField
         fullWidth
@@ -170,9 +172,11 @@ const classes = useStyles();
       />  
       </form>
       </div> 
+      <div className="col-md-7">
     <div className="Graph">
     <FunnelChart  {...config} />
-     
+        </div>"
+     </div>
       </div>
     </div>
     

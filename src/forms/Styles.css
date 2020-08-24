@@ -1,11 +1,7 @@
-.Form {
-    margin-top:3em;
-    margin-left: 5em;
-    margin-right: 5em;
+.container-fluid {
+    margin-top: 3em;
 }
 
-.Graph {
-    margin-top: 2em;
-    margin-left: 2em;
-    margin-bottom: 2em;
+.col-md-7{
+    margin-top: 0em;
 }

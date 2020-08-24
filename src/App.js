@@ -12,6 +12,7 @@ import CandleChartForm from './forms/CandleChartForm';
 import HistogramForm from './forms/HistogramForm';
 import OhlcChartForm from './forms/OhlcChartForm';
 import FunnelChartForm from './forms/FunnelChartForm';
+import ParallelCategoryForm from './forms/ParallelCategoryForm';
 
 // Importing Navigation.
 import {Navigation} from './forms/Navigation';
@@ -33,7 +34,6 @@ import {
 // Driver Function.
 function App() {
   return (   
-
     <Router >
       <div>
         <Navigation />
@@ -79,6 +79,9 @@ function App() {
           </Route>
           <Route exact path ="/FunnelChart" >
             <FunnelChartForm />
+          </Route>
+          <Route exact path ="/ParallelCategory" >
+            <ParallelCategoryForm />
           </Route>
         </Switch>
       </div>

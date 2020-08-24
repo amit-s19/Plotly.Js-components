@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      //width: '50ch',
+      width: '100%',
     },
   },
 }));
@@ -40,9 +40,11 @@ const BoxPlotForm = () => {
 
   return (
     <>
-    <div>
-    <div classname="Form">
-    <h1>Box Plot</h1>
+    <div className="container-fluid">
+      <div className="row">
+        <div className='col-md-1'></div>
+        <div className="col-md-4">
+        <h1>Box Plot </h1>
       <TextField
         fullWidth
         label="List of colors"
@@ -207,10 +209,12 @@ const BoxPlotForm = () => {
         label="Show Legend"
       />
       </div>
-
+      <div className='col-md-7'>
       <div className="Graph">
           <BoxPlot {...config} />
       </div>
+      </div>
+    </div>
     </div>
     </>
   );

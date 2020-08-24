@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      //width: '50ch',
+      width: '100%',
     },
   },
 }));
@@ -39,9 +39,11 @@ const IndicatorTraceForm = () => {
 
     return (
         <>
-        <div className="IndicatorTraceForm">
-            <div className="Form">
-              <h1>Indicator Traces</h1>
+       <div className="container-fluid">
+      <div className="row">
+        <div className='col-md-1'></div>
+        <div className="col-md-4">
+        <h1>Indicator Trace </h1>
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Mode</InputLabel>
             <Select
@@ -89,8 +91,11 @@ const IndicatorTraceForm = () => {
             />  
 
             </div>
+            <div className="col-md-7">
             <div className="Graph">
             <IndicatorTrace {...config} />
+            </div>
+            </div>
             </div>
         </div>
         </>
