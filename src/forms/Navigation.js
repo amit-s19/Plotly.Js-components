@@ -25,6 +25,12 @@ export class Navigation extends Component{
                 <NavDropdown.Item href="/OhlcChart">Ohlc Chart </NavDropdown.Item>
                 <NavDropdown.Item href="/FunnelChart">Funnel Chart </NavDropdown.Item>
                 <NavDropdown.Item href="/ParallelCategory">Parallel Category Chart </NavDropdown.Item>
+                <NavDropdown.Item href="/ContourPlot">Contour Plot </NavDropdown.Item>
+                <NavDropdown.Item href="/HeatMap">Heat Map </NavDropdown.Item>
+                <NavDropdown.Item href="/RadarChart">Radar Chart </NavDropdown.Item>
+                <NavDropdown.Item href="/TreeMap">Tree Map </NavDropdown.Item>
+                <NavDropdown.Item href="/SunburstChart">Sunburst Chart </NavDropdown.Item>
+                <NavDropdown.Item href="/LollipopChart">Lollipop Chart </NavDropdown.Item>
                 </NavDropdown>
         </Nav>
       </Navbar.Collapse>

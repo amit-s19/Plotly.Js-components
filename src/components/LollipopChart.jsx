@@ -2,48 +2,75 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-
+import LollipopChartForm from '../forms/LollipopChartForm';
+//import {barDummydata as bdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
-class BubbleChart extends Component {
+class LollipopChart extends Component {
   constructor(props) {
     super(props);
-
     this.state = { procData: [] };
   }
 
   processData = () => {
     const {
-      dataset, colorArray, opacity,
+      dataset, barOpacity, barWidth, hoverTemplate, orientation, colorArray, markerSize,  
+      textTemplate, markerMode, markerSymbol,
     } = this.props;
 
     try {
-      let procData = [];
       const newColorArr = colorArray.split(',');
+      let procData = [];
+      let markerData = {
+        x: [],
+        y: [],
+        type: 'scatter',
+        mode: markerMode,
+        marker: {
+        color:  newColorArr[0],
+        symbol: markerSymbol,
+        size:  markerSize,
+        opacity: barOpacity,
+        },
+        showlegend: false,
+      };
+
 
       if (dataset && dataset.length > 0) {
+        
         const keys = Object.keys(dataset[0]);
-        procData = [{
+
+        procData = keys.slice(1, 2).map((d, i) => ({
           x: [],
           y: [],
-          text: [],
-          marker: {
-            color: newColorArr, size: [], sizemode: 'area', opacity,
-          },
-          mode: 'markers',
-          type: 'scatter',
-        }];
+          marker: { color: newColorArr[1], opacity: barOpacity },
+          type: 'bar',  
+          width: barWidth === 0 || !barWidth ? null : barWidth,
+          name: d,
+          hovertemplate: hoverTemplate,
+          texttemplate: textTemplate,
+          orientation: orientation,
+        }));
 
         dataset.forEach((field) => {
           procData.forEach((d) => {
-            d.text.push(`Name: ${field[keys[0]]}<br />X: ${field[keys[1]]}<br />Y: ${field[keys[2]]}<br />Size: ${field[keys[3]]}`);
-            d.x.push(field[keys[1]]);
-            d.y.push(field[keys[2]]);
-            d.marker.size.push(field[keys[3]]);
+            let y = field[keys[0]];
+            let x = field[d.name];
+            if(orientation == 'v')
+              [y, x] = [x,y]
+            markerData.y.push(y);
+            markerData.x.push(x);
+            d.y.push(y);
+            d.x.push(x);
           });
         });
       }
 
+      markerData.name = procData.name;
+
+      procData.push(markerData);
+
+      console.log(procData);
       this.setState({ procData });
     } catch (error) {
       console.log(error);
@@ -60,8 +87,9 @@ class BubbleChart extends Component {
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-
-    if (Object.is(this.props, prevProps)) {
+    
+    
+    if ((Object.is(this.props, prevProps))) {
       return;
     }
 
@@ -72,7 +100,7 @@ class BubbleChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend,
+      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, barGap, showLegend, barMode,
     } = this.props;
 
     return (
@@ -98,45 +126,125 @@ class BubbleChart extends Component {
             title: yAxisLabel,
             tickangle: yAxisTickAngle,
           },
+          bargap: barGap,
+          barmode: barMode,
           showlegend: showLegend,
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
-        onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-              pts = 'x = '+data.points[i].x +'\ny = '+
-              data.points[i].y.toPrecision(4) + '\n\n';
-          }
-          alert('Closest point clicked:\n\n'+pts);
-        }}
       />
     );
   }
 }
 
-BubbleChart.propTypes = {
+LollipopChart.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  orientation: PropTypes.string,
+  textPosition: PropTypes.string,
   xAxisLabel: PropTypes.string,
   yAxisLabel: PropTypes.string,
   xAxisTickAngle: PropTypes.number,
   yAxisTickAngle: PropTypes.number,
+  barGap: PropTypes.number,
+  barOpacity: PropTypes.number,
+  barWidth: PropTypes.number,
   colorArray: PropTypes.string,
-  opacity: PropTypes.number,
   showLegend: PropTypes.bool,
+  hoverTemplate: PropTypes.string,
+  textTemplate: PropTypes.string,
+  barMode: PropTypes.string,
 };
 
-BubbleChart.defaultProps = {
+LollipopChart.defaultProps = {
   dataset: [],
   xAxisLabel: '',
   yAxisLabel: '',
   xAxisTickAngle: 45,
   yAxisTickAngle: 0,
+  orientation: 'v',
+  barGap: 0.2,
+  textPosition: 'inside',
   colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-  opacity: 0.9,
-  showLegend: false,
+  hoverTemplate: '%{x}<br>%{y}',
+  textTemplate: '%{x}<br>%{y}',
+  showLegend: true,
+  barWidth: null,
+  barOpacity: 0.8,
+  barMode: 'group',
 };
 
-//BubbleChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bubble+chart.svg';
 
-export default BubbleChart;
+
+LollipopChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
+
+export default LollipopChart;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

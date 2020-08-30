@@ -42,8 +42,12 @@ class BarGraph extends Component {
         
         dataset.forEach((field) => {
           procData.forEach((d) => {
-            d.x.push(field[keys[0]]);
-            d.y.push(field[d.name]);
+            let x = field[keys[0]];
+            let y = field[d.name];
+            if(orientation === 'h')
+              [x, y] = [y, x];
+            d.x.push(x);
+            d.y.push(y);
           });
         });
       }

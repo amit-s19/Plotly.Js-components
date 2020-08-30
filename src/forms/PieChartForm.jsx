@@ -44,7 +44,7 @@ const PieChartForm = () => {
       <div className="row">
         <div className='col-md-1'></div>
         <div className="col-md-4">
-        <h1>Pie Chart </h1>
+        <h2 className="display-4">Pie Chart </h2>
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Text Position</InputLabel>
             <Select

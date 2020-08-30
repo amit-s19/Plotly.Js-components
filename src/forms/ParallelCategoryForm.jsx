@@ -42,7 +42,7 @@ const classes = useStyles();
       <div className="row">
         <div className='col-md-1'></div>
         <div className="col-md-4">
-        <h1>Parallel Category Charts </h1>
+        <h2 className="display-4">Parallel Category Chart </h2>
 
             <TextField
             fullWidth
@@ -148,26 +148,18 @@ const classes = useStyles();
 
 
 
-// ParallelCategoryForm.propTypes = {
-//   config: PropTypes.shape({
-//     orientation: PropTypes.string,
-//     textPosition: PropTypes.string,
-//     xAxisLabel: PropTypes.string,
-//     yAxisLabel: PropTypes.string,
-//     xAxisTickAngle: PropTypes.number,
-//     yAxisTickAngle: PropTypes.number,
-//     barGap: PropTypes.number,
-//     barOpacity: PropTypes.number,
-//     barWidth: PropTypes.number,
-//     colorArray: PropTypes.string,
-//     showLegend: PropTypes.bool,
-//     hoverTemplate: PropTypes.string,
-//     textTemplate: PropTypes.string,
-//     barMode: PropTypes.string,
-//   }),
-// };
+ParallelCategoryForm.propTypes = {
+  config: PropTypes.shape({
+    categoryOrder: PropTypes.string, 
+    hoverInfo: PropTypes.string, 
+    colorArray: PropTypes.string, 
+    lineShape: PropTypes.string,
+    chartArrangement: PropTypes.string, 
+    sortPath: PropTypes.string,
+  }),
+};
 
-//ParallelCategoryForm.defaultProps = { config: {} };
+ParallelCategoryForm.defaultProps = { config: {} };
 
 export default ParallelCategoryForm;
 

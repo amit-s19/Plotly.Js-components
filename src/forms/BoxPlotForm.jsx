@@ -44,7 +44,7 @@ const BoxPlotForm = () => {
       <div className="row">
         <div className='col-md-1'></div>
         <div className="col-md-4">
-        <h1>Box Plot </h1>
+        <h2 className="display-4">Box Plot </h2>
       <TextField
         fullWidth
         label="List of colors"

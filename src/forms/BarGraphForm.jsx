@@ -44,7 +44,7 @@ const classes = useStyles();
       <div className="row">
         <div className='col-md-1'></div>
         <div className="col-md-4">
-        <h1>Bar Graph </h1>
+        <h2 className="display-4">Bar Graph </h2>
       <form >
       <TextField
         fullWidth

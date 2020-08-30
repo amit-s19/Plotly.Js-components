@@ -83,8 +83,9 @@ class DotPlot extends Component {
     const {
       dotTitle, xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle,
     } = this.props;
-
+  
     return (
+      <>
       <Plot
         data={procData}
         layout={{
@@ -136,6 +137,8 @@ class DotPlot extends Component {
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
       />
+  
+</>
     );
   }
 }

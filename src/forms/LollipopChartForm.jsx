@@ -7,10 +7,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import OhlcChart from '../components/OhlcChart';
+import LollipopChart from '../components/LollipopChart';
 import { makeStyles } from '@material-ui/core/styles';
-import { candleDummydata as cdd} from '../compDummyData';
+import {barDummydata as bgd} from '../compDummyData';
 import './Styles.css';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const OhlcChartForm = () => {
+const LollipopChartForm = () => {
 
 const handleInputChange = e => {  
   const {name, value} = e.target ;
@@ -30,19 +31,21 @@ const handleInputChange = e => {
 };
 
 const [config, setConfig] = useState({
-    dataset: cdd, colorArray:'black,orange', xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 0, 
-    yAxisTickAngle: 0, calType: 'gregorian', showLegend: true, calName: 'Trace 0',
+    dataset: bgd, xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 45, yAxisTickAngle: 0, orientation: 'v',
+    colorArray: 'purple,pink', markerSize: 30, hoverTemplate :'%{x}<br>%{y}', showLegend : true, 
+    barWidth : 0.08, barOpacity : 0.8, textTemplate : '%{x}<br>%{y}', markerMode: 'markers',
+    markerSymbol: 'circle',
 });
 
 const classes = useStyles();
 
   return (
     <>
-    <div className="container-fluid">
+   <div className="container-fluid">
       <div className="row">
         <div className='col-md-1'></div>
         <div className="col-md-4">
-        <h2 className="display-4">OHLC Chart </h2>
+        <h2 className="display-4">Lollipop Chart </h2>
       <form >
       <TextField
         fullWidth
@@ -54,13 +57,24 @@ const classes = useStyles();
         size="small"
         className={classes.root}
       />
+  
       <TextField
         fullWidth
-        label="Trace Name"
-        name="calName"
+        label="Hover Template"
+        name="hoverTemplate"
         variant="outlined"
         onChange={handleInputChange}
-        value={config.calName}
+        value={config.hoverTemplate}
+        size="small"
+        className={classes.root}
+      />
+      <TextField
+        fullWidth
+        label="Text Template"
+        name="textTemplate"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.textTemplate}
         size="small"
         className={classes.root}
       />
@@ -108,39 +122,105 @@ const classes = useStyles();
         InputProps={{ inputProps: { min: -180, max: 180 } }}
         className={classes.root}
       />
-    
+      
       <FormControl className={classes.root} fullWidth variant="outlined" size="small">
-        <InputLabel>Calendar Format</InputLabel>
+        <InputLabel>Orientation</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          value={config.calType}
-          name="calType"
+          value={config.orientation}
+          name="orientation"
           onChange={handleInputChange}
-          label="Calendar format"
+          label="Orientation"
         >
-          <MenuItem value="gregorian">Gregorian</MenuItem>
-          <MenuItem value="chinese">Chinese</MenuItem>
-          <MenuItem value="hebrew">Hebrew</MenuItem>
-          <MenuItem value="mayan">Mayan</MenuItem>
-          <MenuItem value="islamic">Islamic</MenuItem>
+          <MenuItem value="v">Vertical</MenuItem>
+          <MenuItem value="h">Horizontal</MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Marker Mode</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.markerMode}
+          name="markerMode"
+          onChange={handleInputChange}
+          label="Marker Mode"
+        >
+          <MenuItem value="markers">Markers</MenuItem>
+          <MenuItem value="lines">Lines</MenuItem>
+          <MenuItem value="lines+markers">Lines+Markers</MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Marker Symbol</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.markerSymbol}
+          name="markerSymbol"
+          onChange={handleInputChange}
+          label="Marker Symbol"
+        >
+          <MenuItem value="circle">Circle</MenuItem>
+          <MenuItem value="square">Square</MenuItem>
+          <MenuItem value="diamond">Diamond</MenuItem>
+          <MenuItem value="hourglass">Hourglass</MenuItem>
+          <MenuItem value="hexagon">Hexagon</MenuItem>
         </Select>
       </FormControl>
       
+      <TextField
+        fullWidth
+        type="number"
+        label="Chart Opacity"
+        name="barOpacity"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.barOpacity}
+        size="small"
+        InputProps={{ inputProps: { min: 0, max: 1 } }}
+        className={classes.root}
+      />
+
+      <TextField
+        fullWidth
+        type="number"
+        label="Marker Size"
+        name="markerSize"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.markerSize}
+        size="small"
+        InputProps={{ inputProps: { min: 15, max: 50 } }}
+        className={classes.root}
+      />
+
+      <TextField
+        fullWidth
+        type="number"
+        label="Line Width"
+        name="barWidth"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.barWidth}
+        size="small"
+        InputProps={{ inputProps: { min: 0, max: 0.3 } }}
+        className={classes.root}
+      />
+
       <FormControlLabel
         control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
         label="Show Legend"
       />  
       </form>
-        </div>
-      <div className="col-md-7">
-      <div className="Graph">
-      <OhlcChart  {...config} />
-      </div>
-      </div>
       </div> 
+      <div className="col-md-7">
+    <div className="Graph">
+    <LollipopChart  {...config} />
+      </div>
+     </div>
+      </div>
     </div>
-    
-  
     
     </>
     
@@ -149,7 +229,7 @@ const classes = useStyles();
 
 
 
-OhlcChartForm.propTypes = {
+LollipopChartForm.propTypes = {
   config: PropTypes.shape({
     orientation: PropTypes.string,
     textPosition: PropTypes.string,
@@ -168,7 +248,7 @@ OhlcChartForm.propTypes = {
   }),
 };
 
-//OhlcChartForm.defaultProps = { config: {} };
+//LollipopChartForm.defaultProps = { config: {} };
 
-export default OhlcChartForm;
+export default LollipopChartForm;
 

@@ -42,7 +42,7 @@ const classes = useStyles();
       <div className="row">
         <div className='col-md-1'></div>
         <div className="col-md-4">
-        <h1>Table Chart </h1>
+        <h2 className="display-4">Table Chart </h2>
       <form >
       <TextField
         fullWidth

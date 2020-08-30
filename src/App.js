@@ -13,6 +13,12 @@ import HistogramForm from './forms/HistogramForm';
 import OhlcChartForm from './forms/OhlcChartForm';
 import FunnelChartForm from './forms/FunnelChartForm';
 import ParallelCategoryForm from './forms/ParallelCategoryForm';
+import ContourPlotForm from './forms/ContourPlotForm';
+import HeatMapForm from './forms/HeatMapForm';
+import RadarChartForm from './forms/RadarChartForm';
+import TreeMapForm from './forms/TreeMapForm';
+import SunburstChartForm from './forms/SunburstChartForm';
+import LollipopChartForm from './forms/LollipopChartForm';
 
 // Importing Navigation.
 import {Navigation} from './forms/Navigation';
@@ -34,6 +40,7 @@ import {
 // Driver Function.
 function App() {
   return (   
+  
     <Router >
       <div>
         <Navigation />
@@ -82,6 +89,24 @@ function App() {
           </Route>
           <Route exact path ="/ParallelCategory" >
             <ParallelCategoryForm />
+          </Route>
+          <Route exact path ="/ContourPlot" >
+            <ContourPlotForm />
+          </Route>
+          <Route exact path ="/HeatMap" >
+            <HeatMapForm />
+          </Route>
+          <Route exact path ="/RadarChart" >
+            <RadarChartForm />
+          </Route>
+          <Route exact path ="/TreeMap" >
+            <TreeMapForm />
+          </Route>
+          <Route exact path ="/SunburstChart" >
+            <SunburstChartForm />
+          </Route>
+          <Route exact path ="/LollipopChart" >
+            <LollipopChartForm />
           </Route>
         </Switch>
       </div>
