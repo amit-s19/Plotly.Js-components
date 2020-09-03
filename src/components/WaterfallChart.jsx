@@ -16,12 +16,13 @@ class WaterfallChart extends Component {
 
   processData = () => {
     const {
-      dataset, traceName, Orientation, Opacity, barWidth, Measure, barText, 
+      dataset, traceName, Orientation, Opacity, barWidth, Measure, barText, customOptions, 
+      hoverTemplate, textTemplate, textPosition, colorArray, lineWidth, 
     } = this.props;
 
     try {
       let procData = [];
-    //   const newColorArr = colorArray.split(',');
+      const newColorArr = colorArray.split(',');
 
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
@@ -37,20 +38,69 @@ class WaterfallChart extends Component {
             orientation: Orientation,
             opacity: Opacity, 
             width: barWidth,
+            hovertemplate: hoverTemplate,
+            texttemplate: textTemplate,
+            textposition: textPosition,
+            increasing: {
+                marker: { 
+                    color: newColorArr[0],
+                    line: {
+                        color: newColorArr[1],
+                        width: lineWidth,
+                    }
+                }
+            },
+            decreasing: {
+                marker: { 
+                    color: newColorArr[2],
+                    line: {
+                        color: newColorArr[3],
+                        width: lineWidth,
+                    }
+                }
+            },
+            totals: {
+                marker: { 
+                    color: newColorArr[4],
+                    line: {
+                        color: newColorArr[5],
+                        width: lineWidth,
+                    }
+                }
+            },
 
         }];
+
+        if(Measure == 'custom') {
+            dataset.forEach((field) => {
+                procData.forEach((d) => {
+                  let X = field[keys[0]];
+                  let Y = field[keys[1]];
+                  if(Orientation == 'h')
+                      [X, Y] = [Y, X];
+                  d.x.push(X);
+                  d.y.push(Y);
+                });
+              });
+              procData.forEach((d) => {
+                d.measure = customOptions.split(','); 
+            });
+        } else {
+            dataset.forEach((field) => {
+                procData.forEach((d) => {
+                  let X = field[keys[0]];
+                  let Y = field[keys[1]];
+                  if(Orientation == 'h')
+                      [X, Y] = [Y, X];
+                  d.x.push(X);
+                  d.y.push(Y);
+                  d.measure.push(Measure);
+                });
+              });
+        }
         
-        dataset.forEach((field) => {
-          procData.forEach((d) => {
-            let X = field[keys[0]];
-            let Y = field[keys[1]];
-            if(Orientation == 'h')
-                [X, Y] = [Y, X];
-            d.x.push(X);
-            d.y.push(Y);
-            d.measure.push(Measure);
-          });
-        });
+       
+
         console.log(procData)
       }
 
@@ -91,7 +141,15 @@ class WaterfallChart extends Component {
       <Plot
         data={procData}
         layout={{
-            
+            title: undefined,
+            xaxis: {
+                title: xAxisLabel,
+                tickangle: xAxisTickAngle
+            },
+            yaxis: {
+                title: yAxisLabel,
+                tickangle: yAxisTickAngle
+            },
             autosize: true,
             showlegend: true
         }}

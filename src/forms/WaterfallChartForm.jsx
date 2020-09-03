@@ -33,10 +33,28 @@ const handleInputChange = e => {
 
 const [config, setConfig] = useState({
     dataset: wdd, showLegend: true, traceName: 'Trace 0', Orientation: 'v', Opacity: 1, barWidth: 0.7,
-    Measure: 'relative', barText: '',
+    Measure: 'relative', barText: '', customOptions: '', hoverTemplate: '', textTemplate: '', 
+    xAxisLabel: 'X-Axis Label', yAxisLabel: 'Y-Axis Label', xAxisTickAngle: 0, yAxisTickAngle: 0,  
+    textPosition: 'inside', colorArray: '', lineWidth: 0, 
 });
 
 const classes = useStyles();
+
+const checkCustom = () => {
+    if(config.Measure == 'custom')
+        return (
+            <TextField
+            fullWidth
+            label="Enter options separated by commas."
+            name="customOptions"
+            variant="outlined"
+            onChange={handleInputChange}
+            value={config.customOptions}
+            size="small"
+            className={classes.root}
+          />
+        );
+}
 
   return (
     <>
@@ -46,6 +64,17 @@ const classes = useStyles();
         <div className="col-md-4">
         <h2 className="display-4">Waterfall Chart </h2>
       
+      <TextField
+        fullWidth
+        label="List of colors"
+        name="colorArray"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.colorArray}
+        size="small"
+        className={classes.root}
+      />
+
       <TextField
         fullWidth
         label="Trace Name"
@@ -84,6 +113,19 @@ const classes = useStyles();
         className={classes.root}
       />
 
+      <TextField
+        fullWidth
+        type="number"
+        label="Line Width"
+        name="lineWidth"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.lineWidth}
+        size="small"
+        InputProps={{ inputProps: { min: 0, max: 10 } }}
+        className={classes.root}
+      />
+
     <TextField
         fullWidth
         type="number"
@@ -93,7 +135,7 @@ const classes = useStyles();
         onChange={handleInputChange}
         value={config.barWidth}
         size="small"
-        InputProps={{ inputProps: { min: 0 } }}
+        InputProps={{ inputProps: { min: 0, max: 1 } }}
         className={classes.root}
       />
      
@@ -109,12 +151,30 @@ const classes = useStyles();
           <MenuItem value="relative">Relative</MenuItem>
           <MenuItem value="absolute">Absolute</MenuItem>
           <MenuItem value="total">Total</MenuItem>
+          <MenuItem value="custom">Custom</MenuItem>
         </Select>
       </FormControl>
+    {checkCustom()}
 
+    <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Text Position</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.textPosition}
+          name="textPosition"
+          onChange={handleInputChange}
+          label="Text Position"
+        >
+          <MenuItem value="inside">Inside</MenuItem>
+          <MenuItem value="outside">Outside</MenuItem>
+          <MenuItem value="auto">Auto</MenuItem>
+          <MenuItem value="none">None</MenuItem>
+        </Select>
+      </FormControl>
+      
       <TextField
         fullWidth
-        label="Text"
+        label="Hover Text"
         name="barText"
         variant="outlined"
         onChange={handleInputChange}
@@ -123,6 +183,70 @@ const classes = useStyles();
         className={classes.root}
       />
       
+      <TextField
+        fullWidth
+        label="Hover Template"
+        name="hoverTemplate"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.hoverTemplate}
+        size="small"
+        className={classes.root}
+      />
+      <TextField
+        fullWidth
+        label="Text Template"
+        name="textTemplate"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.textTemplate}
+        size="small"
+        className={classes.root}
+      />
+      <TextField
+        fullWidth
+        label="X-axis Label"
+        name="xAxisLabel"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.xAxisLabel}
+        size="small"
+        className={classes.root}
+      />
+      <TextField
+        fullWidth
+        label="Y-axis Label"
+        name="yAxisLabel"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.yAxisLabel}
+        size="small"
+        className={classes.root}
+      />
+      <TextField
+        fullWidth
+        type="number"
+        label="X-axis Tick Angle"
+        name="xAxisTickAngle"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.xAxisTickAngle}
+        size="small"
+        InputProps={{ inputProps: { min: -180, max: 180 } }}
+        className={classes.root}
+      />
+      <TextField
+        fullWidth
+        type="number"
+        label="Y-axis Tick Angle"
+        name="yAxisTickAngle"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.yAxisTickAngle}
+        size="small"
+        InputProps={{ inputProps: { min: -180, max: 180 } }}
+        className={classes.root}
+      />
 
       <FormControlLabel
         control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
