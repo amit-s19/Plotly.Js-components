@@ -31,7 +31,7 @@ const AreaChartForm = () => {
     const [config, setConfig] = useState({
       dataset: acd, areaMode: 'scatter', areaFill: 'tozeroy', xAxisLabel: '', yAxisLabel: '', xAxisTickAngle: 45, yAxisTickAngle: 0,
       markerSize: 8, markerOpacity: 0.6, lineWidth: 2, lineShape: 'linear', lineStyle: 'solid', colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-      hoverTemplate: '%{x}<br>%{y}', showLegend: true,
+      hoverTemplate: '%{x}<br>%{y}', showLegend: true, xAxisRange: '', yAxisRange: '', 
     });
 
     const classes = useStyles();
@@ -106,6 +106,26 @@ const AreaChartForm = () => {
         value={config.yAxisTickAngle}
         size="small"
         InputProps={{ inputProps: { min: -180, max: 180 } }}
+        className={classes.root}
+      />
+        <TextField
+        fullWidth
+        label="X-axis range [n, m]"
+        name="xAxisRange"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.xAxisRange}
+        size="small"
+        className={classes.root}
+      />
+        <TextField
+        fullWidth
+        label="Y-axis range [n, m]"
+        name="yAxisRange"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.yAxisRange}
+        size="small"
         className={classes.root}
       />
       <TextField

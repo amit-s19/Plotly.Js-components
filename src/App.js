@@ -19,6 +19,8 @@ import RadarChartForm from './forms/RadarChartForm';
 import TreeMapForm from './forms/TreeMapForm';
 import SunburstChartForm from './forms/SunburstChartForm';
 import LollipopChartForm from './forms/LollipopChartForm';
+import ViolinChartForm from './forms/ViolinChartForm';
+import WaterfallChartForm from './forms/WaterfallChartForm';
 
 // Importing Navigation.
 import {Navigation} from './forms/Navigation';
@@ -40,7 +42,6 @@ import {
 // Driver Function.
 function App() {
   return (   
-  
     <Router >
       <div>
         <Navigation />
@@ -107,6 +108,12 @@ function App() {
           </Route>
           <Route exact path ="/LollipopChart" >
             <LollipopChartForm />
+          </Route>
+          <Route exact path ="/ViolinChart" >
+            <ViolinChartForm />
+          </Route>
+          <Route exact path ="/WaterfallChart" >
+            <WaterfallChartForm />
           </Route>
         </Switch>
       </div>

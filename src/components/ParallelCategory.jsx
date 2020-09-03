@@ -92,10 +92,11 @@ class ParallelCategory extends Component {
       <Plot
         data={procData}
         layout={{
-          width: 600
+          hovermode: 'closest',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
+
       />
     );
   }

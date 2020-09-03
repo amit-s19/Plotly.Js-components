@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 
+let xcoord, ycoord;
+
 const Plot = createPlotlyComponent(Plotly);
 
 class BubbleChart extends Component {
@@ -23,6 +25,8 @@ class BubbleChart extends Component {
 
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
+        xcoord = keys[1];
+        ycoord = keys[2];
         procData = [{
           x: [],
           y: [],
@@ -33,7 +37,7 @@ class BubbleChart extends Component {
           mode: 'markers',
           type: 'scatter',
         }];
-
+        
         dataset.forEach((field) => {
           procData.forEach((d) => {
             d.text.push(`Name: ${field[keys[0]]}<br />X: ${field[keys[1]]}<br />Y: ${field[keys[2]]}<br />Size: ${field[keys[3]]}`);
@@ -99,16 +103,17 @@ class BubbleChart extends Component {
             tickangle: yAxisTickAngle,
           },
           showlegend: showLegend,
+          hovermode: 'closest',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-              pts = 'x = '+data.points[i].x +'\ny = '+
-              data.points[i].y.toPrecision(4) + '\n\n';
+              pts = xcoord+' : '+data.points[i].x +'\n'+ycoord+' : '+
+              data.points[i].y + '\n\n';
           }
-          alert('Closest point clicked:\n\n'+pts);
+          alert('The values are:\n'+pts);
         }}
       />
     );

@@ -5,6 +5,7 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 //import {barDummydata as bdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
+let xcoord, ycoord;
 
 class BarGraph extends Component {
   constructor(props) {
@@ -25,7 +26,8 @@ class BarGraph extends Component {
       if (dataset && dataset.length > 0) {
         
         const keys = Object.keys(dataset[0]);
-
+        xcoord = keys[0];
+        ycoord = keys.slice(1, keys.length);
         procData = keys.slice(1, keys.length).map((d, i) => ({
           x: [],
           y: [],
@@ -110,9 +112,18 @@ class BarGraph extends Component {
           bargap: barGap,
           barmode: barMode,
           showlegend: showLegend,
+          hovermode: 'closest',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
+        onClick = {(data) => {
+          var pts = '';
+          for(var i=0; i < data.points.length; i++){
+              pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
+              data.points[i].y + '\n\n';
+          }
+          alert('The values are:\n'+pts);
+        }}
       />
     );
   }

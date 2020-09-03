@@ -5,6 +5,7 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 import {barDummydata as bdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
+let xcoord;
 
 class FunnelChart extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class FunnelChart extends Component {
       if (dataset && dataset.length > 0) {
         
         const keys = Object.keys(dataset[0]);
-
+        xcoord = keys[0];
         procData = keys.slice(0, keys.length).map((d, i) => ({
           x: [],
           y: [],
@@ -95,9 +96,19 @@ class FunnelChart extends Component {
             yaxis: {
               title: yAxisLabel,
             },
+            hovermode: 'closest',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
+        onClick = {(data) => {
+          var pts = '';
+          for(var i=0; i < data.points.length; i++){
+              let index = data.points[i].pointNumber;
+              pts = xcoord+' : ' +data.points[i].data.name+'\n'+
+              data.points[i].y+' : '+data.points[i].x+ '\n\n';
+          }
+          alert('The values are:\n'+pts);
+        }}
       />
     );
   }

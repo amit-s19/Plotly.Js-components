@@ -31,6 +31,8 @@ export class Navigation extends Component{
                 <NavDropdown.Item href="/TreeMap">Tree Map </NavDropdown.Item>
                 <NavDropdown.Item href="/SunburstChart">Sunburst Chart </NavDropdown.Item>
                 <NavDropdown.Item href="/LollipopChart">Lollipop Chart </NavDropdown.Item>
+                <NavDropdown.Item href="/ViolinChart">Violin Chart</NavDropdown.Item>
+                <NavDropdown.Item href="/WaterfallChart">Waterfall Chart</NavDropdown.Item>
                 </NavDropdown>
         </Nav>
       </Navbar.Collapse>

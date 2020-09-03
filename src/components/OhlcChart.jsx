@@ -107,6 +107,18 @@ class OhlcChart extends Component {
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
+        onClick = {(data) => {
+          let pts = '';
+          for (let i=0 ; i<data.points.length ; i++) {
+            let index = data.points[i].pointNumber;
+            pts = data.points[i].data.x[index]+
+            '\nOpen : '+data.points[i].data.open[index]+
+            '\nHigh : '+data.points[i].data.high[index]+
+            '\nLow : '+data.points[i].data.low[index]+
+            '\nClose : '+data.points[i].data.close[index] ;
+          }
+          alert(pts);
+        }}
       />
     );
   }

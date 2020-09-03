@@ -6,6 +6,8 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 
 const Plot = createPlotlyComponent(Plotly);
 
+let xcoord;
+
 class LineChart extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +27,7 @@ class LineChart extends Component {
 
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
+        xcoord = keys[0];
         procData = keys.slice(1, keys.length).map((d, i) => ({
           x: [],
           y: [],
@@ -102,9 +105,18 @@ class LineChart extends Component {
             tickangle: yAxisTickAngle,
           },
           showlegend: showLegend,
+          hovermode: 'closest',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
+        onClick = {(data) => {
+          var pts = '';
+          for(var i=0; i < data.points.length; i++){
+              pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
+              data.points[i].y + '\n\n';
+          }
+          alert('The values are:\n'+pts);
+        }}
       />
     );
   }

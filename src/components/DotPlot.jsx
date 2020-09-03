@@ -5,7 +5,6 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 import {dotDummydata as ddd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
-
 class DotPlot extends Component {
   constructor(props) {
     super(props);
@@ -24,8 +23,6 @@ class DotPlot extends Component {
       if (dataset && dataset.length > 0) {
         
         const keys = Object.keys(dataset[0]);
-
-      
         
         procData = keys.slice(1, keys.length).map((d, i) => ({
             type: 'scatter',
@@ -33,7 +30,7 @@ class DotPlot extends Component {
             y: [],
             mode: 'markers',
             text: keys[i],
-            name: keys[i],
+            name: keys[i+1],
             marker: {
               color: newColorArr[i],
               symbol: 'circle',
@@ -136,6 +133,13 @@ class DotPlot extends Component {
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
+        onClick = {(data) => {
+          var pts = '';
+          for(var i=0; i < data.points.length; i++){
+              pts = data.points[i].y +'\n'+data.points[i].data.name+' : '+data.points[i].x;
+          }
+          alert('The values are:\n'+pts);
+        }}
       />
   
 </>
