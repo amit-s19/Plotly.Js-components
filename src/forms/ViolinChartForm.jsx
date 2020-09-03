@@ -31,7 +31,7 @@ const handleInputChange = e => {
 };
 
 const [config, setConfig] = useState({
-    dataset: vdd, colorArray: 'orange,red,black', violinOpacity: 1, violinWidth: 0, hoverText: '', hoverInfo: 'all',
+    dataset: vdd, colorArray: '#800055,#cc0088,#ff00aa,#ff33bb,#ff66cc,#ff99dd,#ffccee,#4d0033,#000000', violinOpacity: 1, violinWidth: 0, hoverText: '', hoverInfo: 'all',
     hoverTemplate: '%{x}<br>%{y}', violinOrientation: 'v', markerSymbol: 'circle', markerSize: 8, Bandwidth: null,
     hoverOn: 'violins+points+kde', violinJitter: 0, showLegend: true,
 });

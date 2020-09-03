@@ -18,7 +18,7 @@ class ViolinChart extends Component {
 
   processData = () => {
     const {
-      dataset, violinColor, violinOpacity, violinWidth, hoverText, hoverInfo, hoverTemplate,
+      dataset, violinOpacity, violinWidth, hoverText, hoverInfo, hoverTemplate,
       violinOrientation, colorArray, markerSymbol, markerSize, Bandwidth, hoverOn, violinJitter,
       showLegend,
     } = this.props;
@@ -26,6 +26,7 @@ class ViolinChart extends Component {
     try {
       let procData = [];
       const newColorArr = colorArray.split(',');
+      let uniqueLabels = [];
 
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
@@ -51,19 +52,21 @@ class ViolinChart extends Component {
             box: {
               visible: true,
             },
-            line: {
-                color: newColorArr[0],
-            },
             marker: {
-              outliercolor: newColorArr[1],
+              outliercolor: newColorArr[newColorArr.length-2],
               symbol: markerSymbol,
               size: markerSize,
             },
             meanline: {
               visible: true,
-              color: newColorArr[2],
+              color: newColorArr[newColorArr.length-1],
             },
-     
+            transforms: [{
+              type: 'groupby',
+            groups: [],
+            styles: []
+           }]
+          
         }];
         
         dataset.forEach((field) => {
@@ -73,10 +76,19 @@ class ViolinChart extends Component {
             if (violinOrientation === 'h')
               [x, y] = [y, x];
             d.x.push(x);
+            d.transforms[0].groups.push(x);
             d.y.push(y);
           });
         });
-        
+
+        uniqueLabels = procData[0].x.filter((value, index, self) => self.indexOf(value) === index);
+        for(let i=0 ; i<uniqueLabels.length ; i++) {
+          let x = {
+            target: uniqueLabels[i],
+            value: { line: {color: newColorArr[i]}}
+          }
+          procData[0].transforms[0].styles.push(x)
+        }
       }
       this.setState({ procData });
     } catch (error) {
