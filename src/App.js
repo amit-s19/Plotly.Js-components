@@ -21,6 +21,8 @@ import SunburstChartForm from './forms/SunburstChartForm';
 import LollipopChartForm from './forms/LollipopChartForm';
 import ViolinChartForm from './forms/ViolinChartForm';
 import WaterfallChartForm from './forms/WaterfallChartForm';
+import ScatterPlotForm from './forms/ScatterPlotForm';
+import SankeyChartForm from './forms/SankeyChartForm';
 
 // Importing Navigation.
 import {Navigation} from './forms/Navigation';
@@ -114,6 +116,12 @@ function App() {
           </Route>
           <Route exact path ="/WaterfallChart" >
             <WaterfallChartForm />
+          </Route>
+          <Route exact path ="/ScatterPlot" >
+            <ScatterPlotForm />
+          </Route>
+          <Route exact path ="/SankeyChart" >
+            <SankeyChartForm />
           </Route>
         </Switch>
       </div>

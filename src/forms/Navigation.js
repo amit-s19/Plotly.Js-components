@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import './Navigation.css';
 
 export class Navigation extends Component{
     render(){
       return(
-        <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark" >
         <Navbar.Brand href="/"> Chart Components </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className="mr-auto" style={{lineHeight: 1}}>
                 <NavDropdown title="Charts" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="/BarGraph">Bar Graph </NavDropdown.Item>
                 <NavDropdown.Item href="/BubbleChart">Bubble Chart </NavDropdown.Item>
@@ -33,6 +33,8 @@ export class Navigation extends Component{
                 <NavDropdown.Item href="/LollipopChart">Lollipop Chart </NavDropdown.Item>
                 <NavDropdown.Item href="/ViolinChart">Violin Chart</NavDropdown.Item>
                 <NavDropdown.Item href="/WaterfallChart">Waterfall Chart</NavDropdown.Item>
+                <NavDropdown.Item href="/ScatterPlot">Scatter Plot</NavDropdown.Item>
+                <NavDropdown.Item href="/SankeyChart">Sankey Chart</NavDropdown.Item>
                 </NavDropdown>
         </Nav>
       </Navbar.Collapse>

@@ -1425,3 +1425,23 @@ export const waterDummydata = [
   {xLabel: 'Other Expenses', yValue: -20},
   {xLabel: 'Profit before tax', yValue: 0},
 ];
+
+export const sanDummydata = [
+  {source: 0, destination: 2, value: 8},
+  {source: 1, destination: 3, value: 4},
+  {source: 0, destination: 3, value: 2},
+  {source: 2, destination: 4, value: 8},
+  {source: 3, destination: 4, value: 4},
+  {source: 3, destination: 5, value: 2},
+  {source: 4, destination: 8, value: 3},
+  {source: 1, destination: 3, value: 7},
+  {source: 3, destination: 5, value: 13},
+  {source: 2, destination: 7, value: 19},
+  {source: 2, destination: 1, value: 3},
+  {source: 6, destination: 9, value: 9},
+  {source: 7, destination: 3, value: 7},
+  {source: 1, destination: 5, value: 12},
+  {source: 9, destination: 7, value: 1},
+  {source: 0, destination: 3, value: 11},
+  {source: 6, destination: 8, value: 17},
+];

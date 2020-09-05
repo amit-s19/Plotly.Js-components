@@ -186,3 +186,10 @@ ViolinChart.defaultProps = {
 //ViolinChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bubble+chart.svg';
 
 export default ViolinChart;
+
+
+// Scatter 
+// Sankey
+// mix and match
+// cards
+// circle timeline
