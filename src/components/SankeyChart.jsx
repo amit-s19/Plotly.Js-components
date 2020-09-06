@@ -15,15 +15,18 @@ class SankeyChart extends Component {
 
   processData = () => {
     const {
-      dataset, colorArray, labelArray, chartOpacity, textPosition, textTemplate, hoverTemplate,
-      Orientation, nodeThickness, nodePad, linkArray, Arrangement, 
+      dataset, colorArray, chartOpacity, textPosition, textTemplate, hoverTemplate,
+      Orientation, nodeThickness, nodePad, Arrangement, 
     } = this.props;
 
     try {
       let procData = [];
+      let labels = [];
+      let uniqueLabels = [];
+      let dictLabels = {};
+      let k = 0;
+
       const newColorArr = colorArray.split(',');
-      const newLabelArr = labelArray.split(',');
-      const newLinkArr = linkArray.split(',');
 
       if (dataset && dataset.length > 0) {
         
@@ -45,7 +48,7 @@ class SankeyChart extends Component {
                 color: 'black',
                 width: 0.5
               },
-             label: newLabelArr,
+             label: undefined,
              color: newColorArr,
                 },
             
@@ -54,23 +57,33 @@ class SankeyChart extends Component {
               target: [], 
               value:  [],
               colorscales: {
-                label: ['India','USA','Italy','Russia','Israel','Japan','China','Canada','Switzerland','Korea'],
                 colorscale: 'Earth' 
               }  
             },
             arrangement: Arrangement,
         }];
-
         
         dataset.forEach((field) => {
+          labels.push(field[keys[0]]);
+          labels.push(field[keys[1]]);
           procData.forEach((d) => {
-            d.link.source.push(field[keys[0]]);
-            d.link.target.push(field[keys[1]]);
             d.link.value.push(field[keys[2]]);
           });
         });
 
-        console.log(procData);
+        uniqueLabels = labels.filter((value, index, self) => self.indexOf(value) === index);
+        procData[0].node.label = uniqueLabels;
+        for(const key of uniqueLabels) {
+          dictLabels[key] = k;
+          k += 1;
+        }
+        
+        dataset.forEach((field) => {
+          procData.forEach((d) => {
+            d.link.source.push(dictLabels[field[keys[0]]]);
+            d.link.target.push(dictLabels[field[keys[1]]]);
+          });
+        });
       }
 
       this.setState({ procData });
@@ -130,40 +143,36 @@ class SankeyChart extends Component {
   }
 }
 
-// SankeyChart.propTypes = {
-//   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-//   orientation: PropTypes.string,
-//   textPosition: PropTypes.string,
-//   xAxisLabel: PropTypes.string,
-//   yAxisLabel: PropTypes.string,
-//   xAxisTickAngle: PropTypes.number,
-//   yAxisTickAngle: PropTypes.number,
-//   barGap: PropTypes.number,
-//   barOpacity: PropTypes.number,
-//   barWidth: PropTypes.number,
-//   colorArray: PropTypes.string,
-//   showLegend: PropTypes.bool,
-//   hoverTemplate: PropTypes.string,
-//   textTemplate: PropTypes.string,
-//   barMode: PropTypes.string,
-// };
+SankeyChart.propTypes = {
+  dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  showLegend: PropTypes.bool, 
+  chartOpacity: PropTypes.number, 
+  hoverTemplate : PropTypes.string, 
+  textTemplate : PropTypes.string, 
+  textPosition: PropTypes.string, 
+  Orientation: PropTypes.string, 
+  nodeThickness: PropTypes.number, 
+  nodePad: PropTypes.number, 
+  colorArray: PropTypes.string,
+  labelArray: PropTypes.string,
+  linkArray: PropTypes.string, 
+  Arrangement: PropTypes.string
+};
 
 SankeyChart.defaultProps = {
-  dataset: sdd,
-//   xAxisLabel: '',
-//   yAxisLabel: '',
-//   xAxisTickAngle: 45,
-//   yAxisTickAngle: 0,
-//   orientation: 'v',
-//   barGap: 0.2,
-//   textPosition: 'inside',
-//   colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-//   hoverTemplate: '%{x}<br>%{y}',
-//   textTemplate: '%{x}<br>%{y}',
-//   showLegend: true,
-//   barWidth: null,
-//   barOpacity: 0.8,
-//   barMode: 'group',
+  dataset: [], 
+  showLegend: true, 
+  chartOpacity: 1, 
+  hoverTemplate :'%{x}<br>%{y}', 
+  textTemplate : '%{x}<br>%{y}', 
+  textPosition: 'middle center', 
+  Orientation: 'h', 
+  nodeThickness: 20, 
+  nodePad: 10, 
+  colorArray: 'orange,green,blue,red,pink,indigo,violet,purple,brown,lightblue',
+  labelArray: 'India,USA,Italy,Russia,Israel,Japan,China,Canada,Switzerland,Korea',
+  linkArray: '', 
+  Arrangement: 'snap', 
 };
 
 

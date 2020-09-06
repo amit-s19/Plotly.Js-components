@@ -33,10 +33,9 @@ const handleInputChange = e => {
 const [config, setConfig] = useState({
     dataset: sdd, showLegend: true, chartOpacity: 1, hoverTemplate :'%{x}<br>%{y}', 
     textTemplate : '%{x}<br>%{y}', textPosition: 'middle center', Orientation: 'h', 
-    nodeThickness: 20, nodePad: 10, 
+    nodeThickness: 20, nodePad: 10, Arrangement: 'snap', 
     colorArray: 'orange,green,blue,red,pink,indigo,violet,purple,brown,lightblue',
-    labelArray: 'India,USA,Italy,Russia,Israel,Japan,China,Canada,Switzerland,Korea',
-    linkArray: '', Arrangement: 'snap', 
+    
 });
 
 const classes = useStyles();
@@ -59,29 +58,6 @@ const classes = useStyles();
         size="small"
         className={classes.root}
       /> 
-
-        <TextField
-        fullWidth
-        label="List of labels"
-        name="labelArray"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.labelArray}
-        size="small"
-        className={classes.root}
-      /> 
-             
-      <TextField
-        fullWidth
-        label="Link Colors"
-        name="linkArray"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.linkArray}
-        size="small"
-        className={classes.root}
-      /> 
-
       
       <TextField
         fullWidth
@@ -214,26 +190,24 @@ const classes = useStyles();
 
 
 
-// SankeyChartForm.propTypes = {
-//   config: PropTypes.shape({
-//     orientation: PropTypes.string,
-//     textPosition: PropTypes.string,
-//     xAxisLabel: PropTypes.string,
-//     yAxisLabel: PropTypes.string,
-//     xAxisTickAngle: PropTypes.number,
-//     yAxisTickAngle: PropTypes.number,
-//     barGap: PropTypes.number,
-//     barOpacity: PropTypes.number,
-//     barWidth: PropTypes.number,
-//     colorArray: PropTypes.string,
-//     showLegend: PropTypes.bool,
-//     hoverTemplate: PropTypes.string,
-//     textTemplate: PropTypes.string,
-//     barMode: PropTypes.string,
-//   }),
-// };
+SankeyChartForm.propTypes = {
+  config: PropTypes.shape({
+    showLegend: PropTypes.bool, 
+    chartOpacity: PropTypes.number, 
+    hoverTemplate : PropTypes.string, 
+    textTemplate : PropTypes.string, 
+    textPosition: PropTypes.string, 
+    Orientation: PropTypes.string, 
+    nodeThickness: PropTypes.number, 
+    nodePad: PropTypes.number, 
+    colorArray: PropTypes.string,
+    labelArray: PropTypes.string,
+    linkArray: PropTypes.string, 
+    Arrangement: PropTypes.string
+  }),
+};
 
-//SankeyChartForm.defaultProps = { config: {} };
+SankeyChartForm.defaultProps = { config: {} };
 
 export default SankeyChartForm;
 
