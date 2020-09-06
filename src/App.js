@@ -23,6 +23,7 @@ import ViolinChartForm from './forms/ViolinChartForm';
 import WaterfallChartForm from './forms/WaterfallChartForm';
 import ScatterPlotForm from './forms/ScatterPlotForm';
 import SankeyChartForm from './forms/SankeyChartForm';
+import MixMatchForm from './forms/MixMatchForm';
 
 // Importing Navigation.
 import {Navigation} from './forms/Navigation';
@@ -122,6 +123,9 @@ function App() {
           </Route>
           <Route exact path ="/SankeyChart" >
             <SankeyChartForm />
+          </Route>
+          <Route exact path ="/MixMatch" >
+            <MixMatchForm />
           </Route>
         </Switch>
       </div>

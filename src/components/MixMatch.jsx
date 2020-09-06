@@ -17,40 +17,66 @@ class MixMatch extends Component {
 
   processData = () => {
     const {
-      dataset, areaFill, areaMode, markerOpacity, markerSize, lineWidth, lineShape, lineStyle,
-      colorArray, hoverTemplate,
+      dataset, bar, line, area, scatter, xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle,
+      textTemplate, hoverTemplate, barWidth, barOpacity, barMode, barGap, barColors, lineColors, 
+      lineWidth, lineMarkerOpacity, lineStyle, lineShape, lineMarkerSize, lineMode,
     } = this.props;
 
     try {
       let procData = [];
-      let x = [];
-      const newColorArr = colorArray.split(',');
-
+      const barColorsArr = barColors.split(',');
+      const lineColorsArr = lineColors.split(',');
+      
       if (dataset && dataset.length > 0) {
-        const keys = Object.keys(dataset[0]);
-        xcoord = keys[0];
-        x = keys.slice(1, keys.length).map((d, i) => ({
-          x: [],
-          y: [],
-          marker: { color: newColorArr[i], opacity: markerOpacity, size: markerSize },
-          line: {
-            color: newColorArr[i], width: lineWidth, shape: lineShape, dash: lineStyle,
-          },
-          fill: areaFill,
-          mode: areaMode,
-          name: d,
-          hovertemplate: hoverTemplate,
-        }));
 
+        const keys = Object.keys(dataset[0]);
+
+        if(bar) {
+          for(let i=1 ; i<keys.length ; i++) {
+            let obj = {
+                x: [],
+                y: [],
+                marker: { color: barColorsArr[i-1], opacity: barOpacity },
+                type: 'bar',  
+                width: barWidth === 0 || !barWidth ? null : barWidth,
+                name: keys[i],
+                texttemplate: textTemplate,
+                hovertemplate: hoverTemplate,
+            }
+            procData.push(obj);
+          }
+        }
+        if(line) {
+          for(let i=1 ; i<keys.length ; i++) {
+            let obj = {
+                x: [],
+                y: [],
+                name: keys[i],
+                type: 'line',
+                mode: lineMode,
+                line: {
+                  color: lineColorsArr[i], shape: lineShape, dash: lineStyle, width: lineWidth,
+                },
+                marker: { color: lineColorsArr[i], opacity: lineMarkerOpacity, size: lineMarkerSize },
+                width: lineWidth,
+                hovertemplate: hoverTemplate,
+            }
+            procData.push(obj);
+          }
+        }
+        if(area) {
+       
+        }
+        if(scatter) {
+         
+        }
         dataset.forEach((field) => {
           procData.forEach((d) => {
             d.x.push(field[keys[0]]);
             d.y.push(field[d.name]);
           });
         });
-
-        x.forEach(d => procData.push(d));
-      }
+      } 
 
       this.setState({ procData });
     } catch (error) {
@@ -80,16 +106,23 @@ class MixMatch extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend, xAxisRange, yAxisRange, 
+      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend, barGap, barMode,
     } = this.props;
-    let xrange = xAxisRange.split(',');
-    let yrange = yAxisRange.split(',');
+
     return (
       <Plot
         data={procData}
         layout={{
-        
-          
+          xaxis: {
+            title: xAxisLabel,
+            tickangle: xAxisTickAngle,
+          },
+          yaxis: {
+            title: yAxisLabel,
+            tickangle: yAxisTickAngle,
+          },
+          bargap: barGap,
+          barmode: barMode,
           showlegend: showLegend,
           hovermode: 'closest',
         }}

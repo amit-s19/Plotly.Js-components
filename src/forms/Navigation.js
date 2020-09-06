@@ -35,6 +35,7 @@ export class Navigation extends Component{
                 <NavDropdown.Item href="/WaterfallChart">Waterfall Chart</NavDropdown.Item>
                 <NavDropdown.Item href="/ScatterPlot">Scatter Plot</NavDropdown.Item>
                 <NavDropdown.Item href="/SankeyChart">Sankey Chart</NavDropdown.Item>
+                <NavDropdown.Item href="/MixMatch">Mix n Match</NavDropdown.Item>
                 </NavDropdown>
         </Nav>
       </Navbar.Collapse>
