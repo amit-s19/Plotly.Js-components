@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
-import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import MixMatch from '../components/MixMatch';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,11 +25,13 @@ const MixMatchForm = () => {
 
 
 const [config, setConfig] = useState({
-    dataset: bgd, bar: false, line: false, area: false, scatter: false, xAxisLabel:'', yAxisLabel:'', 
+    dataset: bgd, chartArray: '', xAxisLabel:'', yAxisLabel:'', 
     xAxisTickAngle: 45, yAxisTickAngle: 0, textTemplate : '%{x}<br>%{y}', hoverTemplate :'%{x}<br>%{y}',
-    barWidth : null, barOpacity : 0.8, barMode: 'group', barGap: 0.2, barColors: 'black,crimson,orange',
+    barWidth : null, barOpacity : 0.8, barMode: 'group', barGap: 0.2, barColors: '',
     lineColors:'', lineWidth: 2, lineMarkerOpacity: 0.8, lineStyle: 'solid', lineShape: 'linear', 
-    lineMarkerSize: 6, lineMode: 'lines+markers',
+    lineMarkerSize: 6, lineMode: 'lines+markers', areaMode: 'scatter', areaFill: 'tozeroy', areaColors: '',
+    areaMarkerSize: 8, areaMarkerOpacity: 0.6, areaLineWidth: 2, areaLineShape: 'linear', areaLineStyle: 'solid',
+    scatterColors: '', scatterMarkerSize: 14, scatterMarkerSymbol: 'circle', scatterMarkerOpacity: 1,
 });
 
 const handleInputChange = e => {  
@@ -41,12 +39,14 @@ const handleInputChange = e => {
   setConfig({...config, [name]: value})
 };
 
-const handleCheckChange = (event) => {
-  setConfig({ ...config, [event.target.name]: event.target.checked });
-};
+let bar = config.chartArray.includes('bar')
+let line = config.chartArray.includes('line')
+let area = config.chartArray.includes('area')
+let scatter = config.chartArray.includes('scatter')
+
 
 const renderTemplates = () => {
-  if(config.bar || config.area || config.line || config.scatter)
+  if(bar || line || area || scatter)
   return (
     <form>
     <TextField
@@ -118,7 +118,7 @@ const renderTemplates = () => {
 }
 
 const renderBarForm = () => {
-  if(config.bar)
+  if(bar)
   return (
     <form>
     <hr className='divider'/>
@@ -188,7 +188,7 @@ const renderBarForm = () => {
 }
 
 const renderLineForm = () => {
-  if(config.line)
+  if(line)
   return (
     <form>
       <hr className="divider"></hr>
@@ -291,6 +291,187 @@ const renderLineForm = () => {
   );
 }
 
+const renderAreaForm = () => {
+  if(area)
+    return (
+      <form>
+        <hr className="divider"></hr>
+        <h3>Area Properties</h3>
+        <TextField
+        fullWidth
+        label="Area chart colors"
+        name="areaColors"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.areaColors}
+        size="small"
+        className={classes.root}
+      />
+       <TextField
+        fullWidth
+        type="number"
+        label="Area Line Width"
+        name="areaLineWidth"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.areaLineWidth}
+        size="small"
+        InputProps={{ inputProps: { min: 0 } }}
+        className={classes.root}
+      />
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Area line shape</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.areaLineShape}
+          name="areaLineShape"
+          onChange={handleInputChange}
+          label="Area line shape"
+        >
+          <MenuItem value="linear">Linear</MenuItem>
+          <MenuItem value="spline">Spline</MenuItem>
+          <MenuItem value="hv">hv</MenuItem>
+          <MenuItem value="vh">vh</MenuItem>
+          <MenuItem value="hvh">hvh</MenuItem>
+          <MenuItem value="vhv">vhv</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Area line style</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.areaLineStyle}
+          name="areaLineStyle"
+          onChange={handleInputChange}
+          label="Line Style"
+        >
+          <MenuItem value="solid">Solid</MenuItem>
+          <MenuItem value="dot">Dot</MenuItem>
+          <MenuItem value="dash">Dash</MenuItem>
+          <MenuItem value="longdash">Long Dash</MenuItem>
+          <MenuItem value="dashdot">Dash Dot</MenuItem>
+          <MenuItem value="longdashdot">Long Dash Dot</MenuItem>
+        </Select>
+      </FormControl>
+      <TextField
+        fullWidth
+        type="number"
+        label="Area Marker Size"
+        name="areaMarkerSize"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.areaMarkerSize}
+        size="small"
+        InputProps={{ inputProps: { min: 0 } }}
+        className={classes.root}
+      />
+      <TextField
+        fullWidth
+        type="number"
+        label="Area Marker Opacity"
+        name="areaMarkerOpacity"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.areaMarkerOpacity}
+        size="small"
+        InputProps={{ inputProps: { min: 0, max: 1 } }}
+        className={classes.root}
+      />
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Area Fill</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.areaFill}
+          name="areaFill"
+          onChange={handleInputChange}
+          label="Area Fill"
+        >
+          <MenuItem value="toself">Toself</MenuItem>
+          <MenuItem value="tonexty">Tonexty</MenuItem>
+          <MenuItem value="tozeroy">Tozeroy</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Area Mode</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.areaMode}
+          name="areaMode"
+          onChange={handleInputChange}
+          label="Area Mode"
+        >
+          <MenuItem value="scatter">Scatter</MenuItem>
+          <MenuItem value="lines">Lines</MenuItem>
+          <MenuItem value="none">None</MenuItem>
+        </Select>
+      </FormControl>
+      </form>
+    );
+}
+
+const renderScatterForm = () => {
+  if(scatter)
+    return (
+      <form>
+      <hr className="divider"></hr>
+      <h3>Scatter properties</h3>
+        <TextField
+        fullWidth
+        label="Scatter colors"
+        name="scatterColors"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.scatterColors}
+        size="small"
+        className={classes.root}
+      /> 
+      <TextField
+        fullWidth
+        type="number"
+        label="Scatter Marker Size"
+        name="scatterMarkerSize"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.scatterMarkerSize}
+        size="small"
+        InputProps={{inputProps : {min:10, max: 30 }}}
+        className={classes.root}
+      />
+    
+    <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+        <InputLabel>Scatter Marker Symbol</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={config.scatterMarkerSymbol}
+          name="scatterMarkerSymbol"
+          onChange={handleInputChange}
+          label="Scatter Marker Symbol"
+        >
+          <MenuItem value="circle">Circle</MenuItem>
+          <MenuItem value="square">Square</MenuItem>
+          <MenuItem value="diamond">Diamond</MenuItem>
+          <MenuItem value="hourglass">Hourglass</MenuItem>
+          <MenuItem value="hexagon">Hexagon</MenuItem>
+          <MenuItem value="triangle-up">Triangle</MenuItem>
+        </Select>
+      </FormControl>
+    
+      <TextField
+        fullWidth
+        type="number"
+        label="Scatter Marker Opacity"
+        name="scatterMarkerOpacity"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.scatterMarkerOpacity}
+        size="small"
+        InputProps={{inputProps : {min: 0, max: 1}}}
+        className={classes.root}
+      />
+      </form> 
+    );
+}
+
 const classes = useStyles();
 
   return (
@@ -300,31 +481,24 @@ const classes = useStyles();
         <div className='col-md-1'></div>
         <div className="col-md-4">
         <h2 className="display-4">Mix n Match</h2>
+        <hr className="divider"></hr>
+
+        <TextField
+        fullWidth
+        label="List of charts"
+        name="chartArray"
+        variant="outlined"
+        onChange={handleInputChange}
+        value={config.chartArray}
+        size="small"
+        className={classes.root}
+      />
         
-        <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Select Charts</FormLabel>
-        <FormGroup>
-          <FormControlLabel
-            control={<Checkbox checked={config.bar} onChange={handleCheckChange} name="bar" />}
-            label="Bar Graph"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={config.line} onChange={handleCheckChange} name="line" />}
-            label="Line Chart"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={config.area} onChange={handleCheckChange} name="area" />}
-            label="Area Chart"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={config.scatter} onChange={handleCheckChange} name="scatter" />}
-            label="Scatter Plot"
-          />
-        </FormGroup>
-      </FormControl>
       {renderTemplates()}
       {renderBarForm()}
       {renderLineForm()}
+      {renderAreaForm()}
+      {renderScatterForm()}
       </div> 
       <div className="col-md-7">
     <div className="Graph">
@@ -341,26 +515,43 @@ const classes = useStyles();
 
 
 
-// MixMatchForm.propTypes = {
-//   config: PropTypes.shape({
-//     orientation: PropTypes.string,
-//     textPosition: PropTypes.string,
-//     xAxisLabel: PropTypes.string,
-//     yAxisLabel: PropTypes.string,
-//     xAxisTickAngle: PropTypes.number,
-//     yAxisTickAngle: PropTypes.number,
-//     barGap: PropTypes.number,
-//     barOpacity: PropTypes.number,
-//     barWidth: PropTypes.number,
-//     colorArray: PropTypes.string,
-//     showLegend: PropTypes.bool,
-//     hoverTemplate: PropTypes.string,
-//     textTemplate: PropTypes.string,
-//     barMode: PropTypes.string,
-//   }),
-// };
+MixMatchForm.propTypes = {
+  config: PropTypes.shape({
+  chartArray: PropTypes.string, 
+  xAxisLabel: PropTypes.string, 
+  yAxisLabel: PropTypes.string, 
+  xAxisTickAngle: PropTypes.number, 
+  yAxisTickAngle: PropTypes.number, 
+  textTemplate : PropTypes.string, 
+  hoverTemplate :PropTypes.string,
+  barWidth : null, 
+  barOpacity : PropTypes.number, 
+  barMode: PropTypes.string, 
+  barGap: PropTypes.number, 
+  barColors: PropTypes.string,
+  lineColors:PropTypes.string, 
+  lineWidth: PropTypes.number, 
+  lineMarkerOpacity: PropTypes.number, 
+  lineStyle: PropTypes.string, 
+  lineShape: PropTypes.string, 
+  lineMarkerSize: PropTypes.number, 
+  lineMode: PropTypes.string, 
+  areaMode: PropTypes.string, 
+  areaFill: PropTypes.string, 
+  areaColors: PropTypes.string,
+  areaMarkerSize: PropTypes.number, 
+  areaMarkerOpacity: PropTypes.number, 
+  areaLineWidth: PropTypes.number, 
+  areaLineShape: PropTypes.string, 
+  areaLineStyle: PropTypes.string,
+  scatterColors: PropTypes.string, 
+  scatterMarkerSize: PropTypes.number, 
+  scatterMarkerSymbol: PropTypes.string, 
+  scatterMarkerOpacity: PropTypes.number,
+  }),
+};
 
-//MixMatchForm.defaultProps = { config: {} };
+MixMatchForm.defaultProps = { config: {} };
 
 export default MixMatchForm;
 
