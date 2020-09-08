@@ -24,6 +24,7 @@ import WaterfallChartForm from './forms/WaterfallChartForm';
 import ScatterPlotForm from './forms/ScatterPlotForm';
 import SankeyChartForm from './forms/SankeyChartForm';
 import MixMatchForm from './forms/MixMatchForm';
+import Cards from './forms/Cards';
 
 // Importing Navigation.
 import {Navigation} from './forms/Navigation';
@@ -126,6 +127,9 @@ function App() {
           </Route>
           <Route exact path ="/MixMatch" >
             <MixMatchForm />
+          </Route>
+          <Route exact path ="/Cards" >
+            <Cards />
           </Route>
         </Switch>
       </div>

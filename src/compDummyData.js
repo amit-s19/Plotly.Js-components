@@ -1445,3 +1445,51 @@ export const sanDummydata = [
   {source: 'India', destination: 'Russia', value: 11},
   {source: 'China', destination: 'Switzerland', value: 17},
 ];
+
+export const singleCarddata = [
+  {
+    label: 'Total Revenue', value: 14500
+  }
+];
+
+export const lastCarddata = [
+  {
+    label: '$378,300', value: '23 MARCH 00:00 UTC'
+  }
+];
+
+export const bankCarddata = [
+  { 
+    label: 'Axis Bank', value: '$1,148.24'
+  }
+];
+
+export const balanceCarddata = [
+  { 
+    label: 'Visitors', value: '10,483'
+  },
+  { 
+    label: 'Orders', value: '4,725'
+  },
+];
+
+export const visitorCarddata = [
+  { 
+    label: 'Outgoing', value: '$1473.32'
+  },
+  { 
+    label: 'Incoming', value: '$754.29'
+  },
+];
+
+export const incomeCarddata = [
+  {
+    label: 'Income', value: '+20%', date:'16 Jan 2019'
+  }
+];
+
+export const outcomeCarddata = [
+  {
+    label: 'Outcome', value: '-12%', date:'26 Jan 2019'
+  }
+];
