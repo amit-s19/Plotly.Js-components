@@ -11,6 +11,9 @@ import BalanceCardForm from '../forms/BalanceCardForm';
 import VisitorCardForm from '../forms/VisitorCardForm';
 import IncomeCardForm from '../forms/IncomeCardForm';
 import OutcomeCardForm from '../forms/OutcomeCardForm';
+import SentCardForm from '../forms/SentCardForm';
+import ReceivedCardForm from '../forms/ReceivedCardForm';
+import DashCardForm from '../forms/DashCardForm';
 import './Styles.css';
 
 
@@ -51,6 +54,12 @@ const Cards = () => {
           return <IncomeCardForm />
         case 'outcome' : 
           return <OutcomeCardForm />
+        case 'sent' : 
+          return <SentCardForm />
+        case 'received' : 
+          return <ReceivedCardForm />
+        case 'dashboard' : 
+          return <DashCardForm />
         default:
           break;
       }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {FaArrowAltCircleUp } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
-class IncomeCard extends Component {
+class SentCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,7 @@ class IncomeCard extends Component {
             meta2: {},
             titletext: '',
             cardval: '',
-            date: ''
+            details: ''
         }
     };
   }
@@ -23,7 +23,7 @@ class IncomeCard extends Component {
   processData = () => {
     const {
       dataset, cardWidth, cardHeight, cardBackground, cardFamily1, cardSize1, cardWeight1, cardColor1, cardAlign1,
-      cardFamily2, cardSize2, cardWeight2, cardColor2, cardColor3, 
+      cardFamily2, cardSize2, cardWeight2, cardColor2, cardColor3, cardWeight3, cardSize3,  
     } = this.props;
 
     try {
@@ -34,48 +34,47 @@ class IncomeCard extends Component {
                 width: undefined,
                 minHeight: undefined,           
                 marginTop:"40px",        
-                padding:"20px",
+                padding:"30px",
                 boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
                 borderRadius: "10px",
                 backgroundColor: undefined,
-              },
-            h2style: {
+            },    
+            h2style:  {
                 color: undefined,
                 overflow: "hidden" ,
-                margin:"20px auto 10px 0",
-                padding:"40px auto 30px auto",
+                margin:"15px auto 30px auto",
                 fontFamily: undefined,
                 fontSize: undefined,
                 fontWeight: undefined,
                 textAlign: undefined,
                 letterSpacing: "0.20px",
-              },
+            }, 
             flex1: {
-                padding: "20px 60px 0 0",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between"
+            },    
+            meta1: {  
+                fontWeight: undefined,
+                fontSize: undefined,
+                overflow: "hidden" ,
+                color: undefined,
+                fontFamily: undefined,
+                letterSpacing: "0.3px",
+                marginBottom:"0"
             },
-            meta1: {
-                paddingBottom:"15px",
+            meta2: {
+                fontSize: undefined,
                 fontWeight: undefined,
                 overflow: "hidden" ,
                 color: undefined,
                 fontFamily: undefined,
                 letterSpacing: "0.20px",
-                fontSize: undefined
-            },
-            meta2: {  
-                fontWeight: undefined,
-                overflow: "hidden" ,
-                color: undefined,
-                fontFamily: undefined,
-                letterSpacing: "0.20px",
-                fontSize: undefined
+                marginTop:"8px"
             },
             titletext : '',
             cardval : '' ,
-            date: '' ,
+            details: '' ,
         }
         
       if (dataset && dataset.length > 0) {
@@ -91,15 +90,15 @@ class IncomeCard extends Component {
         procData.meta1.fontFamily = cardFamily2;
         procData.meta1.fontWeight = cardWeight2;
         procData.meta1.fontSize = cardSize2;
-        procData.meta2.color = cardColor3;
         procData.meta2.fontFamily = cardFamily2;
-        procData.meta2.fontWeight = cardWeight2;
-        procData.meta2.fontSize = cardSize2;
+        procData.meta2.color = cardColor3;
+        procData.meta2.fontWeight = cardWeight3;
+        procData.meta2.fontSize = cardSize3;
         
         dataset.forEach((field) => {
             procData.titletext = field[keys[0]]
             procData.cardval = field[keys[1]]
-            procData.date = field[keys[2]]
+            procData.details = field[keys[2]]
         });
 
         console.log(procData);
@@ -139,26 +138,26 @@ class IncomeCard extends Component {
     const { meta2 } = this.state.procData;
     const { titletext } = this.state.procData;
     const { cardval } = this.state.procData;
-    const { date } = this.state.procData;
+    const { details } = this.state.procData;
     const { sizeicon } = this.props;
     return (        
-      <div style={flex1}>
-      <div class="card" style={card1}>
-         <IconContext.Provider value={{ color: "#7e0cf5",textAlign:"left", size:`${sizeicon}rem`,marginBottom:"20px", }}>
-           <div>
-             <FaArrowAltCircleUp />
+        <div style={flex1}>
+        <div class="card" style={card1}>
+           <IconContext.Provider value={{ color: "#f4f6ff",textAlign:"left", size:`${sizeicon}rem` }}>
+             <div>
+               <FaUserCircle />
+             </div>
+           </IconContext.Provider>
+           <h2 style={h2style}> {titletext} </h2> 
+           <p style={meta1}> {cardval} </p>
+           <p style={meta2}> {details} </p>
            </div>
-         </IconContext.Provider>
-         <h2 style={h2style}>{cardval}</h2> 
-         <p style={meta1}>{titletext}</p>
-         <p style={meta2}>{date}</p>
-         </div>
-      </div> 
-      );
+        </div>
+        );
     }
-  }
+}
 
-IncomeCard.propTypes = {
+SentCard.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
   cardWidth: PropTypes.number, 
   cardHeight: PropTypes.number, 
@@ -177,7 +176,7 @@ IncomeCard.propTypes = {
   sizeicon: PropTypes.number,
 };
 
-IncomeCard.defaultProps = {
+SentCard.defaultProps = {
     dataset: [],
     cardWidth: 160, 
     cardHeight: 100, 
@@ -197,27 +196,5 @@ IncomeCard.defaultProps = {
  
 };
 
-export default IncomeCard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default SentCard;
 

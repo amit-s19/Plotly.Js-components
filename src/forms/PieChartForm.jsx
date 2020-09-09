@@ -33,7 +33,7 @@ const PieChartForm = () => {
     const [config, setConfig] = useState({
         dataset: pcd, textPosition: 'inside', textInfo: 'label+percent', holeVal: 0, 
         colorArray: '', hoverInfo: 'label+percent', insideTextOrientation: 'horizontal',
-        sliceDirection: 'counterclockwise', pieOpacity: 0.9, pieRotation: 0, showLegend: 'true',
+        sliceDirection: 'counterclockwise', pieOpacity: 0.9, pieRotation: 0, showLegend: true,
     });
 
     const classes = useStyles();

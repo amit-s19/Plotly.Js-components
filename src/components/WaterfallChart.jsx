@@ -153,6 +153,9 @@ class WaterfallChart extends Component {
             autosize: true,
             showlegend: true
         }}
+        config= {{
+          responsive: true
+        }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
       />

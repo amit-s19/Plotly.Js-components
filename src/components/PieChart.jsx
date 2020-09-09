@@ -28,32 +28,29 @@ class PieChart extends Component {
         xcoord = keys[0];
         ycoord = keys[1];
         console.log("keys", keys);
-        procData = keys.slice(0, keys.length).map((d, i) => ({
-            values: [],
-            labels: [],
-            type: 'pie',
-            hole: holeVal,
-            insidetextorientation: insideTextOrientation,
-            hoverinfo: hoverInfo,
-            textinfo: textInfo,
-            opacity: pieOpacity,
-            rotation : pieRotation,
-            direction : sliceDirection,
-            showlegend : showLegend,
-            textposition: textPosition,
-            marker: {
-              colors: newColorArr
-            },
-        }));
-
+        procData = [{
+          values: [],
+          labels: [],
+          type: 'pie',
+          hole: holeVal,
+          insidetextorientation: insideTextOrientation,
+          hoverinfo: hoverInfo,
+          textinfo: textInfo,
+          opacity: pieOpacity,
+          rotation : pieRotation,
+          direction : sliceDirection,
+          showlegend : showLegend,
+          textposition: textPosition,
+          marker: {
+            colors: newColorArr
+          }
+        }];
         
         dataset.forEach((field) => {
-          for(let key in field) {
             procData.forEach((d) => {
-              d.labels.push(key);
-              d.values.push(field[key]);
+              d.labels.push(field[keys[0]]);
+              d.values.push(field[keys[1]]);
             });            
-          }
         });
           
       }

@@ -6,7 +6,7 @@ export class Navigation extends Component{
     render(){
       return(
         <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark" >
-        <Navbar.Brand href="/"> Chart Components </Navbar.Brand>
+        <Navbar.Brand href="/"> Plotly Components </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto" style={{lineHeight: 1}}>

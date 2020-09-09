@@ -59,11 +59,14 @@ export const indicatorTracedata =  [
 ];
       
 export const pieDummydata = [
-  {"A": 70},
-  {"B": 20},
-  {"C": 17},
-  {"D": 76},
-  {"E": 99},
+  {label: 'A', value: 70},
+  {label: 'B', value: 17},
+  {label: 'C', value: 76},
+  {label: 'D', value: 34},
+  {label: 'E', value: 59},
+  {label: 'F', value: 150},
+  {label: 'G', value: 89},
+  {label: 'H', value: 112},
 ];
 
 export const dotDummydata = [
@@ -1492,4 +1495,22 @@ export const outcomeCarddata = [
   {
     label: 'Outcome', value: '-12%', date:'26 Jan 2019'
   }
+];
+
+export const sentCarddata = [
+  {
+    label: 'Alex Williams', value: '-$127', date:'Sent 7h ago'
+  }
+];
+
+export const receivedCarddata = [
+  {
+    label: 'Victoria Vals', value: '+$359', date:'Received 3h ago'
+  }
+];
+
+export const dashCarddata = [
+  { label: 'Tesla' },
+  { label: 'Amazon' },
+  { label: 'SpaceX' },
 ];
