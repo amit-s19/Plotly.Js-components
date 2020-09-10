@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {barDummydata as bdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 let xcoord, ycoord;
@@ -47,7 +46,6 @@ class ScatterPlot extends Component {
             }
         }));
 
-        
         dataset.forEach((field) => {
           procData.forEach((d) => {
             d.x.push(field[keys[0]]);
@@ -73,7 +71,6 @@ class ScatterPlot extends Component {
     const { dataset } = this.props;
     const { procData } = this.state;
     
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -85,7 +82,7 @@ class ScatterPlot extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, barGap, showLegend, barMode,
+      showLegend, 
     } = this.props;
 
     return (
@@ -111,8 +108,8 @@ class ScatterPlot extends Component {
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-              pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
-              data.points[i].y + '\n\n';
+            pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
+            data.points[i].y + '\n\n';
           }
           alert('The values are:\n'+pts);
         }}
@@ -121,43 +118,37 @@ class ScatterPlot extends Component {
   }
 }
 
-// ScatterPlot.propTypes = {
-//   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-//   orientation: PropTypes.string,
-//   textPosition: PropTypes.string,
-//   xAxisLabel: PropTypes.string,
-//   yAxisLabel: PropTypes.string,
-//   xAxisTickAngle: PropTypes.number,
-//   yAxisTickAngle: PropTypes.number,
-//   barGap: PropTypes.number,
-//   barOpacity: PropTypes.number,
-//   barWidth: PropTypes.number,
-//   colorArray: PropTypes.string,
-//   showLegend: PropTypes.bool,
-//   hoverTemplate: PropTypes.string,
-//   textTemplate: PropTypes.string,
-//   barMode: PropTypes.string,
-// };
+ScatterPlot.propTypes = {
+  dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  colorArray: PropTypes.string, 
+  markerSize: PropTypes.number, 
+  markerSymbol: PropTypes.string, 
+  showLegend: true,
+  markerOpacity: PropTypes.number, 
+  xAxisLabel: PropTypes.string, 
+  yAxisLabel: PropTypes.string, 
+  xAxisTickAngle: PropTypes.number, 
+  yAxisTickAngle: PropTypes.number, 
+  hoverTemplate :PropTypes.string,
+  textTemplate : PropTypes.string, 
+  textPosition: PropTypes.string
+};
 
 ScatterPlot.defaultProps = {
   dataset: [],
-//   xAxisLabel: '',
-//   yAxisLabel: '',
-//   xAxisTickAngle: 45,
-//   yAxisTickAngle: 0,
-//   orientation: 'v',
-//   barGap: 0.2,
-//   textPosition: 'inside',
-//   colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-//   hoverTemplate: '%{x}<br>%{y}',
-//   textTemplate: '%{x}<br>%{y}',
-//   showLegend: true,
-//   barWidth: null,
-//   barOpacity: 0.8,
-//   barMode: 'group',
+  colorArray: 'indigo,violet,pink', 
+  markerSize: 14, 
+  markerSymbol: 'circle', 
+  showLegend: true,
+  markerOpacity: 1, 
+  xAxisLabel:'', 
+  yAxisLabel:'', 
+  xAxisTickAngle: 45, 
+  yAxisTickAngle: 0, 
+  hoverTemplate :'%{x}<br>%{y}',
+  textTemplate : '%{x}<br>%{y}', 
+  textPosition: 'middle center',
 };
-
-
 
 ScatterPlot.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 

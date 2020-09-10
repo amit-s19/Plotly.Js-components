@@ -12,7 +12,6 @@ import {indicatorTracedata as itd} from '../compDummyData';
 import './Styles.css';
 import IndicatorTrace from '../components/IndicatorTrace';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -25,25 +24,25 @@ const useStyles = makeStyles((theme) => ({
 
 const IndicatorTraceForm = () => {
 
-    const handleInputChange = e => {  
-        const {name, value} = e.target ;
-        setConfig({...config, [name]: value})
-    };
+  const handleInputChange = e => {  
+    const {name, value} = e.target ;
+    setConfig({...config, [name]: value})
+  };
 
-    const [config, setConfig] = useState({
-        dataset: itd, colorArray: 'green,lightgray,gray,gold', traceMode: 'number+delta+gauge', traceType: 'bullet',
-        showLegend: 'true',
-    });
+  const [config, setConfig] = useState({
+    dataset: itd, colorArray: 'green,lightgray,gray,gold', traceMode: 'number+delta+gauge', traceType: 'bullet',
+    showLegend: true,
+  });
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-        <>
-       <div className="container-fluid">
-      <div className="row">
-        <div className='col-md-1'></div>
-        <div className="col-md-4">
-        <h2 className="display-4">Indicator Trace </h2>
+  return (
+    <>
+      <div className="container-fluid">
+        <div className="row">
+          <div className='col-md-1'></div>
+          <div className="col-md-4">
+            <h2 className="display-4">Indicator Trace </h2>
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Mode</InputLabel>
             <Select
@@ -59,7 +58,6 @@ const IndicatorTraceForm = () => {
               <MenuItem value="number+delta+gauge">Number+Delta+Gauge</MenuItem>
               </Select>
             </FormControl>
-
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Trace Type</InputLabel>
             <Select
@@ -73,7 +71,6 @@ const IndicatorTraceForm = () => {
               <MenuItem value="bullet">Bullet</MenuItem>
               </Select>
             </FormControl>
-
             <TextField
               fullWidth
               label="List of colors"
@@ -84,37 +81,29 @@ const IndicatorTraceForm = () => {
               size="small"
               className={classes.root}
             />
-            
             <FormControlLabel
               control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
               label="Show Legend"
             />  
-
-            </div>
-            <div className="col-md-7">
+          </div>
+          <div className="col-md-7">
             <div className="Graph">
-            <IndicatorTrace {...config} />
+              <IndicatorTrace {...config} />
             </div>
-            </div>
-            </div>
+          </div>
         </div>
-        </>
-    );
-
+      </div>
+    </>
+  );
 }
 
 IndicatorTraceForm.propTypes = {
-    config: PropTypes.shape({
-      textInfo: PropTypes.string,
-      textPosition: PropTypes.string,
-      holeVal: PropTypes.number, 
-      colorArray: PropTypes.string, 
-      hoverInfo: PropTypes.string, 
-      insideTextOrientation: PropTypes.string,
-      sliceDirection: PropTypes.string,
-      pieOpacity: PropTypes.number,
-      pieRotation: PropTypes.number,
-    }),
-  };
+  config: PropTypes.shape({
+    colorArray: PropTypes.string, 
+    traceMode: PropTypes.string, 
+    traceType: PropTypes.string,
+    showLegend: PropTypes.bool
+  }),
+};
 
 export default IndicatorTraceForm ;

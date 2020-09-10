@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from "plotly.js"
 import createPlotlyComponent from 'react-plotly.js/factory';
-//import {areaChartData as acd} from '../compDummyData';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -84,8 +83,7 @@ class AreaChart extends Component {
     return (
       <Plot
         data={procData}
-        layout={{
-        
+        layout={{    
           title: undefined,
           height: undefined,
           width: undefined,

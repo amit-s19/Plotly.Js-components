@@ -7,17 +7,17 @@ class BalanceCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        procData: {
-            card1 : {},
-            h2style : {},
-            hrstyle: {},
-            flex1: {},
-            meta1: {},
-            icons: {},
-            social: {},
-            titletext : [],
-            cardval: [],
-        }
+      procData: {
+        card1 : {},
+        h2style : {},
+        hrstyle: {},
+        flex1: {},
+        meta1: {},
+        icons: {},
+        social: {},
+        titletext : [],
+        cardval: [],
+      }
     };
   }
 
@@ -28,63 +28,64 @@ class BalanceCard extends Component {
     } = this.props;
 
     try {
-        let keys = Object.keys(dataset[0]);
-        let procData = {
-            card1: {
-                width: undefined,
-                minHeight: undefined,                
-                margin: "50px",
-                boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
-                borderRadius: "10px",
-                backgroundColor: undefined,
-              },               
-            h2style: {
-                marginTop: "0",
-                marginRight:" 15px",
-                color: undefined,
-                fontWeight: undefined,
-                overflow: "hidden" ,
-                fontFamily: undefined,
-                fontSize: undefined,
-                textAlign: undefined,
-                letterSpacing: ".05rem"
-              },
-            hrstyle: {
-                display:"block",
-                border: "none",
-                padding:"auto 10px auto 10px",
-                height: undefined,
-                backgroundColor: "#8091ab",
-                margin: "0px",
-                textAlign:"center"
-            },               
-            flex1: {
-                padding: "20px 60px 0 0",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-            },    
-            meta1: {
-                marginTop: "0",
-                marginRight:" 14px",
-                fontWeight: undefined,
-                overflow: "hidden" ,
-                color: undefined,
-                fontFamily: undefined,
-                fontSize: undefined
-            },  
-            icons: {
-                float: "right"
-            },  
-            social: {
-                display:"inline-block",
-                padding: "5px 0"
-            },     
-            titletext : [],
-            cardval : []
-        }
+      let keys = Object.keys(dataset[0]);
+      let procData = {
+        card1: {
+            width: undefined,
+            minHeight: undefined,                
+            margin: "50px",
+            boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
+            borderRadius: "10px",
+            backgroundColor: undefined,
+          },               
+        h2style: {
+            marginTop: "0",
+            marginRight:" 15px",
+            color: undefined,
+            fontWeight: undefined,
+            overflow: "hidden" ,
+            fontFamily: undefined,
+            fontSize: undefined,
+            textAlign: undefined,
+            letterSpacing: ".05rem"
+          },
+        hrstyle: {
+            display:"block",
+            border: "none",
+            padding:"auto 10px auto 10px",
+            height: undefined,
+            backgroundColor: "#8091ab",
+            margin: "0px",
+            textAlign:"center"
+        },               
+        flex1: {
+            padding: "20px 60px 0 0",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"
+        },    
+        meta1: {
+            marginTop: "0",
+            marginRight:" 14px",
+            fontWeight: undefined,
+            overflow: "hidden" ,
+            color: undefined,
+            fontFamily: undefined,
+            fontSize: undefined
+        },  
+        icons: {
+            float: "right"
+        },  
+        social: {
+            display:"inline-block",
+            padding: "5px 0"
+        },     
+        titletext : [],
+        cardval : []
+      }
         
       if (dataset && dataset.length > 0) {
+
         procData.card1.width = `${cardWidth}px`;
         procData.card1.minHeight = `${cardHeight}px`;
         procData.card1.backgroundColor = cardBackground;
@@ -103,9 +104,8 @@ class BalanceCard extends Component {
             procData.titletext.push(field[keys[0]])
             procData.cardval.push(field[keys[1]])
         });
-        console.log(procData);
-      }
 
+      }
       this.setState({ procData });
     } catch (error) {
       console.log(error);
@@ -115,19 +115,15 @@ class BalanceCard extends Component {
 
   componentDidMount = () => {
     const { dataset } = this.props;
-
     if (dataset && dataset.length) this.processData();
   }
 
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
-    const { procData } = this.state;
-    
-    
+    const { procData } = this.state;    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
-
     if (dataset && dataset.length) this.processData();
     else if (!dataset && prevProps.dataset && procData) this.processData();
   }
@@ -144,53 +140,47 @@ class BalanceCard extends Component {
     const { cardval } = this.state.procData;
     const { sizeicon } = this.props;
     return ( 
-        <div class="card" style={card1}>                 
-        <div style={flex1}>
-        <ul  style={icons}>
-           <li style={social}>
-           <IconContext.Provider value={{ color: "#d32626",textAlign:"left", size:`${sizeicon}rem`,margin:"40px 10px 40px auto " }}>
-             <div>
-               <FaChartBar />
-             </div>
-           </IconContext.Provider>
-           </li>
-       
-         </ul>
-         <div> 
-         <ul style={{listStyleType: "none"}}>
-         <li> <p style={meta1}>{titletext[0]}</p></li>
-         <li> <h2 style={h2style}>{cardval[0]}</h2></li>
-         </ul>
-         </div>
-         </div>
-
-         <hr  style={hrstyle}></hr>
-
-         <div style={flex1}>
-         <ul  style={icons}>
-           <li style={social}>
-           <IconContext.Provider value={{ color: "#f5a31a",textAlign:"left", size:`${sizeicon}rem`,margin:"40px 10px 40px auto " }}>
-             <div>
-               <FaChartLine />
-             </div>
-           </IconContext.Provider>
-           </li>
-     
-         </ul>
-         <div> <ul style={{listStyleType: "none"}}>
-         <li> <p style={meta1}>{titletext[1]}</p></li>
-         <li> <h2 style={h2style}>{cardval[1]}</h2></li>
-         </ul></div>
-         
-         
-         </div>
-         </div>
-        );
-    }
+      <div class="card" style={card1}>                 
+      <div style={flex1}>
+      <ul  style={icons}>
+        <li style={social}>
+        <IconContext.Provider value={{ color: "#d32626",textAlign:"left", size:`${sizeicon}rem`,margin:"40px 10px 40px auto " }}>
+          <div>
+            <FaChartBar />
+          </div>
+        </IconContext.Provider>
+        </li>
+      </ul>
+      <div> 
+      <ul style={{listStyleType: "none"}}>
+      <li> <p style={meta1}>{titletext[0]}</p></li>
+      <li> <h2 style={h2style}>{cardval[0]}</h2></li>
+      </ul>
+      </div>
+      </div>
+      <hr  style={hrstyle}></hr>
+      <div style={flex1}>
+      <ul  style={icons}>
+        <li style={social}>
+        <IconContext.Provider value={{ color: "#f5a31a",textAlign:"left", size:`${sizeicon}rem`,margin:"40px 10px 40px auto " }}>
+          <div>
+            <FaChartLine />
+          </div>
+        </IconContext.Provider>
+        </li>
+      </ul>
+      <div> <ul style={{listStyleType: "none"}}>
+      <li> <p style={meta1}>{titletext[1]}</p></li>
+      <li> <h2 style={h2style}>{cardval[1]}</h2></li>
+      </ul></div>
+      </div>
+      </div>
+    );
+  }
 }
 
 BalanceCard.propTypes = {
-  dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  dataset: PropTypes.arrayOf(PropTypes.shape({})),  
   cardWidth: PropTypes.number, 
   cardHeight: PropTypes.number, 
   cardBackground: PropTypes.string, 
@@ -203,24 +193,28 @@ BalanceCard.propTypes = {
   cardSize2: PropTypes.number, 
   cardWeight2: PropTypes.string, 
   cardColor2: PropTypes.string, 
-  titleText: PropTypes.string,
-  cardVal: PropTypes.string,    
+  cardAlign2: PropTypes.string, 
+  sizeicon: PropTypes.number, 
+  cardHrHeight: PropTypes.number,    
 };
 
 BalanceCard.defaultProps = {
   dataset: [],
-  cardWidth: 300, 
-  cardHeight: 150, 
+  cardWidth: 314, 
+  cardHeight: 130, 
   cardBackground: '#202A3B', 
   cardFamily1: 'Arial',
-  cardSize1: 14, 
-  cardWeight1: 'normal', 
-  cardColor1:' orange', 
-  cardAlign1:'center', 
+  cardSize1: 22, 
+  cardWeight1: 'bold', 
+  cardColor1:'#eeeeee', 
+  cardAlign1:'left', 
   cardFamily2: 'Arial', 
-  cardSize2: 26, 
-  cardWeight2: 'normal', 
-  cardColor2: 'white',
+  cardSize2: 16, 
+  cardWeight2: 'bold', 
+  cardColor2: '#8091ab', 
+  cardAlign2: 'left', 
+  sizeicon: 3, 
+  cardHrHeight: 1,
 };
 
 export default BalanceCard;

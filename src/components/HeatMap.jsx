@@ -108,43 +108,25 @@ class HeatMap extends Component {
   }
 }
 
-// HeatMap.propTypes = {
-//   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-//   orientation: PropTypes.string,
-//   textPosition: PropTypes.string,
-//   xAxisLabel: PropTypes.string,
-//   yAxisLabel: PropTypes.string,
-//   xAxisTickAngle: PropTypes.number,
-//   yAxisTickAngle: PropTypes.number,
-//   barGap: PropTypes.number,
-//   barOpacity: PropTypes.number,
-//   barWidth: PropTypes.number,
-//   colorArray: PropTypes.string,
-//   showLegend: PropTypes.bool,
-//   hoverTemplate: PropTypes.string,
-//   textTemplate: PropTypes.string,
-//   barMode: PropTypes.string,
-// };
+HeatMap.propTypes = {
+  dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  traceName: PropTypes.string, 
+  showLegend: PropTypes.bool, 
+  contOpacity: PropTypes.number, 
+  hoverTemplate : PropTypes.string,
+  contColor: PropTypes.string, 
+  contScale: PropTypes.bool
+};
 
 HeatMap.defaultProps = {
   dataset: hdd,
-//   xAxisLabel: '',
-//   yAxisLabel: '',
-//   xAxisTickAngle: 45,
-//   yAxisTickAngle: 0,
-//   orientation: 'v',
-//   barGap: 0.2,
-//   textPosition: 'inside',
-//   colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-//   hoverTemplate: '%{x}<br>%{y}',
-//   textTemplate: '%{x}<br>%{y}',
-//   showLegend: true,
-//   barWidth: null,
-//   barOpacity: 0.8,
-//   barMode: 'group',
+  traceName: 'Trace 0', 
+  showLegend: true, 
+  contOpacity: 0.9, 
+  hoverTemplate :'',
+  contColor: 'Hot', 
+  contScale: false
 };
-
-
 
 //HeatMap.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 

@@ -12,7 +12,6 @@ import {pieDummydata as pcd} from '../compDummyData';
 import PieChart from '../components/PieChart';
 import './Styles.css';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -22,29 +21,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const PieChartForm = () => {
 
-    const handleInputChange = e => {  
-        const {name, value} = e.target ;
-        setConfig({...config, [name]: value})
-    };
-
-    const [config, setConfig] = useState({
-        dataset: pcd, textPosition: 'inside', textInfo: 'label+percent', holeVal: 0, 
-        colorArray: '', hoverInfo: 'label+percent', insideTextOrientation: 'horizontal',
-        sliceDirection: 'counterclockwise', pieOpacity: 0.9, pieRotation: 0, showLegend: true,
-    });
-
-    const classes = useStyles();
-
-    return (
-        <>
-        <div className="container-fluid">
-      <div className="row">
-        <div className='col-md-1'></div>
-        <div className="col-md-4">
-        <h2 className="display-4">Pie Chart </h2>
+  const handleInputChange = e => {  
+    const {name, value} = e.target ;
+    setConfig({...config, [name]: value})
+  };
+  const [config, setConfig] = useState({
+    dataset: pcd, textPosition: 'inside', textInfo: 'label+percent', holeVal: 0, 
+    colorArray: '', hoverInfo: 'label+percent', insideTextOrientation: 'horizontal',
+    sliceDirection: 'counterclockwise', pieOpacity: 0.9, pieRotation: 0, showLegend: true,
+  });
+  const classes = useStyles();
+  return (
+    <>
+      <div className="container-fluid">
+        <div className="row">
+          <div className='col-md-1'></div>
+          <div className="col-md-4">
+            <h2 className="display-4">Pie Chart </h2>
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Text Position</InputLabel>
             <Select
@@ -60,7 +55,6 @@ const PieChartForm = () => {
               <MenuItem value="none">None</MenuItem>
               </Select>
             </FormControl>
-
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Text Info</InputLabel>
             <Select
@@ -77,7 +71,6 @@ const PieChartForm = () => {
               <MenuItem value="none">None</MenuItem>
               </Select>
             </FormControl>
-
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Inside text orientation</InputLabel>
             <Select
@@ -93,7 +86,6 @@ const PieChartForm = () => {
               <MenuItem value="auto">Auto</MenuItem>
               </Select>
             </FormControl>
-
             <TextField
               fullWidth
               type="number"
@@ -106,7 +98,6 @@ const PieChartForm = () => {
               InputProps={{ inputProps: { min: 0, max: 1 } }}
               className={classes.root}
             />
-
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Direction</InputLabel>
             <Select
@@ -120,7 +111,6 @@ const PieChartForm = () => {
               <MenuItem value="counterclockwise">Counterclockwise</MenuItem>
               </Select>
             </FormControl>
-
             <TextField
               fullWidth
               type="number"
@@ -133,7 +123,6 @@ const PieChartForm = () => {
               InputProps={{ inputProps: { min: 0, max: 1 } }}
               className={classes.root}
             />
-
             <FormControl className={classes.root} fullWidth variant="outlined" size="small">
             <InputLabel>Hover Info</InputLabel>
             <Select
@@ -150,7 +139,6 @@ const PieChartForm = () => {
               <MenuItem value="none">None</MenuItem>
               </Select>
             </FormControl>
-
             <TextField
               fullWidth
               label="List of colors"
@@ -161,7 +149,6 @@ const PieChartForm = () => {
               size="small"
               className={classes.root}
             />
-
             <TextField
               fullWidth
               type="number"
@@ -174,39 +161,34 @@ const PieChartForm = () => {
               InputProps={{ inputProps: { min: -360, max: 360 } }}
               className={classes.root}
             />
-
-            
             <FormControlLabel
               control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
               label="Show Legend"
             />  
-
-            </div>
-            <div className="col-md-7">
+          </div>
+          <div className="col-md-7">
             <div className="Graph">
-            <PieChart {...config} />
-
+              <PieChart {...config} />
             </div>
-            </div>
+          </div>
         </div>
-        </div>
-        </>
-    );
-
+      </div>
+    </>
+  );
 }
 
 PieChartForm.propTypes = {
-    config: PropTypes.shape({
-      textInfo: PropTypes.string,
-      textPosition: PropTypes.string,
-      holeVal: PropTypes.number, 
-      colorArray: PropTypes.string, 
-      hoverInfo: PropTypes.string, 
-      insideTextOrientation: PropTypes.string,
-      sliceDirection: PropTypes.string,
-      pieOpacity: PropTypes.number,
-      pieRotation: PropTypes.number,
-    }),
-  };
+  config: PropTypes.shape({
+    textInfo: PropTypes.string,
+    textPosition: PropTypes.string,
+    holeVal: PropTypes.number, 
+    colorArray: PropTypes.string, 
+    hoverInfo: PropTypes.string, 
+    insideTextOrientation: PropTypes.string,
+    sliceDirection: PropTypes.string,
+    pieOpacity: PropTypes.number,
+    pieRotation: PropTypes.number,
+  }),
+};
 
 export default PieChartForm ;

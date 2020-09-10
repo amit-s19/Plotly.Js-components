@@ -111,7 +111,7 @@ class BarGraph extends Component {
           bargap: barGap,
           barmode: barMode,
           showlegend: showLegend,
-          hovermode: 'closest',
+          hovermode: 'x',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}

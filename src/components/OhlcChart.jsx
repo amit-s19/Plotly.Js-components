@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {candleDummydata as cdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
-
 
 class OhlcChart extends Component {
   constructor(props) {
@@ -39,15 +37,15 @@ class OhlcChart extends Component {
           xcalendar: calType,
         }));
         
-          procData.forEach((d) => {
-            dataset.forEach((field) => {
-              d.x.push(field[keys[0]]);
-              d.open.push(field[keys[1]]);
-              d.close.push(field[keys[2]]);
-              d.high.push(field[keys[3]]);
-              d.low.push(field[keys[4]]);
-            });
+        procData.forEach((d) => {
+          dataset.forEach((field) => {
+            d.x.push(field[keys[0]]);
+            d.open.push(field[keys[1]]);
+            d.close.push(field[keys[2]]);
+            d.high.push(field[keys[3]]);
+            d.low.push(field[keys[4]]);
           });
+        });
       }
 
       this.setState({ procData });
@@ -66,7 +64,6 @@ class OhlcChart extends Component {
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
     
     if ((Object.is(this.props, prevProps))) {
       return;
@@ -137,7 +134,7 @@ OhlcChart.propTypes = {
 };
 
 OhlcChart.defaultProps = {
-  dataset: cdd, 
+  dataset: [], 
   colorArray:'black,orange', 
   xAxisLabel:'', 
   yAxisLabel:'', 
@@ -147,8 +144,6 @@ OhlcChart.defaultProps = {
   showLegend: true, 
   calName: 'Trace 0',
 };
-
-
 
 // OhlcChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 

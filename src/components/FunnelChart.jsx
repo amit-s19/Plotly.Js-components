@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {barDummydata as bdd} from '../compDummyData';
+
 const Plot = createPlotlyComponent(Plotly);
 
 let xcoord;
@@ -43,15 +43,14 @@ class FunnelChart extends Component {
           textangle: textAngle,
         }));
 
-        
         procData.forEach((d, i) => {
-            let field = dataset[i];
-            d.name = field[keys[0]];
-            let elements = keys.slice(1, keys.length);
-            for(let key in elements) {
-                d.y.push(elements[key]);
-                d.x.push(field[elements[key]]);
-            };
+          let field = dataset[i];
+          d.name = field[keys[0]];
+          let elements = keys.slice(1, keys.length);
+          for(let key in elements) {
+            d.y.push(elements[key]);
+            d.x.push(field[elements[key]]);
+          };
         });
         console.log(procData);
       }
@@ -72,7 +71,6 @@ class FunnelChart extends Component {
     const { dataset } = this.props;
     const { procData } = this.state;
     
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -91,21 +89,21 @@ class FunnelChart extends Component {
       <Plot
         data={procData}
         layout={{
-            funnelmode: "stack", 
-            showlegend: showLegend,
-            yaxis: {
-              title: yAxisLabel,
-            },
-            hovermode: 'closest',
+          funnelmode: "stack", 
+          showlegend: showLegend,
+          yaxis: {
+            title: yAxisLabel,
+          },
+          hovermode: 'closest',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-              let index = data.points[i].pointNumber;
-              pts = xcoord+' : ' +data.points[i].data.name+'\n'+
-              data.points[i].y+' : '+data.points[i].x+ '\n\n';
+            let index = data.points[i].pointNumber;
+            pts = xcoord+' : ' +data.points[i].data.name+'\n'+
+            data.points[i].y+' : '+data.points[i].x+ '\n\n';
           }
           alert('The values are:\n'+pts);
         }}
@@ -130,7 +128,7 @@ FunnelChart.propTypes = {
 };
 
 FunnelChart.defaultProps = {
-  dataset: bdd,
+  dataset: [],
   yAxisLabel:'', 
   orientation: 'h', 
   textPosition: 'inside', 
@@ -143,8 +141,6 @@ FunnelChart.defaultProps = {
   textInfo: 'label+value+text+percent initial', 
   textAngle: 0,
 };
-
-
 
 // FunnelChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 

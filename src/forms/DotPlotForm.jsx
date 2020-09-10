@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import './Styles.css';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -22,126 +21,116 @@ const useStyles = makeStyles((theme) => ({
 
 const DotPlotForm = () => {
 
-const handleInputChange = e => {  
-  const {name, value} = e.target ;
-  setConfig({...config, [name]: value})
-};
+  const handleInputChange = e => {  
+    const {name, value} = e.target ;
+    setConfig({...config, [name]: value})
+  };
 
-const [config, setConfig] = useState({
+  const [config, setConfig] = useState({
     dataset: ddd, colorArray: '', showLegend: 'true', dotTitle: '', dotSize: 18, 
     xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 45, yAxisTickAngle: 0,
-});
+  });
 
-const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <>
-    <div className="container-fluid">
-      <div className="row">
-        <div className='col-md-1'></div>
-        <div className="col-md-4">
-        <h2 className="display-4">Dot Plot </h2>
-      <form >
-      <TextField
-        fullWidth
-        label="List of colors"
-        name="colorArray"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.colorArray}
-        size="small"
-        className={classes.root}
-      />
-
-        <TextField
-        fullWidth
-        label="Title"
-        name="dotTitle"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.dotTitle}
-        size="small"
-        className={classes.root}
-      />
-
-    <TextField
-        fullWidth
-        type="number"
-        label="Dot Size"
-        name="dotSize"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.dotSize}
-        size="small"
-        InputProps={{ inputProps: { min: 10, max: 30 } }}
-        className={classes.root}
-      />
-
-    <TextField
-        fullWidth
-        label="X-axis Label"
-        name="xAxisLabel"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.xAxisLabel}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        label="Y-axis Label"
-        name="yAxisLabel"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.yAxisLabel}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="X-axis Tick Angle"
-        name="xAxisTickAngle"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.xAxisTickAngle}
-        size="small"
-        InputProps={{ inputProps: { min: -180, max: 180 } }}
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="Y-axis Tick Angle"
-        name="yAxisTickAngle"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.yAxisTickAngle}
-        size="small"
-        InputProps={{ inputProps: { min: -180, max: 180 } }}
-        className={classes.root}
-      />
-
-     
-      <FormControlLabel
-        control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
-        label="Show Legend"
-      />  
-      </form>
-      </div> 
-      <div className="col-md-7">
-    <div className="Graph">
-    <DotPlot  {...config} />
+      <div className="container-fluid">
+        <div className="row">
+          <div className='col-md-1'></div>
+          <div className="col-md-4">
+            <h2 className="display-4">Dot Plot </h2>
+            <TextField
+              fullWidth
+              label="List of colors"
+              name="colorArray"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.colorArray}
+              size="small"
+              className={classes.root}
+            />
+              <TextField
+              fullWidth
+              label="Title"
+              name="dotTitle"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.dotTitle}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Dot Size"
+              name="dotSize"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.dotSize}
+              size="small"
+              InputProps={{ inputProps: { min: 10, max: 30 } }}
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="X-axis Label"
+              name="xAxisLabel"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.xAxisLabel}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="Y-axis Label"
+              name="yAxisLabel"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.yAxisLabel}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="X-axis Tick Angle"
+              name="xAxisTickAngle"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.xAxisTickAngle}
+              size="small"
+              InputProps={{ inputProps: { min: -180, max: 180 } }}
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Y-axis Tick Angle"
+              name="yAxisTickAngle"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.yAxisTickAngle}
+              size="small"
+              InputProps={{ inputProps: { min: -180, max: 180 } }}
+              className={classes.root}
+            />
+            <FormControlLabel
+              control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
+              label="Show Legend"
+            />  
+          </div> 
+          <div className="col-md-7">
+            <div className="Graph">
+              <DotPlot  {...config} />
+            </div>
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
-    </div>
-    </>
-    
+    </>  
   );
 };
-
-
 
 DotPlotForm.propTypes = {
   config: PropTypes.shape({
@@ -153,7 +142,6 @@ DotPlotForm.propTypes = {
     xAxisTickAngle: PropTypes.number,  
     yAxisTickAngle: PropTypes.number, 
     showLegend: PropTypes.bool,  
-    
   }),
 };
 

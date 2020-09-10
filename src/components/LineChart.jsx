@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-//import {lineChartData as lcd} from '../compDummyData';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -11,7 +10,6 @@ let xcoord;
 class LineChart extends Component {
   constructor(props) {
     super(props);
-
     this.state = { procData: [] };
   }
 
@@ -112,8 +110,8 @@ class LineChart extends Component {
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-              pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
-              data.points[i].y + '\n\n';
+            pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
+            data.points[i].y + '\n\n';
           }
           alert('The values are:\n'+pts);
         }}

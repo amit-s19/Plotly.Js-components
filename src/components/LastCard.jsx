@@ -5,13 +5,13 @@ class LastCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        procData: {
-            card1 : {},
-            h2style : {},    
-            vstyle : {},
-            titleText : {},
-            cardVal : {},
-        }
+      procData: {
+        card1 : {},
+        h2style : {},    
+        vstyle : {},
+        titleText : {},
+        cardVal : {},
+      }
     };
   }
 
@@ -22,42 +22,42 @@ class LastCard extends Component {
     } = this.props;
 
     try {
-        let keys = Object.keys(dataset[0]);
-        let procData = {
-            card1: {
-                width: cardWidth,
-                minHeight: cardHeight,                           
-                margin: "50px",
-                boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
-                borderRadius: "5px",
-                textAlign:"center",
-                backgroundColor: cardBackground,
-              },
-            h2style: {
-                color: cardColor1,
-                padding:"30px 20px 0px 30px",
-                marginBottom:"5px",
-                fontFamily: cardFamily1,
-                fontSize: cardSize1,
-                fontWeight: cardWeight1,
-                textAlign: cardAlign1,
-                letterSpacing: ".05rem"
-              },                
-            vstyle: {
-                fontFamily: cardFamily2,  
-                fontSize: cardSize2,
-                fontWeight: cardWeight2,
-                color: cardColor2,
-                letterSpacing: "0.10px",
-                lineHeight: "1rem",                
-                wordBreak: "break-all",
-                wordWrap: "pre-wrap",
-                letterSpacing: ".1rem",                
-                textAlign:cardAlign2
-            },
-            titletext : undefined,
-            cardval : undefined,
-        }
+      let keys = Object.keys(dataset[0]);
+      let procData = {
+        card1: {
+          width: cardWidth,
+          minHeight: cardHeight,                           
+          margin: "50px",
+          boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
+          borderRadius: "5px",
+          textAlign:"center",
+          backgroundColor: cardBackground,
+        },
+        h2style: {
+          color: cardColor1,
+          padding:"30px 20px 0px 30px",
+          marginBottom:"5px",
+          fontFamily: cardFamily1,
+          fontSize: cardSize1,
+          fontWeight: cardWeight1,
+          textAlign: cardAlign1,
+          letterSpacing: ".05rem"
+        },                
+        vstyle: {
+          fontFamily: cardFamily2,  
+          fontSize: cardSize2,
+          fontWeight: cardWeight2,
+          color: cardColor2,
+          letterSpacing: "0.10px",
+          lineHeight: "1rem",                
+          wordBreak: "break-all",
+          wordWrap: "pre-wrap",
+          letterSpacing: ".1rem",                
+          textAlign:cardAlign2
+        },
+        titletext : undefined,
+        cardval : undefined,
+      }
         
       if (dataset && dataset.length > 0) {
         procData.card1.width = `${cardWidth}px`;
@@ -75,8 +75,8 @@ class LastCard extends Component {
         procData.vstyle.textAlign = cardAlign2;
         
         dataset.forEach((field) => {
-            procData.titletext = field[keys[0]];
-            procData.cardval = field[keys[1]];
+          procData.titletext = field[keys[0]];
+          procData.cardval = field[keys[1]];
         });
 
       }
@@ -98,7 +98,6 @@ class LastCard extends Component {
     const { dataset } = this.props;
     const { procData } = this.state;
     
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -113,53 +112,52 @@ class LastCard extends Component {
     const { vstyle } = this.state.procData;
     const { titletext } = this.state.procData;
     const { cardval } = this.state.procData;
+
     return ( 
-            <div class="card" style={card1}>
-              <div>
-              <h2  style={h2style}>{titletext}</h2>
-              </div>
-              <div className="card-value" style={vstyle} >
-              {cardval}
-              </div>
-           </div>
-        );
-    }
+      <div class="card" style={card1}>
+        <div>
+          <h2  style={h2style}>{titletext}</h2>
+        </div>
+        <div className="card-value" style={vstyle} >
+          {cardval}
+        </div>
+      </div>
+    );
+  }
 }
 
 LastCard.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-  cardWidth: PropTypes.bool, 
-  cardHeight: PropTypes.bool, 
+  cardWidth: PropTypes.number, 
+  cardHeight: PropTypes.number, 
   cardBackground: PropTypes.string, 
   cardFamily1: PropTypes.string,
-  cardSize1: PropTypes.bool, 
+  cardSize1: PropTypes.number, 
   cardWeight1: PropTypes.string, 
   cardColor1: PropTypes.string, 
   cardAlign1: PropTypes.string, 
   cardFamily2: PropTypes.string, 
-  cardSize2: PropTypes.bool, 
+  cardSize2: PropTypes.number, 
   cardWeight2: PropTypes.string, 
   cardColor2: PropTypes.string, 
-  cardAlign2: PropTypes.string, 
-  titleText: PropTypes.string,
-  cardVal: PropTypes.string,    
+  cardAlign2: PropTypes.string     
 };
 
 LastCard.defaultProps = {
   dataset: [],
-  cardWidth: 300, 
-  cardHeight: 150, 
+  cardWidth: 315, 
+  cardHeight: 100, 
   cardBackground: '#202A3B', 
   cardFamily1: 'Arial',
-  cardSize1: 14, 
-  cardWeight1: 'normal', 
-  cardColor1:' orange', 
+  cardSize1: 18, 
+  cardWeight1: 'bold', 
+  cardColor1:'white', 
   cardAlign1:'center', 
   cardFamily2: 'Arial', 
-  cardSize2: 26, 
+  cardSize2: 12, 
   cardWeight2: 'normal', 
-  cardColor2: 'white', 
-  cardAlign2: 'left', 
+  cardColor2: '#bbceec', 
+  cardAlign2: 'center' 
 };
 
 export default LastCard;

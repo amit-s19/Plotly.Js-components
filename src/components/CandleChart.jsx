@@ -22,9 +22,7 @@ class CandleChart extends Component {
       const newColorArr = colorArray.split(',');
      
       if (dataset && dataset.length > 0) {
-        
         const keys = Object.keys(dataset[0]);
-
         procData = keys.slice(1, 2).map(() => ({
           x: [],
           open: [],
@@ -59,15 +57,13 @@ class CandleChart extends Component {
 
   componentDidMount = () => {
     const { dataset } = this.props;
-
     if (dataset && dataset.length) this.processData();
   }
 
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
-    
+
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -79,7 +75,7 @@ class CandleChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-        xAxisLabel, xAxisTickAngle, yAxisLabel, yAxisTickAngle, showLegend,
+      xAxisLabel, xAxisTickAngle, yAxisLabel, yAxisTickAngle, showLegend,
     } = this.props;
 
     return (
@@ -147,8 +143,6 @@ CandleChart.defaultProps = {
   showLegend: true, 
   calName: 'Trace 0',
 };
-
-
 
 // CandleChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 

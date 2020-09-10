@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {indicatorTracedata as itd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
-
 
 class IndicatorTrace extends Component {
   constructor(props) {
@@ -83,7 +81,6 @@ class IndicatorTrace extends Component {
     const { dataset } = this.props;
     const { procData } = this.state;
     
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -114,14 +111,20 @@ class IndicatorTrace extends Component {
 
 IndicatorTrace.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  colorArray: PropTypes.string, 
+  traceMode: PropTypes.string, 
+  traceType: PropTypes.string,
+  showLegend: PropTypes.bool
   
 };
 
 IndicatorTrace.defaultProps = {
-  dataset: itd,
-  colorArray: 'green,lightgray,gray,gold',
+  dataset: [],
+  colorArray: 'green,lightgray,gray,gold', 
+  traceMode: 'number+delta+gauge', 
+  traceType: 'bullet',
+  showLegend: true,
 };
-
 
 export default IndicatorTrace;
 

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {histDummydata as hdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
-
 
 class Histogram extends Component {
   constructor(props) {
@@ -28,19 +26,18 @@ class Histogram extends Component {
         const keys = Object.keys(dataset[0]);
 
         procData = keys.slice(0, (keys.length/2)).map((d, i) => ({
-            x: [],
-            y: [],
-            autobinx : false,
-            name: newNames[i],
-            histfunc: histFunc, 
-            histnorm: histNorm, 
-            marker: { color: newColorArr[i] },
-            hovertemplate: hoverTemplate, 
-            cumulative: {enabled: histCumulative},
-            opacity: barOpacity, 
-            type: "histogram", 
-            orientation: orientation,
-  
+          x: [],
+          y: [],
+          autobinx : false,
+          name: newNames[i],
+          histfunc: histFunc, 
+          histnorm: histNorm, 
+          marker: { color: newColorArr[i] },
+          hovertemplate: hoverTemplate, 
+          cumulative: {enabled: histCumulative},
+          opacity: barOpacity, 
+          type: "histogram", 
+          orientation: orientation,
         }));
 
         dataset.forEach((field) => {
@@ -52,7 +49,6 @@ class Histogram extends Component {
           });
         });
       }
-      console.log(procData);
 
       this.setState({ procData });
     } catch (error) {
@@ -70,7 +66,6 @@ class Histogram extends Component {
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
     
     if ((Object.is(this.props, prevProps))) {
       return;
@@ -90,18 +85,18 @@ class Histogram extends Component {
       <Plot
         data={procData}
         layout={{
-            bargap: barGap, 
-            bargroupgap: 0.02, 
-            barmode: barMode, 
-            xaxis: {
-              title: xAxisLabel,
-              tickangle: xAxisTickAngle
-            }, 
-            yaxis: {
-              title: yAxisLabel,
-              tickangle: yAxisTickAngle
-            },
-            showlegend: showLegend,
+          bargap: barGap, 
+          bargroupgap: 0.02, 
+          barmode: barMode, 
+          xaxis: {
+            title: xAxisLabel,
+            tickangle: xAxisTickAngle
+          }, 
+          yaxis: {
+            title: yAxisLabel,
+            tickangle: yAxisTickAngle
+          },
+          showlegend: showLegend,
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
@@ -130,7 +125,7 @@ Histogram.propTypes = {
 };
 
 Histogram.defaultProps = {
-  dataset: hdd, 
+  dataset: [], 
   histNames: 'Trace 0,Trace 1,Trace 2,Trace 3', 
   xAxisLabel:'', 
   yAxisLabel:'', 

@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import { barDummydata as rdd } from '../compDummyData';
 
 const Plot = createPlotlyComponent(Plotly);
 
 class RadarChart extends Component {
   constructor(props) {
     super(props);
-
     this.state = { procData: [] };
   }
 
@@ -25,35 +23,32 @@ class RadarChart extends Component {
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
         procData = keys.slice(1, keys.length).map((d, i) => ({
-            r: [],
-            theta : [],
-            fill: radarFill,
-            type: 'scatterpolar',
-            mode: radarMode,
-            name: d,
-            opacity: radarOpacity,
-            textpostion: textPosition,
-            texttemplate: textTemplate,
-            hovertemplate: hoverTemplate,
-            marker: {
-                symbol: markerType,
-                size: markerSize,
-            },
-            line: {
-                dash: radarDash,
-                shape: radarShape, 
-            }
-
-
+          r: [],
+          theta : [],
+          fill: radarFill,
+          type: 'scatterpolar',
+          mode: radarMode,
+          name: d,
+          opacity: radarOpacity,
+          textpostion: textPosition,
+          texttemplate: textTemplate,
+          hovertemplate: hoverTemplate,
+          marker: {
+              symbol: markerType,
+              size: markerSize,
+          },
+          line: {
+              dash: radarDash,
+              shape: radarShape, 
+          }
         }));
 
         dataset.forEach((field) => {
-            procData.forEach((d, i) => {
-              d.r.push(field[keys[0]]);
-              d.theta.push(field[keys[i+1]]);
-            });
+          procData.forEach((d, i) => {
+            d.r.push(field[keys[0]]);
+            d.theta.push(field[keys[i+1]]);
           });
-          console.log(procData);
+        });
       }
 
       this.setState({ procData });
@@ -83,9 +78,6 @@ class RadarChart extends Component {
 
   render() {
     const { procData } = this.state;
-    const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend,
-    } = this.props;
 
     return (
       <Plot
@@ -104,38 +96,32 @@ class RadarChart extends Component {
   }
 }
 
-// RadarChart.propTypes = {
-//   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-//   xAxisLabel: PropTypes.string,
-//   yAxisLabel: PropTypes.string,
-//   xAxisTickAngle: PropTypes.number,
-//   yAxisTickAngle: PropTypes.number,
-//   markerOpacity: PropTypes.number,
-//   markerSize: PropTypes.number,
-//   lineWidth: PropTypes.number,
-//   colorArray: PropTypes.string,
-//   showLegend: PropTypes.bool,
-//   hoverTemplate: PropTypes.string,
-//   mode: PropTypes.string,
-//   lineStyle: PropTypes.string,
-//   lineShape: PropTypes.string,
-// };
+RadarChart.propTypes = {
+  dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  radarOpacity: PropTypes.number, 
+  radarMode: PropTypes.string, 
+  textTemplate : PropTypes.string, 
+  hoverTemplate : PropTypes.string, 
+  markerSize: PropTypes.number, 
+  markerType: PropTypes.string, 
+  radarDash: PropTypes.string,
+  radarShape: PropTypes.string, 
+  radarFill: PropTypes.string, 
+  showLegend: PropTypes.bool
+};
 
 RadarChart.defaultProps = {
-  dataset: rdd,
-//   xAxisLabel: '',
-//   yAxisLabel: '',
-//   xAxisTickAngle: 45,
-//   yAxisTickAngle: 0,
-//   colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-//   hoverTemplate: '%{x}<br>%{y}',
-//   showLegend: true,
-//   markerOpacity: 0.8,
-//   markerSize: 6,
-//   lineWidth: 2,
-//   mode: 'lines',
-//   lineStyle: 'lines',
-//   lineShape: 'linear',
+  dataset: [],
+  radarOpacity: 0.8, 
+  radarMode: 'lines+markers', 
+  textTemplate : '', 
+  hoverTemplate :'', 
+  markerSize: 10, 
+  markerType: 'circle', 
+  radarDash: 'solid',
+  radarShape: 'linear', 
+  radarFill: 'toself', 
+  showLegend: true,
 };
 
 // RadarChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/line+chart.svg';

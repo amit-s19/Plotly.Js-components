@@ -24,151 +24,135 @@ const useStyles = makeStyles((theme) => ({
 
 const OhlcChartForm = () => {
 
-const handleInputChange = e => {  
-  const {name, value} = e.target ;
-  setConfig({...config, [name]: value})
-};
+  const handleInputChange = e => {  
+    const {name, value} = e.target ;
+    setConfig({...config, [name]: value})
+  };
 
-const [config, setConfig] = useState({
+  const [config, setConfig] = useState({
     dataset: cdd, colorArray:'black,orange', xAxisLabel:'', yAxisLabel:'', xAxisTickAngle: 0, 
     yAxisTickAngle: 0, calType: 'gregorian', showLegend: true, calName: 'Trace 0',
-});
+  });
 
-const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <>
-    <div className="container-fluid">
-      <div className="row">
-        <div className='col-md-1'></div>
-        <div className="col-md-4">
-        <h2 className="display-4">OHLC Chart </h2>
-      <form >
-      <TextField
-        fullWidth
-        label="List of colors"
-        name="colorArray"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.colorArray}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        label="Trace Name"
-        name="calName"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.calName}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        label="X-axis Label"
-        name="xAxisLabel"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.xAxisLabel}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        label="Y-axis Label"
-        name="yAxisLabel"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.yAxisLabel}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="X-axis Tick Angle"
-        name="xAxisTickAngle"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.xAxisTickAngle}
-        size="small"
-        InputProps={{ inputProps: { min: -180, max: 180 } }}
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="Y-axis Tick Angle"
-        name="yAxisTickAngle"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.yAxisTickAngle}
-        size="small"
-        InputProps={{ inputProps: { min: -180, max: 180 } }}
-        className={classes.root}
-      />
-    
-      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
-        <InputLabel>Calendar Format</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          value={config.calType}
-          name="calType"
-          onChange={handleInputChange}
-          label="Calendar format"
-        >
-          <MenuItem value="gregorian">Gregorian</MenuItem>
-          <MenuItem value="chinese">Chinese</MenuItem>
-          <MenuItem value="hebrew">Hebrew</MenuItem>
-          <MenuItem value="mayan">Mayan</MenuItem>
-          <MenuItem value="islamic">Islamic</MenuItem>
-        </Select>
-      </FormControl>
-      
-      <FormControlLabel
-        control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
-        label="Show Legend"
-      />  
-      </form>
-        </div>
-      <div className="col-md-7">
-      <div className="Graph">
-      <OhlcChart  {...config} />
+      <div className="container-fluid">
+        <div className="row">
+          <div className='col-md-1'></div>
+          <div className="col-md-4">
+            <h2 className="display-4">OHLC Chart </h2>
+            <TextField
+              fullWidth
+              label="List of colors"
+              name="colorArray"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.colorArray}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="Trace Name"
+              name="calName"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.calName}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="X-axis Label"
+              name="xAxisLabel"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.xAxisLabel}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="Y-axis Label"
+              name="yAxisLabel"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.yAxisLabel}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="X-axis Tick Angle"
+              name="xAxisTickAngle"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.xAxisTickAngle}
+              size="small"
+              InputProps={{ inputProps: { min: -180, max: 180 } }}
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Y-axis Tick Angle"
+              name="yAxisTickAngle"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.yAxisTickAngle}
+              size="small"
+              InputProps={{ inputProps: { min: -180, max: 180 } }}
+              className={classes.root}
+            />
+            <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+              <InputLabel>Calendar Format</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                value={config.calType}
+                name="calType"
+                onChange={handleInputChange}
+                label="Calendar format"
+              >
+                <MenuItem value="gregorian">Gregorian</MenuItem>
+                <MenuItem value="chinese">Chinese</MenuItem>
+                <MenuItem value="hebrew">Hebrew</MenuItem>
+                <MenuItem value="mayan">Mayan</MenuItem>
+                <MenuItem value="islamic">Islamic</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
+              label="Show Legend"
+            />  
+          </div>
+          <div className="col-md-7">
+            <div className="Graph">
+              <OhlcChart  {...config} />
+            </div>
+          </div>
+        </div> 
       </div>
-      </div>
-      </div> 
-    </div>
-    
-  
-    
     </>
-    
   );
 };
 
-
-
 OhlcChartForm.propTypes = {
   config: PropTypes.shape({
-    orientation: PropTypes.string,
-    textPosition: PropTypes.string,
-    xAxisLabel: PropTypes.string,
-    yAxisLabel: PropTypes.string,
-    xAxisTickAngle: PropTypes.number,
-    yAxisTickAngle: PropTypes.number,
-    barGap: PropTypes.number,
-    barOpacity: PropTypes.number,
-    barWidth: PropTypes.number,
-    colorArray: PropTypes.string,
-    showLegend: PropTypes.bool,
-    hoverTemplate: PropTypes.string,
-    textTemplate: PropTypes.string,
-    barMode: PropTypes.string,
+    colorArray: PropTypes.string, 
+    xAxisLabel: PropTypes.string, 
+    yAxisLabel: PropTypes.string, 
+    xAxisTickAngle: PropTypes.number, 
+    yAxisTickAngle: PropTypes.number, 
+    calType: PropTypes.string, 
+    showLegend: PropTypes.number, 
+    calName: PropTypes.string,
   }),
 };
 
-//OhlcChartForm.defaultProps = { config: {} };
+OhlcChartForm.defaultProps = { config: {} };
 
 export default OhlcChartForm;
 

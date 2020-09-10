@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-//import {boxPlotData as bpd} from '../compDummyData';
 
 const Plot = createPlotlyComponent(Plotly);
 

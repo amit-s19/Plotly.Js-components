@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {sanDummydata as sdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 let xcoord, ycoord;
@@ -51,7 +50,6 @@ class SankeyChart extends Component {
              label: undefined,
              color: newColorArr,
                 },
-            
             link: {
               source: [],
               target: [], 
@@ -73,6 +71,7 @@ class SankeyChart extends Component {
 
         uniqueLabels = labels.filter((value, index, self) => self.indexOf(value) === index);
         procData[0].node.label = uniqueLabels;
+
         for(const key of uniqueLabels) {
           dictLabels[key] = k;
           k += 1;
@@ -103,7 +102,6 @@ class SankeyChart extends Component {
     const { dataset } = this.props;
     const { procData } = this.state;
     
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -114,10 +112,6 @@ class SankeyChart extends Component {
 
   render() {
     const { procData } = this.state;
-    const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, barGap, showLegend, barMode,
-    } = this.props;
-
     return (
       <Plot
         data={procData}
@@ -133,8 +127,8 @@ class SankeyChart extends Component {
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-              pts = xcoord+' : '+data.points[i].x +'\n'+' : '+
-              data.points[i].y + '\n\n';
+            pts = xcoord+' : '+data.points[i].x +'\n'+' : '+
+            data.points[i].y + '\n\n';
           }
           alert('The values are:\n'+pts);
         }}
@@ -153,10 +147,8 @@ SankeyChart.propTypes = {
   Orientation: PropTypes.string, 
   nodeThickness: PropTypes.number, 
   nodePad: PropTypes.number, 
-  colorArray: PropTypes.string,
-  labelArray: PropTypes.string,
-  linkArray: PropTypes.string, 
-  Arrangement: PropTypes.string
+  Arrangement: PropTypes.string, 
+  colorArray: PropTypes.string
 };
 
 SankeyChart.defaultProps = {
@@ -169,15 +161,11 @@ SankeyChart.defaultProps = {
   Orientation: 'h', 
   nodeThickness: 20, 
   nodePad: 10, 
-  colorArray: 'orange,green,blue,red,pink,indigo,violet,purple,brown,lightblue',
-  labelArray: 'India,USA,Italy,Russia,Israel,Japan,China,Canada,Switzerland,Korea',
-  linkArray: '', 
   Arrangement: 'snap', 
+  colorArray: 'orange,green,blue,red,pink,indigo,violet,purple,brown,lightblue' 
 };
 
-
-
-SankeyChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
+// SankeyChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 
 export default SankeyChart;
 

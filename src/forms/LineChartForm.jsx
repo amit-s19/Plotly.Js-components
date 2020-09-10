@@ -39,171 +39,171 @@ const LineChartForm = () => {
 
   return (
     <>
-    <div className="container-fluid">
-      <div className="row">
-        <div className='col-md-1'></div>
-        <div className="col-md-4">
-        <h2 className="display-4">Line Chart </h2>
-      <TextField
-        fullWidth
-        label="List of colors"
-        name="colorArray"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.colorArray}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        label="Hover Template"
-        name="hoverTemplate"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.hoverTemplate}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        label="X-axis Label"
-        name="xAxisLabel"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.xAxisLabel}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        label="Y-axis Label"
-        name="yAxisLabel"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.yAxisLabel}
-        size="small"
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="X-axis Tick Angle"
-        name="xAxisTickAngle"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.xAxisTickAngle}
-        size="small"
-        InputProps={{ inputProps: { min: -180, max: 180 } }}
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="Y-axis Tick Angle"
-        name="yAxisTickAngle"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.yAxisTickAngle}
-        size="small"
-        InputProps={{ inputProps: { min: -180, max: 180 } }}
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="Line Width"
-        name="lineWidth"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.lineWidth}
-        size="small"
-        InputProps={{ inputProps: { min: 0 } }}
-        className={classes.root}
-      />
-      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
-        <InputLabel>Mode</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          value={config.mode}
-          name="mode"
-          onChange={handleInputChange}
-          label="Mode"
-        >
-          <MenuItem value="lines+markers">Lines + Markers</MenuItem>
-          <MenuItem value="lines">Lines</MenuItem>
-          <MenuItem value="none">None</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
-        <InputLabel>Line Shape</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          value={config.lineShape}
-          name="lineShape"
-          onChange={handleInputChange}
-          label="Line Shape"
-        >
-          <MenuItem value="linear">Linear</MenuItem>
-          <MenuItem value="spline">Spline</MenuItem>
-          <MenuItem value="hv">hv</MenuItem>
-          <MenuItem value="vh">vh</MenuItem>
-          <MenuItem value="hvh">hvh</MenuItem>
-          <MenuItem value="vhv">vhv</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
-        <InputLabel>Line Style</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          value={config.lineStyle}
-          name="lineStyle"
-          onChange={handleInputChange}
-          label="Line Style"
-        >
-          <MenuItem value="solid">Solid</MenuItem>
-          <MenuItem value="dot">Dot</MenuItem>
-          <MenuItem value="dash">Dash</MenuItem>
-          <MenuItem value="longdash">Long Dash</MenuItem>
-          <MenuItem value="dashdot">Dash Dot</MenuItem>
-          <MenuItem value="longdashdot">Long Dash Dot</MenuItem>
-        </Select>
-      </FormControl>
-      <TextField
-        fullWidth
-        type="number"
-        label="Marker Size"
-        name="markerSize"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.markerSize}
-        size="small"
-        InputProps={{ inputProps: { min: 0 } }}
-        className={classes.root}
-      />
-      <TextField
-        fullWidth
-        type="number"
-        label="Marker Opacity"
-        name="markerOpacity"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.markerOpacity}
-        size="small"
-        InputProps={{ inputProps: { min: 0, max: 1 } }}
-        className={classes.root}
-      />
-      <FormControlLabel
-        control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
-        label="Show Legend"
-      />
+      <div className="container-fluid">
+        <div className="row">
+          <div className='col-md-1'></div>
+          <div className="col-md-4">
+            <h2 className="display-4">Line Chart </h2>
+            <TextField
+              fullWidth
+              label="List of colors"
+              name="colorArray"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.colorArray}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="Hover Template"
+              name="hoverTemplate"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.hoverTemplate}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="X-axis Label"
+              name="xAxisLabel"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.xAxisLabel}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              label="Y-axis Label"
+              name="yAxisLabel"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.yAxisLabel}
+              size="small"
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="X-axis Tick Angle"
+              name="xAxisTickAngle"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.xAxisTickAngle}
+              size="small"
+              InputProps={{ inputProps: { min: -180, max: 180 } }}
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Y-axis Tick Angle"
+              name="yAxisTickAngle"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.yAxisTickAngle}
+              size="small"
+              InputProps={{ inputProps: { min: -180, max: 180 } }}
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Line Width"
+              name="lineWidth"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.lineWidth}
+              size="small"
+              InputProps={{ inputProps: { min: 0 } }}
+              className={classes.root}
+            />
+            <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+              <InputLabel>Mode</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                value={config.mode}
+                name="mode"
+                onChange={handleInputChange}
+                label="Mode"
+              >
+                <MenuItem value="lines+markers">Lines + Markers</MenuItem>
+                <MenuItem value="lines">Lines</MenuItem>
+                <MenuItem value="none">None</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+              <InputLabel>Line Shape</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                value={config.lineShape}
+                name="lineShape"
+                onChange={handleInputChange}
+                label="Line Shape"
+              >
+                <MenuItem value="linear">Linear</MenuItem>
+                <MenuItem value="spline">Spline</MenuItem>
+                <MenuItem value="hv">hv</MenuItem>
+                <MenuItem value="vh">vh</MenuItem>
+                <MenuItem value="hvh">hvh</MenuItem>
+                <MenuItem value="vhv">vhv</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+              <InputLabel>Line Style</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                value={config.lineStyle}
+                name="lineStyle"
+                onChange={handleInputChange}
+                label="Line Style"
+              >
+                <MenuItem value="solid">Solid</MenuItem>
+                <MenuItem value="dot">Dot</MenuItem>
+                <MenuItem value="dash">Dash</MenuItem>
+                <MenuItem value="longdash">Long Dash</MenuItem>
+                <MenuItem value="dashdot">Dash Dot</MenuItem>
+                <MenuItem value="longdashdot">Long Dash Dot</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField
+              fullWidth
+              type="number"
+              label="Marker Size"
+              name="markerSize"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.markerSize}
+              size="small"
+              InputProps={{ inputProps: { min: 0 } }}
+              className={classes.root}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Marker Opacity"
+              name="markerOpacity"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.markerOpacity}
+              size="small"
+              InputProps={{ inputProps: { min: 0, max: 1 } }}
+              className={classes.root}
+            />
+            <FormControlLabel
+              control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
+              label="Show Legend"
+            />
+          </div>
+          <div className="col-md-7">
+            <div className="Graph">
+              <LineChart {...config} /> 
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="col-md-7">
-      <div className="Graph">
-      <LineChart {...config} /> 
-      </div>
-      </div>
-      </div>
-    </div>
     </>
   );
 };

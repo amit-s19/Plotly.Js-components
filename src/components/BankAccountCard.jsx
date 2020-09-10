@@ -5,14 +5,14 @@ class BankAccountCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        procData: {
-            card1 : {},
-            h2style : {},    
-            vstyle : {},
-            spstyle: {},
-            titleText : {},
-            cardVal: {},
-        }
+      procData: {
+        card1 : {},
+        h2style : {},    
+        vstyle : {},
+        spstyle: {},
+        titleText : {},
+        cardVal: {},
+      }
     };
   }
 
@@ -23,52 +23,52 @@ class BankAccountCard extends Component {
     } = this.props;
 
     try {
-        let keys = Object.keys(dataset[0]);
-        let procData = {
-          card1: {
-            width: undefined,
-            minHeight: undefined,           
-            margin: "50px",
-            boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
-            borderRadius: "10px",
-            backgroundColor: undefined,
-          },         
-          h2style: {
-            display: "flex",
-            alignItems: "stretch",
-            justifyContent: "space-between",
-            position: "relative",
-            minHeight: "30px",
-            padding:"30px 20px 10px 30px",
-            fontFamily: undefined,
-            fontSize: undefined,
-            fontWeight:"bold",
-            color: undefined,
-            textAlign: undefined,
-            letterSpacing: ".1rem"
-          },    
-          vstyle: {
-            fontFamily: undefined,
-            color: undefined,
-            paddingLeft:"30px ",
-            fontWeight: undefined,
-            letterSpacing: "0.10px",
-            lineHeight: "1rem",
-            fontSize: undefined,
-            wordBreak: "break-all",
-            wordWrap: "pre-wrap",
-            letterSpacing: ".1rem",
-            textAlign: undefined
-            },
-            spstyle: {
-              fontSize: "34px",
-              color:"#888888",
-              paddingLeft:"5px",
-              fontWeight:"normal",
-            },
-            titletext : undefined,
-            cardval : undefined,
-        }
+      let keys = Object.keys(dataset[0]);
+      let procData = {
+        card1: {
+          width: undefined,
+          minHeight: undefined,           
+          margin: "50px",
+          boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
+          borderRadius: "10px",
+          backgroundColor: undefined,
+        },         
+        h2style: {
+          display: "flex",
+          alignItems: "stretch",
+          justifyContent: "space-between",
+          position: "relative",
+          minHeight: "30px",
+          padding:"30px 20px 10px 30px",
+          fontFamily: undefined,
+          fontSize: undefined,
+          fontWeight:"bold",
+          color: undefined,
+          textAlign: undefined,
+          letterSpacing: ".1rem"
+        },    
+        vstyle: {
+          fontFamily: undefined,
+          color: undefined,
+          paddingLeft:"30px ",
+          fontWeight: undefined,
+          letterSpacing: "0.10px",
+          lineHeight: "1rem",
+          fontSize: undefined,
+          wordBreak: "break-all",
+          wordWrap: "pre-wrap",
+          letterSpacing: ".1rem",
+          textAlign: undefined
+          },
+          spstyle: {
+            fontSize: "34px",
+            color:"#888888",
+            paddingLeft:"5px",
+            fontWeight:"normal",
+          },
+          titletext : undefined,
+          cardval : undefined,
+      }
         
       if (dataset && dataset.length > 0) {
         procData.card1.width = `${cardWidth}px`;
@@ -86,12 +86,10 @@ class BankAccountCard extends Component {
         procData.vstyle.textAlign = cardAlign2;
         
         dataset.forEach((field) => {
-            procData.titletext = field[keys[0]];
-            procData.cardval = field[keys[1]];
+          procData.titletext = field[keys[0]];
+          procData.cardval = field[keys[1]];
         });
-
       }
-
       this.setState({ procData });
     } catch (error) {
       console.log(error);
@@ -101,19 +99,15 @@ class BankAccountCard extends Component {
 
   componentDidMount = () => {
     const { dataset } = this.props;
-
     if (dataset && dataset.length) this.processData();
   }
 
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
-
     if (dataset && dataset.length) this.processData();
     else if (!dataset && prevProps.dataset && procData) this.processData();
   }
@@ -141,37 +135,35 @@ class BankAccountCard extends Component {
 
 BankAccountCard.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-  cardWidth: PropTypes.bool, 
-  cardHeight: PropTypes.bool, 
+  cardWidth: PropTypes.number, 
+  cardHeight: PropTypes.number, 
   cardBackground: PropTypes.string, 
   cardFamily1: PropTypes.string,
-  cardSize1: PropTypes.bool, 
+  cardSize1: PropTypes.number, 
   cardWeight1: PropTypes.string, 
   cardColor1: PropTypes.string, 
   cardAlign1: PropTypes.string, 
   cardFamily2: PropTypes.string, 
-  cardSize2: PropTypes.bool, 
+  cardSize2: PropTypes.number, 
   cardWeight2: PropTypes.string, 
   cardColor2: PropTypes.string, 
-  cardAlign2: PropTypes.string, 
-  titleText: PropTypes.string,
-  cardVal: PropTypes.string,    
+  cardAlign2: PropTypes.string,
 };
 
 BankAccountCard.defaultProps = {
   dataset: [],
-  cardWidth: 300, 
-  cardHeight: 150, 
-  cardBackground: '#202A3B', 
+  cardWidth: 314, 
+  cardHeight: 130, 
+  cardBackground: '#fff', 
   cardFamily1: 'Arial',
   cardSize1: 14, 
   cardWeight1: 'normal', 
-  cardColor1:' orange', 
-  cardAlign1:'center', 
+  cardColor1:'#BC658D', 
+  cardAlign1:'left', 
   cardFamily2: 'Arial', 
-  cardSize2: 26, 
-  cardWeight2: 'normal', 
-  cardColor2: 'white', 
+  cardSize2: 34, 
+  cardWeight2: 'bold', 
+  cardColor2: '#10375C', 
   cardAlign2: 'left',
 };
 

@@ -15,7 +15,7 @@ class PieChart extends Component {
   processData = () => {
     const {
       dataset, textInfo,textPosition, holeVal, colorArray,hoverInfo, insideTextOrientation,
-       sliceDirection, pieOpacity, pieRotation, showLegend,
+      sliceDirection, pieOpacity, pieRotation, showLegend,
     } = this.props;
 
     try {
@@ -47,12 +47,11 @@ class PieChart extends Component {
         }];
         
         dataset.forEach((field) => {
-            procData.forEach((d) => {
-              d.labels.push(field[keys[0]]);
-              d.values.push(field[keys[1]]);
-            });            
+          procData.forEach((d) => {
+            d.labels.push(field[keys[0]]);
+            d.values.push(field[keys[1]]);
+          });            
         });
-          
       }
 
       this.setState({ procData });
@@ -71,7 +70,6 @@ class PieChart extends Component {
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
     
     if ((Object.is(this.props, prevProps))) {
       return;
@@ -99,8 +97,8 @@ class PieChart extends Component {
         onClick = {(data) => {
           var pts;
           for(var i=0; i < data.points.length; i++){
-              let x = data.points[i].pointNumber;
-              pts = data.points[i].data.labels[x]+' : '+data.points[i].data.values[x];
+            let x = data.points[i].pointNumber;
+            pts = data.points[i].data.labels[x]+' : '+data.points[i].data.values[x];
           }
           alert('The values are:\n'+pts);
         }}
@@ -111,7 +109,16 @@ class PieChart extends Component {
 
 PieChart.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-  
+  textInfo: PropTypes.string,
+  textPosition: PropTypes.string,
+  holeVal: PropTypes.number, 
+  colorArray: PropTypes.string, 
+  hoverInfo: PropTypes.string, 
+  insideTextOrientation: PropTypes.string,
+  sliceDirection: PropTypes.string,
+  pieOpacity: PropTypes.number,
+  pieRotation: PropTypes.number,
+  showLegend: PropTypes.bool
 };
 
 PieChart.defaultProps = {
@@ -125,7 +132,7 @@ PieChart.defaultProps = {
   sliceDirection: 'counterclockwise', 
   pieOpacity: 0.9, 
   pieRotation: 0, 
-  showLegend: 'true',
+  showLegend: true,
 };
 
 

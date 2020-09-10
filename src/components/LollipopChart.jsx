@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import LollipopChartForm from '../forms/LollipopChartForm';
-//import {barDummydata as bdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 class LollipopChart extends Component {
@@ -34,7 +32,6 @@ class LollipopChart extends Component {
         },
         showlegend: false,
       };
-
 
       if (dataset && dataset.length > 0) {
         
@@ -67,10 +64,8 @@ class LollipopChart extends Component {
       }
 
       markerData.name = procData.name;
-
       procData.push(markerData);
 
-      console.log(procData);
       this.setState({ procData });
     } catch (error) {
       console.log(error);
@@ -87,7 +82,6 @@ class LollipopChart extends Component {
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
     
     if ((Object.is(this.props, prevProps))) {
       return;
@@ -139,43 +133,41 @@ class LollipopChart extends Component {
 
 LollipopChart.propTypes = {
   dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  xAxisLabel: PropTypes.string, 
+  yAxisLabel: PropTypes.string, 
+  xAxisTickAngle: PropTypes.number, 
+  yAxisTickAngle: PropTypes.number, 
   orientation: PropTypes.string,
-  textPosition: PropTypes.string,
-  xAxisLabel: PropTypes.string,
-  yAxisLabel: PropTypes.string,
-  xAxisTickAngle: PropTypes.number,
-  yAxisTickAngle: PropTypes.number,
-  barGap: PropTypes.number,
-  barOpacity: PropTypes.number,
-  barWidth: PropTypes.number,
-  colorArray: PropTypes.string,
-  showLegend: PropTypes.bool,
-  hoverTemplate: PropTypes.string,
-  textTemplate: PropTypes.string,
-  barMode: PropTypes.string,
+  colorArray: PropTypes.string, 
+  markerSize: PropTypes.number, 
+  hoverTemplate : PropTypes.string, 
+  showLegend : PropTypes.bool, 
+  barWidth : PropTypes.number, 
+  barOpacity : PropTypes.number, 
+  textTemplate : PropTypes.string, 
+  markerMode: PropTypes.string,
+  markerSymbol: PropTypes.string
 };
 
 LollipopChart.defaultProps = {
   dataset: [],
-  xAxisLabel: '',
-  yAxisLabel: '',
-  xAxisTickAngle: 45,
-  yAxisTickAngle: 0,
+  xAxisLabel:'', 
+  yAxisLabel:'', 
+  xAxisTickAngle: 45, 
+  yAxisTickAngle: 0, 
   orientation: 'v',
-  barGap: 0.2,
-  textPosition: 'inside',
-  colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-  hoverTemplate: '%{x}<br>%{y}',
-  textTemplate: '%{x}<br>%{y}',
-  showLegend: true,
-  barWidth: null,
-  barOpacity: 0.8,
-  barMode: 'group',
+  colorArray: 'purple,pink', 
+  markerSize: 30, 
+  hoverTemplate :'%{x}<br>%{y}', 
+  showLegend : true, 
+  barWidth : 0.08, 
+  barOpacity : 0.8, 
+  textTemplate : '%{x}<br>%{y}', 
+  markerMode: 'markers',
+  markerSymbol: 'circle',
 };
 
-
-
-LollipopChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
+// LollipopChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 
 export default LollipopChart;
 

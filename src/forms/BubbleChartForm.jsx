@@ -141,6 +141,6 @@ BubbleChartForm.propTypes = {
   }),
 };
 
-//BubbleChartForm.defaultProps = { config: {} };
+BubbleChartForm.defaultProps = { config: {} };
 
 export default BubbleChartForm;

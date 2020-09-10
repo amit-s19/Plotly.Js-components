@@ -25,17 +25,17 @@ class DotPlot extends Component {
         const keys = Object.keys(dataset[0]);
         
         procData = keys.slice(1, keys.length).map((d, i) => ({
-            type: 'scatter',
-            x: [],
-            y: [],
-            mode: 'markers',
-            text: keys[i],
-            name: keys[i+1],
-            marker: {
-              color: newColorArr[i],
-              symbol: 'circle',
-              size: dotSize
-            },
+          type: 'scatter',
+          x: [],
+          y: [],
+          mode: 'markers',
+          text: keys[i],
+          name: keys[i+1],
+          marker: {
+            color: newColorArr[i],
+            symbol: 'circle',
+            size: dotSize
+          },
         }));
 
        console.log(procData);
@@ -44,11 +44,9 @@ class DotPlot extends Component {
           procData.forEach((d, i) => {
             d.x.push(field[keys[i+1]]);
             d.y.push(field[keys[0]]);
-        
           });
         });
       }
-
       this.setState({ procData });
     } catch (error) {
       console.log(error);
@@ -66,7 +64,6 @@ class DotPlot extends Component {
     const { dataset } = this.props;
     const { procData } = this.state;
     
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -83,9 +80,9 @@ class DotPlot extends Component {
   
     return (
       <>
-      <Plot
-        data={procData}
-        layout={{
+        <Plot
+          data={procData}
+          layout={{
             title: dotTitle,
             xaxis: {
               title: xAxisLabel,
@@ -130,20 +127,19 @@ class DotPlot extends Component {
             paper_bgcolor: 'rgb(254, 247, 234)',
             plot_bgcolor: 'rgb(254, 247, 234)',
             hovermode: 'closest'
-        }}
-        useResizeHandler
-        style={{ width: '100%', height: '100%' }}
-        onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
+          }}
+          useResizeHandler
+          style={{ width: '100%', height: '100%' }}
+          onClick = {(data) => {
+            var pts = '';
+            for(var i=0; i < data.points.length; i++){
               pts = data.points[i].y +'\n'+data.points[i].data.name+' : '+data.points[i].x;
-          }
-          alert('The values are:\n'+pts);
-        }}
-      />
-  
-</>
-    );
+            }
+            alert('The values are:\n'+pts);
+          }}
+        />
+      </>
+    );  
   }
 }
 

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from "plotly.js"
 import createPlotlyComponent from 'react-plotly.js/factory';
-import { keys } from '@material-ui/core/styles/createBreakpoints';
-//import {MixMatchData as acd} from '../compDummyData';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -57,6 +55,7 @@ class MixMatch extends Component {
         xcoord = keys[0];
         newChartArr.forEach( (d, i) => {
           switch(d) {
+
             case 'bar':
               obj = {
                 x: [],
@@ -217,8 +216,8 @@ class MixMatch extends Component {
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-              pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
-              data.points[i].y + '\n\n';
+            pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
+            data.points[i].y + '\n\n';
           }
           alert('The values are:\n'+pts);
         }}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {ParallelDummydata as pdd} from '../compDummyData';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -84,9 +83,6 @@ class ParallelCategory extends Component {
 
   render() {
     const { procData } = this.state;
-    const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend,
-    } = this.props;
 
     return (
       <Plot
@@ -96,44 +92,29 @@ class ParallelCategory extends Component {
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
-
       />
     );
   }
 }
 
-// ParallelCategory.propTypes = {
-//   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-//   xAxisLabel: PropTypes.string,
-//   yAxisLabel: PropTypes.string,
-//   xAxisTickAngle: PropTypes.number,
-//   yAxisTickAngle: PropTypes.number,
-//   markerOpacity: PropTypes.number,
-//   markerSize: PropTypes.number,
-//   lineWidth: PropTypes.number,
-//   colorArray: PropTypes.string,
-//   showLegend: PropTypes.bool,
-//   hoverTemplate: PropTypes.string,
-//   mode: PropTypes.string,
-//   lineStyle: PropTypes.string,
-//   lineShape: PropTypes.string,
-// };
+ParallelCategory.propTypes = {
+  dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  categoryOrder: PropTypes.string, 
+  hoverInfo: PropTypes.string, 
+  colorArray: PropTypes.string, 
+  lineShape: PropTypes.string,
+  chartArrangement: PropTypes.string, 
+  sortPath: PropTypes.string
+};
 
 ParallelCategory.defaultProps = {
-  dataset: pdd,
-// //   xAxisLabel: '',
-// //   yAxisLabel: '',
-// //   xAxisTickAngle: 45,
-// //   yAxisTickAngle: 0,
-// //   colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-// //   hoverTemplate: '%{x}<br>%{y}',
-// //   showLegend: true,
-// //   markerOpacity: 0.8,
-// //   markerSize: 6,
-// //   lineWidth: 2,
-// //   mode: 'lines',
-// //   lineStyle: 'lines',
-//   lineShape: 'linear',
+  dataset: [],
+  categoryOrder: 'trace', 
+  hoverInfo: 'count', 
+  colorArray: 'orange', 
+  lineShape: 'linear',
+  chartArrangement: 'perpendicular', 
+  sortPath: 'forward'
 };
 
 // ParallelCategory.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/line+chart.svg';

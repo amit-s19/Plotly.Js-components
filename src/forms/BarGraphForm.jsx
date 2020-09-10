@@ -238,7 +238,7 @@ BarGraphForm.propTypes = {
   }),
 };
 
-//BarGraphForm.defaultProps = { config: {} };
+BarGraphForm.defaultProps = { config: {} };
 
 export default BarGraphForm;
 

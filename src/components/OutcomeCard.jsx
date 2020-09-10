@@ -7,16 +7,16 @@ class OutcomeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        procData: {
-            card1: {},
-            h2style: {},
-            flex1: {},
-            meta1: {},
-            meta2: {},
-            titletext: '',
-            cardval: '',
-            date: ''
-        }
+      procData: {
+        card1: {},
+        h2style: {},
+        flex1: {},
+        meta1: {},
+        meta2: {},
+        titletext: '',
+        cardval: '',
+        date: ''
+      }
     };
   }
 
@@ -27,56 +27,57 @@ class OutcomeCard extends Component {
     } = this.props;
 
     try {
-        let keys = Object.keys(dataset[0]);
+        
+      let keys = Object.keys(dataset[0]);
 
-        let procData = {
-            card1: {
-                width: undefined,
-                minHeight: undefined,           
-                marginTop:"40px",        
-                padding:"20px",
-                boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
-                borderRadius: "10px",
-                backgroundColor: undefined,
-              },
-            h2style: {
-                color: undefined,
-                overflow: "hidden" ,
-                margin:"20px auto 10px 0",
-                padding:"40px auto 30px auto",
-                fontFamily: undefined,
-                fontSize: undefined,
-                fontWeight: undefined,
-                textAlign: undefined,
-                letterSpacing: "0.20px",
-              },
-            flex1: {
-                padding: "20px 60px 0 0",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-            },
-            meta1: {
-                paddingBottom:"15px",
-                fontWeight: undefined,
-                overflow: "hidden" ,
-                color: undefined,
-                fontFamily: undefined,
-                letterSpacing: "0.20px",
-                fontSize: undefined
-            },
-            meta2: {  
-                fontWeight: undefined,
-                overflow: "hidden" ,
-                color: undefined,
-                fontFamily: undefined,
-                letterSpacing: "0.20px",
-                fontSize: undefined
-            },
-            titletext : '',
-            cardval : '' ,
-            date: '' ,
-        }
+      let procData = {
+        card1: {
+          width: undefined,
+          minHeight: undefined,           
+          marginTop:"40px",        
+          padding:"20px",
+          boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
+          borderRadius: "10px",
+          backgroundColor: undefined,
+        },
+        h2style: {
+          color: undefined,
+          overflow: "hidden" ,
+          margin:"20px auto 10px 0",
+          padding:"40px auto 30px auto",
+          fontFamily: undefined,
+          fontSize: undefined,
+          fontWeight: undefined,
+          textAlign: undefined,
+          letterSpacing: "0.20px",
+        },
+        flex1: {
+          padding: "20px 60px 0 0",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between"
+        },
+        meta1: {
+          paddingBottom:"15px",
+          fontWeight: undefined,
+          overflow: "hidden" ,
+          color: undefined,
+          fontFamily: undefined,
+          letterSpacing: "0.20px",
+          fontSize: undefined
+        },
+        meta2: {  
+          fontWeight: undefined,
+          overflow: "hidden" ,
+          color: undefined,
+          fontFamily: undefined,
+          letterSpacing: "0.20px",
+          fontSize: undefined
+        },
+        titletext : '',
+        cardval : '' ,
+        date: '' ,
+      }
         
       if (dataset && dataset.length > 0) {
         procData.card1.width = `${cardWidth}px`;
@@ -97,12 +98,10 @@ class OutcomeCard extends Component {
         procData.meta2.fontSize = cardSize2;
         
         dataset.forEach((field) => {
-            procData.titletext = field[keys[0]]
-            procData.cardval = field[keys[1]]
-            procData.date = field[keys[2]]
+          procData.titletext = field[keys[0]]
+          procData.cardval = field[keys[1]]
+          procData.date = field[keys[2]]
         });
-
-        console.log(procData);
       }
 
       this.setState({ procData });
@@ -122,7 +121,6 @@ class OutcomeCard extends Component {
     const { dataset } = this.props;
     const { procData } = this.state;
     
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -141,21 +139,22 @@ class OutcomeCard extends Component {
     const { cardval } = this.state.procData;
     const { date } = this.state.procData;
     const { sizeicon } = this.props;
+
     return (        
-            <div style={flex1}>
-            <div class="card" style={card1}>
-               <IconContext.Provider value={{ color: "#F37121",textAlign:"left", size:`${sizeicon}rem`,marginBottom:"20px", }}>
-                 <div>
-                   <FaArrowAltCircleDown />
-                 </div>
-               </IconContext.Provider>
-               <h2 style={h2style}>{cardval}</h2> 
-               <p style={meta1}>{titletext}</p>
-               <p style={meta2}>{date}</p>
-               </div>
-            </div> 
-        );
-    }
+      <div style={flex1}>
+        <div class="card" style={card1}>
+          <IconContext.Provider value={{ color: "#F37121",textAlign:"left", size:`${sizeicon}rem`,marginBottom:"20px", }}>
+            <div>
+              <FaArrowAltCircleDown />
+            </div>
+          </IconContext.Provider>
+          <h2 style={h2style}>{cardval}</h2> 
+          <p style={meta1}>{titletext}</p>
+          <p style={meta2}>{date}</p>
+        </div>
+      </div> 
+    );
+  }
 }
 
 OutcomeCard.propTypes = {

@@ -7,16 +7,16 @@ class ReceivedCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        procData: {
-            card1: {},
-            h2style: {},
-            flex1: {},
-            meta1: {},
-            meta2: {},
-            titletext: '',
-            cardval: '',
-            details: ''
-        }
+      procData: {
+        card1: {},
+        h2style: {},
+        flex1: {},
+        meta1: {},
+        meta2: {},
+        titletext: '',
+        cardval: '',
+        details: ''
+      }
     };
   }
 
@@ -27,55 +27,54 @@ class ReceivedCard extends Component {
     } = this.props;
 
     try {
-        let keys = Object.keys(dataset[0]);
-
-        let procData = {
-            card1: {
-                width: undefined,
-                minHeight: undefined,           
-                marginTop:"40px",        
-                padding:"30px",
-                boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
-                borderRadius: "10px",
-                backgroundColor: undefined,
-            },    
-            h2style:  {
-                color: undefined,
-                overflow: "hidden" ,
-                margin:"15px auto 30px auto",
-                fontFamily: undefined,
-                fontSize: undefined,
-                fontWeight: undefined,
-                textAlign: undefined,
-                letterSpacing: "0.20px",
-            }, 
-            flex1: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between"
-            },    
-            meta1: {  
-                fontWeight: undefined,
-                fontSize: undefined,
-                overflow: "hidden" ,
-                color: undefined,
-                fontFamily: undefined,
-                letterSpacing: "0.3px",
-                marginBottom:"0"
-            },
-            meta2: {
-                fontSize: undefined,
-                fontWeight: undefined,
-                overflow: "hidden" ,
-                color: undefined,
-                fontFamily: undefined,
-                letterSpacing: "0.20px",
-                marginTop:"8px"
-            },
-            titletext : '',
-            cardval : '' ,
-            details: '' ,
-        }
+      let keys = Object.keys(dataset[0]);
+      let procData = {
+        card1: {
+          width: undefined,
+          minHeight: undefined,           
+          marginTop:"40px",        
+          padding:"30px",
+          boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)",      
+          borderRadius: "10px",
+          backgroundColor: undefined,
+        },    
+        h2style:  {
+          color: undefined,
+          overflow: "hidden" ,
+          margin:"15px auto 30px auto",
+          fontFamily: undefined,
+          fontSize: undefined,
+          fontWeight: undefined,
+          textAlign: undefined,
+          letterSpacing: "0.20px",
+        }, 
+        flex1: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"
+        },    
+        meta1: {  
+          fontWeight: undefined,
+          fontSize: undefined,
+          overflow: "hidden" ,
+          color: undefined,
+          fontFamily: undefined,
+          letterSpacing: "0.3px",
+          marginBottom:"0"
+        },
+        meta2: {
+          fontSize: undefined,
+          fontWeight: undefined,
+          overflow: "hidden" ,
+          color: undefined,
+          fontFamily: undefined,
+          letterSpacing: "0.20px",
+          marginTop:"8px"
+        },
+        titletext : '',
+        cardval : '' ,
+        details: '' ,
+      }
         
       if (dataset && dataset.length > 0) {
         procData.card1.width = `${cardWidth}px`;
@@ -96,12 +95,10 @@ class ReceivedCard extends Component {
         procData.meta2.fontSize = cardSize3;
         
         dataset.forEach((field) => {
-            procData.titletext = field[keys[0]]
-            procData.cardval = field[keys[1]]
-            procData.details = field[keys[2]]
+          procData.titletext = field[keys[0]]
+          procData.cardval = field[keys[1]]
+          procData.details = field[keys[2]]
         });
-
-        console.log(procData);
       }
 
       this.setState({ procData });
@@ -120,7 +117,6 @@ class ReceivedCard extends Component {
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
     
     if ((Object.is(this.props, prevProps))) {
       return;
@@ -141,20 +137,20 @@ class ReceivedCard extends Component {
     const { details } = this.state.procData;
     const { sizeicon } = this.props;
     return (        
-        <div style={flex1}>
+      <div style={flex1}>
         <div class="card" style={card1}>
-           <IconContext.Provider value={{ color: "#f4f6ff",textAlign:"left", size:`${sizeicon}rem` }}>
-             <div>
-               <FaUserCircle />
-             </div>
-           </IconContext.Provider>
-           <h2 style={h2style}> {titletext} </h2> 
-           <p style={meta1}> {cardval} </p>
-           <p style={meta2}> {details} </p>
-           </div>
+          <IconContext.Provider value={{ color: "#f4f6ff",textAlign:"left", size:`${sizeicon}rem` }}>
+            <div>
+              <FaUserCircle />
+            </div>
+          </IconContext.Provider>
+          <h2 style={h2style}> {titletext} </h2> 
+          <p style={meta1}> {cardval} </p>
+          <p style={meta2}> {details} </p>
         </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 ReceivedCard.propTypes = {
@@ -170,30 +166,31 @@ ReceivedCard.propTypes = {
   cardFamily2: PropTypes.string, 
   cardSize2: PropTypes.number, 
   cardWeight2: PropTypes.string, 
-  cardColor2: PropTypes.string, 
-  cardAlign2: PropTypes.string, 
-  cardColor3: PropTypes.string,
+  cardColor2: PropTypes.string,
+  cardColor3: PropTypes.string, 
+  cardSize3: PropTypes.number, 
+  cardWeight3: PropTypes.string, 
   sizeicon: PropTypes.number,
 };
 
 ReceivedCard.defaultProps = {
     dataset: [],
-    cardWidth: 160, 
-    cardHeight: 100, 
-    cardBackground: '#fff', 
+    cardWidth: 200, 
+    cardHeight: 180, 
+    cardBackground: '#428a75', 
     cardFamily1: 'Arial',
-    cardSize1: 30, 
+    cardSize1: 20, 
     cardWeight1: 'bold', 
-    cardColor1:'#000000', 
+    cardColor1:'#fff', 
     cardAlign1:'left', 
     cardFamily2: 'Arial', 
-    cardSize2: 16, 
+    cardSize2: 30, 
     cardWeight2: 'bold', 
-    cardColor2: '#7E0CF5', 
-    cardAlign2: 'left', 
-    cardColor3: '#5f6769',
-    sizeicon: 2.5, 
- 
+    cardColor2: '#fff',
+    cardColor3: '#aacdbe', 
+    cardSize3: 14, 
+    cardWeight3: 'normal', 
+    sizeicon: 3.5, 
 };
 
 export default ReceivedCard;
