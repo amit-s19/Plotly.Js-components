@@ -217,8 +217,6 @@ const classes = useStyles();
   );
 };
 
-
-
 BarGraphForm.propTypes = {
   config: PropTypes.shape({
     orientation: PropTypes.string,
@@ -236,6 +234,8 @@ BarGraphForm.propTypes = {
     textTemplate: PropTypes.string,
     barMode: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 BarGraphForm.defaultProps = { config: {} };

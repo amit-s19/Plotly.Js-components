@@ -232,6 +232,8 @@ ViolinChartForm.propTypes = {
     violinJitter: PropTypes.numer, 
     showLegend: PropTypes.bool
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 ViolinChartForm.defaultProps = { config: {} };

@@ -237,6 +237,8 @@ BankAccountCardForm.propTypes = {
     cardColor2: PropTypes.string, 
     cardAlign2: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 BankAccountCardForm.defaultProps = { config: {} };

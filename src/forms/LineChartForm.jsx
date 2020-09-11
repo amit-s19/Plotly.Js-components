@@ -226,8 +226,8 @@ LineChartForm.propTypes = {
     lineStyle: PropTypes.string,
     lineShape: PropTypes.string,
   }),
-  handleInputChange: PropTypes.func.isRequired,
-  classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 LineChartForm.defaultProps = { config: {} };

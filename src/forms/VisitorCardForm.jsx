@@ -260,6 +260,8 @@ VisitorCardForm.propTypes = {
     titleText: PropTypes.string,
     cardVal: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 VisitorCardForm.defaultProps = { config: {} };

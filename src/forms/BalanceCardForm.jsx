@@ -263,6 +263,8 @@ BalanceCardForm.propTypes = {
   sizeicon: PropTypes.number, 
   cardHrHeight: PropTypes.number,  
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 BalanceCardForm.defaultProps = { config: {} };

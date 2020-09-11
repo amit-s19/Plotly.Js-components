@@ -104,6 +104,8 @@ IndicatorTraceForm.propTypes = {
     traceType: PropTypes.string,
     showLegend: PropTypes.bool
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 export default IndicatorTraceForm ;

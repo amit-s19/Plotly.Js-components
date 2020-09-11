@@ -139,6 +139,8 @@ BubbleChartForm.propTypes = {
     boxMean: PropTypes.string,
     boxPoints: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 BubbleChartForm.defaultProps = { config: {} };

@@ -273,6 +273,8 @@ WaterfallChartForm.propTypes = {
     colorArray: PropTypes.string, 
     lineWidth: PropTypes.number,    
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 WaterfallChartForm.defaultProps = { config: {} };

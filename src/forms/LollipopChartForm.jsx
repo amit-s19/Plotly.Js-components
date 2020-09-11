@@ -232,6 +232,8 @@ LollipopChartForm.propTypes = {
     markerMode: PropTypes.string,
     markerSymbol: PropTypes.string
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 LollipopChartForm.defaultProps = { config: {} };

@@ -256,8 +256,8 @@ AreaChartForm.propTypes = {
     showLegend: PropTypes.bool,
     hoverTemplate: PropTypes.string,
   }),
-  handleInputChange: PropTypes.func.isRequired,
-  //classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 AreaChartForm.defaultProps = { config: {} };

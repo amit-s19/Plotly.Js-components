@@ -141,6 +141,8 @@ ParallelCategoryForm.propTypes = {
     chartArrangement: PropTypes.string, 
     sortPath: PropTypes.string
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 ParallelCategoryForm.defaultProps = { config: {} };

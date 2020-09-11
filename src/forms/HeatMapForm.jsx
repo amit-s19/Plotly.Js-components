@@ -141,6 +141,8 @@ HeatMapForm.propTypes = {
     contColor: PropTypes.string, 
     contScale: PropTypes.bool, 
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 HeatMapForm.defaultProps = { config: {} };

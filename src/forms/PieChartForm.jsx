@@ -189,6 +189,8 @@ PieChartForm.propTypes = {
     pieOpacity: PropTypes.number,
     pieRotation: PropTypes.number,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 export default PieChartForm ;

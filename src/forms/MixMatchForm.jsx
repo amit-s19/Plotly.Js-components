@@ -544,6 +544,8 @@ MixMatchForm.propTypes = {
   scatterMarkerSymbol: PropTypes.string, 
   scatterMarkerOpacity: PropTypes.number,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 MixMatchForm.defaultProps = { config: {} };

@@ -187,6 +187,8 @@ SankeyChartForm.propTypes = {
     Arrangement: PropTypes.string, 
     colorArray: PropTypes.string
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 SankeyChartForm.defaultProps = { config: {} };

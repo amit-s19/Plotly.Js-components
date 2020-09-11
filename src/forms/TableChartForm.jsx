@@ -90,6 +90,8 @@ TableChartForm.propTypes = {
     showLegend: PropTypes.bool,
     colorArray: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 TableChartForm.defaultProps = { config: {} };

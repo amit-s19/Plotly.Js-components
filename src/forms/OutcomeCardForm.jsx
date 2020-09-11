@@ -260,6 +260,8 @@ OutcomeCardForm.propTypes = {
     cardColor3: PropTypes.string,
     sizeicon: PropTypes.number, 
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 export default OutcomeCardForm ;

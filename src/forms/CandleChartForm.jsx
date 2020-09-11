@@ -157,6 +157,8 @@ CandleChartForm.propTypes = {
     textTemplate: PropTypes.string,
     barMode: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 CandleChartForm.defaultProps = { config: {} };

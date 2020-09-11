@@ -245,6 +245,8 @@ ReceivedCardForm.propTypes = {
     cardWeight3: PropTypes.string, 
     sizeicon: PropTypes.number,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 ReceivedCardForm.defaultProps = { config : {} } ;

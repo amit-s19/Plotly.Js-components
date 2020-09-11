@@ -150,6 +150,8 @@ OhlcChartForm.propTypes = {
     showLegend: PropTypes.number, 
     calName: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 OhlcChartForm.defaultProps = { config: {} };

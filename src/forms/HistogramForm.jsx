@@ -249,6 +249,8 @@ HistogramForm.propTypes = {
     histFunc: PropTypes.string, 
     histNorm: PropTypes.string,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 HistogramForm.defaultProps = { config: {} };

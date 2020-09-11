@@ -193,6 +193,8 @@ FunnelChartForm.propTypes = {
     textInfo: PropTypes.string, 
     textAngle: PropTypes.number,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 FunnelChartForm.defaultProps = { config: {} };

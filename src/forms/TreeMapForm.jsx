@@ -153,6 +153,8 @@ TreeMapForm.propTypes = {
     treePacking: PropTypes.string, 
     showLegend: PropTypes.bool
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 TreeMapForm.defaultProps = { config: {} };

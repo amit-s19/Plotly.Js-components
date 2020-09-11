@@ -158,6 +158,8 @@ SunburstChartForm.propTypes = {
     radarFill: PropTypes.string, 
     showLegend: PropTypes.bool,
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 SunburstChartForm.defaultProps = { config: {} };

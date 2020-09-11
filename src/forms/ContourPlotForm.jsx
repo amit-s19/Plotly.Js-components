@@ -202,6 +202,8 @@ ContourPlotForm.propTypes = {
     showLabels: PropTypes.bool,
     showLegend: PropTypes.bool
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 ContourPlotForm.defaultProps = { config: {} };

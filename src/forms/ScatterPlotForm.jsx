@@ -209,6 +209,8 @@ ScatterPlotForm.propTypes = {
     textTemplate : PropTypes.string, 
     textPosition: PropTypes.string
   }),
+  // handleInputChange: PropTypes.func.isRequired,
+  // classes: PropTypes.shape({ formControl: PropTypes.string }).isRequired,
 };
 
 ScatterPlotForm.defaultProps = { config: {} };
