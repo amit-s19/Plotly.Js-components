@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import { violinDummydata as vdd } from '../compDummyData';
-
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -12,7 +10,6 @@ let xcoord, ycoord;
 class ViolinChart extends Component {
   constructor(props) {
     super(props);
-
     this.state = { procData: [] };
   }
 
@@ -33,42 +30,40 @@ class ViolinChart extends Component {
         xcoord = keys[0];
         ycoord = keys[1];
         procData = [{
-            type: 'violin',
-            x: [],
-            y: [],
-            name: keys[0],
-            width: violinWidth,
-            text: 'hello world',
-            opacity: violinOpacity,
-            points: 'none',
-            hovertext: hoverText,
-            hoverinfo: hoverInfo,
-            orientation: violinOrientation,
-            bandwith: Bandwidth,
-            hoveron : hoverOn,
-            jitter: violinJitter,
-            hovertemplate : hoverTemplate,
-            showlegend: showLegend,
-            box: {
-              visible: true,
-            },
-            marker: {
-              outliercolor: newColorArr[newColorArr.length-2],
-              symbol: markerSymbol,
-              size: markerSize,
-            },
-            meanline: {
-              visible: true,
-              color: newColorArr[newColorArr.length-1],
-            },
-            transforms: [{
-              type: 'groupby',
-            groups: [],
-            styles: []
-           }]
-          
+          type: 'violin',
+          x: [],
+          y: [],
+          name: keys[0],
+          width: violinWidth,
+          text: 'hello world',
+          opacity: violinOpacity,
+          points: 'none',
+          hovertext: hoverText,
+          hoverinfo: hoverInfo,
+          orientation: violinOrientation,
+          bandwith: Bandwidth,
+          hoveron : hoverOn,
+          jitter: violinJitter,
+          hovertemplate : hoverTemplate,
+          showlegend: showLegend,
+          box: {
+            visible: true,
+          },
+          marker: {
+            outliercolor: newColorArr[newColorArr.length-2],
+            symbol: markerSymbol,
+            size: markerSize,
+          },
+          meanline: {
+            visible: true,
+            color: newColorArr[newColorArr.length-1],
+          },
+          transforms: [{
+            type: 'groupby',
+          groups: [],
+          styles: []
+          }]
         }];
-        
         dataset.forEach((field) => {
           procData.forEach((d) => {
             let x = field[keys[0]];
@@ -161,26 +156,38 @@ class ViolinChart extends Component {
   }
 }
 
-// ViolinChart.propTypes = {
-//   dataset: PropTypes.arrayOf(PropTypes.shape({})),
-//   xAxisLabel: PropTypes.string,
-//   yAxisLabel: PropTypes.string,
-//   xAxisTickAngle: PropTypes.number,
-//   yAxisTickAngle: PropTypes.number,
-//   colorArray: PropTypes.string,
-//   opacity: PropTypes.number,
-//   showLegend: PropTypes.bool,
-// };
+ViolinChart.propTypes = {
+  dataset: PropTypes.arrayOf(PropTypes.shape({})),
+  colorArray: PropTypes.string, 
+  violinOpacity: PropTypes.number, 
+  violinWidth: PropTypes.number, 
+  hoverText: PropTypes.string, 
+  hoverInfo: PropTypes.string,
+  hoverTemplate: PropTypes.string, 
+  violinOrientation: PropTypes.string, 
+  markerSymbol: PropTypes.string, 
+  markerSize: PropTypes.number, 
+  Bandwidth: PropTypes.number,
+  hoverOn: PropTypes.string, 
+  violinJitter: PropTypes.numer, 
+  showLegend: PropTypes.bool
+};
 
 ViolinChart.defaultProps = {
-  dataset: vdd,
-//   xAxisLabel: '',
-//   yAxisLabel: '',
-//   xAxisTickAngle: 45,
-//   yAxisTickAngle: 0,
-//   colorArray: 'cornflowerblue,orange,pink,yellow,seagreen',
-//   opacity: 0.9,
-//   showLegend: false,
+  dataset: [],
+  colorArray: '#800055,#cc0088,#ff00aa,#ff33bb,#ff66cc,#ff99dd,#ffccee,#4d0033,#000000', 
+  violinOpacity: 1, 
+  violinWidth: 0, 
+  hoverText: '', 
+  hoverInfo: 'all',
+  hoverTemplate: '%{x}<br>%{y}', 
+  violinOrientation: 'v', 
+  markerSymbol: 'circle', 
+  markerSize: 8, 
+  Bandwidth: null,
+  hoverOn: 'violins+points+kde', 
+  violinJitter: 0, 
+  showLegend: true,
 };
 
 //ViolinChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bubble+chart.svg';

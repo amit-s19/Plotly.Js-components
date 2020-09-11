@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {barDummydata as bdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
-
 
 class TableChart extends Component {
   constructor(props) {
     super(props);
     this.state = { procData: [] };
   }
-
   processData = () => {
     const {
       dataset, tableAlign, colorArray,
@@ -29,39 +26,39 @@ class TableChart extends Component {
         var rowEvenColor = newColorArr[1];
         var rowOddColor = newColorArr[2];
 
-        procData = keys.slice(1, 2).map(() => ({
-            type: 'table',
-            header: {
-              values: [],
-              align: tableAlign,
-              line: {width: 1, color: 'black'},
-              fill: {color: headerColor},
-              font: {family: "Arial", size: 14, color: "white"}
-            },
-            cells: {
-              values: [],
-              align: tableAlign,
-              line: {color: "black", width: 1},
-              fill: {color: []},
-              font: {family: "Arial", size: 12, color: ["black"]}
-            }
-        }));
+        procData = [{
+          type: 'table',
+          header: {
+            values: [],
+            align: tableAlign,
+            line: {width: 1, color: 'black'},
+            fill: {color: headerColor},
+            font: {family: "Arial", size: 14, color: "white"}
+          },
+          cells: {
+            values: [],
+            align: tableAlign,
+            line: {color: "black", width: 1},
+            fill: {color: []},
+            font: {family: "Arial", size: 12, color: ["black"]}
+          }
+        }];
         
           procData.forEach((d) => {
             let x = [];
             for(let key in keys) {
-                d.header.values.push(keys[key]);
-                let y = []
-                let i = parseInt(key);
-                console.log(key);
-                if(i%2 === 0 )
-                        d.cells.fill.color.push(rowEvenColor);
-                    else
-                        d.cells.fill.color.push(rowOddColor);
-                dataset.forEach((field, i) => {
-                    y.push(field[keys[key]]);
-                });
-                x.push(y);
+              d.header.values.push(keys[key]);
+              let y = []
+              let i = parseInt(key);
+              console.log(key);
+              if(i%2 === 0 )
+                d.cells.fill.color.push(rowEvenColor);
+              else
+                d.cells.fill.color.push(rowOddColor);
+              dataset.forEach((field, i) => {
+                y.push(field[keys[key]]);
+              });
+              x.push(y);
             }
             d.cells.values = x ; 
           });
@@ -103,7 +100,7 @@ class TableChart extends Component {
       <Plot
         data={procData}
         layout= {{
-            showlegend: showLegend,
+          showlegend: showLegend,
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
@@ -120,15 +117,13 @@ TableChart.propTypes = {
 };
 
 TableChart.defaultProps = {
-  dataset: bdd,
+  dataset: [],
   colorArray:'grey,lightgrey,white', 
   tableAlign: 'center', 
   showLegend: true,
 };
 
-
-
-TableChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
+// TableChart.url = 'https://public-assets-ct.s3.us-east-2.amazonaws.com/website/svgs/bar+graph.svg';
 
 export default TableChart;
 

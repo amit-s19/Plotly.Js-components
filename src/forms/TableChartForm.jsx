@@ -22,70 +22,63 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const TableChartForm = () => {
 
-const handleInputChange = e => {  
-  const {name, value} = e.target ;
-  setConfig({...config, [name]: value})
-};
+  const handleInputChange = e => {  
+    const {name, value} = e.target ;
+    setConfig({...config, [name]: value})
+  };
 
-const [config, setConfig] = useState({
+  const [config, setConfig] = useState({
     dataset: bgd, colorArray:'grey,lightgrey,white', tableAlign: 'center', showLegend: true, 
-});
+  });
 
-const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <>
-   <div className="container-fluid">
-      <div className="row">
-        <div className='col-md-1'></div>
-        <div className="col-md-4">
-        <h2 className="display-4">Table Chart </h2>
-      <form >
-      <TextField
-        fullWidth
-        label="List of colors"
-        name="colorArray"
-        variant="outlined"
-        onChange={handleInputChange}
-        value={config.colorArray}
-        size="small"
-        className={classes.root}
-      />
-      <FormControl className={classes.root} fullWidth variant="outlined" size="small">
-        <InputLabel>Alignment</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          value={config.tableAlign}
-          name="tableAlign"
-          onChange={handleInputChange}
-          label="Text Alignment"
-        >
-          <MenuItem value="left">Left</MenuItem>
-          <MenuItem value="center">Center</MenuItem>
-          <MenuItem value="right">Right</MenuItem>
-        </Select>
-      </FormControl>
-      
-      <FormControlLabel
-        control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
-        label="Show Legend"
-      />  
-      </form>
-      </div> 
-      <div className="col-md-7">
-
-    <div className="Graph">
-    <TableChart  {...config} />
-  </div>   
+      <div className="container-fluid">
+        <div className="row">
+          <div className='col-md-1'></div>
+          <div className="col-md-4">
+            <h2 className="display-4">Table Chart </h2>
+            <TextField
+              fullWidth
+              label="List of colors"
+              name="colorArray"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.colorArray}
+              size="small"
+              className={classes.root}
+            />
+            <FormControl className={classes.root} fullWidth variant="outlined" size="small">
+              <InputLabel>Alignment</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                value={config.tableAlign}
+                name="tableAlign"
+                onChange={handleInputChange}
+                label="Text Alignment"
+              >
+                <MenuItem value="left">Left</MenuItem>
+                <MenuItem value="center">Center</MenuItem>
+                <MenuItem value="right">Right</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox checked={config.showLegend} onChange={handleInputChange} name="showLegend" />}
+              label="Show Legend"
+            />  
+          </div> 
+          <div className="col-md-7">
+            <div className="Graph">
+              <TableChart  {...config} />
+            </div>   
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
-    
     </>
-    
   );
 };
 
