@@ -102,6 +102,16 @@ class ContourPlot extends Component {
           }
           alert('The values are:\n'+pts);
         }}
+        onClick = {(data) => {
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+            pts['x'] = index.x;  
+            pts['y'] = index.y;  
+            pts[labels[index.x]] = index.z;  
+          })
+          console.log(pts);
+        }}
       />
     );
   }

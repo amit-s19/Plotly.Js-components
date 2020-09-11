@@ -82,7 +82,7 @@ class BarGraph extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, barGap, showLegend, barMode, violinOrientation,
+      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, barGap, showLegend, barMode, orientation
     } = this.props;
 
     return (
@@ -111,8 +111,7 @@ class BarGraph extends Component {
           bargap: barGap,
           barmode: barMode,
           showlegend: showLegend,
-
-          hovermode: 'x',
+          hovermode: orientation === 'h'? 'v' : 'x',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
@@ -120,9 +119,9 @@ class BarGraph extends Component {
           var pts = {};
           data.points.forEach((elem, i) => {
             let index = data.points[i];
-            if(index.data.violinOrientation === "h") {
-              pts[xcoord] = index.x;
-              pts[index.data.name] = index.y;
+            if(orientation === "h") {
+              pts[xcoord] = index.y;
+              pts[index.data.name] = index.x;
             } else {
               pts[xcoord] = index.x;
               pts[index.data.name] = index.y;

@@ -25,25 +25,25 @@ class HeatMap extends Component {
         const keys = Object.keys(dataset[0]);
         labels = keys;
         procData = [{
-            x: [],
-            y: [],
-            z: [],
-            name: traceName,
-            type: 'heatmap',
-            showscale: contScale,
-            showlegend: true,
-            opacity: contOpacity,
-            colorscale: contColor,
+          x: [],
+          y: [],
+          z: [],
+          name: traceName,
+          type: 'heatmap',
+          showscale: contScale,
+          showlegend: true,
+          opacity: contOpacity,
+          colorscale: contColor,
         }];
 
         let newKeys = keys.slice(1, keys.length);
         procData.forEach((d) => {
             newKeys.forEach((key, i) => {d.x.push(newKeys[i])})
             dataset.forEach((field) => {
-                let vect = [];
-                d.y.push(field[keys[0]]);
-                newKeys.forEach((key, i) => {vect.push(field[newKeys[i]])})
-                d.z.push(vect);
+              let vect = [];
+              d.y.push(field[keys[0]]);
+              newKeys.forEach((key, i) => {vect.push(field[newKeys[i]])})
+              d.z.push(vect);
           });
         });
       }

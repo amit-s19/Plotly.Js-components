@@ -4,6 +4,8 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
+let label;
+
 class DotPlot extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,7 @@ class DotPlot extends Component {
       if (dataset && dataset.length > 0) {
         
         const keys = Object.keys(dataset[0]);
+        label = keys[0];
         
         procData = keys.slice(1, keys.length).map((d, i) => ({
           type: 'scatter',
@@ -127,11 +130,13 @@ class DotPlot extends Component {
           useResizeHandler
           style={{ width: '100%', height: '100%' }}
           onClick = {(data) => {
-            var pts = '';
-            for(var i=0; i < data.points.length; i++){
-              pts = data.points[i].y +'\n'+data.points[i].data.name+' : '+data.points[i].x;
-            }
-            alert('The values are:\n'+pts);
+            var pts = {};
+            data.points.forEach((elem, i) => {
+              let index = data.points[i];
+              pts[label] = index.y;
+              pts[index.data.name] = index.x;
+            })
+            console.log(pts);
           }}
         />
       </>

@@ -86,7 +86,7 @@ class FunnelChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-      showLegend, yAxisLabel,
+      showLegend, yAxisLabel, orientation
     } = this.props;
 
     return (
@@ -98,17 +98,23 @@ class FunnelChart extends Component {
           yaxis: {
             title: yAxisLabel,
           },
-          hovermode: 'closest',
+          hovermode: orientation === 'h' ? 'y' : 'x',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-            pts = xcoord+' : ' +data.points[i].data.name+'\n'+
-            data.points[i].y+' : '+data.points[i].x+ '\n\n';
-          }
-          alert('The values are:\n'+pts);
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+            if(orientation === "h") {
+              pts[xcoord] = index.y;
+              pts[index.data.name] = index.x;
+            } else {
+              pts[xcoord] = index.x;
+              pts[index.data.name] = index.y;
+            }
+          })
+          console.log(pts);
         }}
       />
     );

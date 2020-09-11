@@ -112,7 +112,7 @@ class ViolinChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend,
+      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend, violinOrientation
     } = this.props;
 
     return (
@@ -147,7 +147,7 @@ class ViolinChart extends Component {
           var pts = {};
           data.points.forEach((elem, i) => {
             let index = data.points[i];
-            if(index.data.violinOrientation === "h") {
+            if(violinOrientation === "h") {
               pts[xcoord] = index.y;
               pts[ycoord] = index.x;
             } else {

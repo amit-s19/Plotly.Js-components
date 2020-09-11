@@ -4,6 +4,10 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
+let open;
+let close;
+let high;
+let low;
 
 class CandleChart extends Component {
   constructor(props) {
@@ -22,6 +26,10 @@ class CandleChart extends Component {
      
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
+        open = keys[1]
+        close = keys[2]
+        high = keys[3]
+        low = keys[4]
         procData = [{          
           x: [],
           open: [],
@@ -74,7 +82,7 @@ class CandleChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, xAxisTickAngle, yAxisLabel, yAxisTickAngle, showLegend,
+      xAxisLabel, xAxisTickAngle, yAxisLabel, yAxisTickAngle, showLegend, 
     } = this.props;
 
     return (
@@ -103,16 +111,15 @@ class CandleChart extends Component {
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
-          let pts = '';
-          for (let i=0 ; i<data.points.length ; i++) {
-            let index = data.points[i].pointNumber;
-            pts = data.points[i].data.x[index]+
-            '\nOpen : '+data.points[i].data.open[index]+
-            '\nHigh : '+data.points[i].data.high[index]+
-            '\nLow : '+data.points[i].data.low[index]+
-            '\nClose : '+data.points[i].data.close[index] ;
-          }
-          alert(pts);
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+            pts[open] = index.data.open[index.pointNumber]
+            pts[close] = index.data.close[index.pointNumber]
+            pts[high] = index.data.high[index.pointNumber]
+            pts[low] = index.data.low[index.pointNumber]
+          })
+          console.log(pts);
         }}
       />
     );
