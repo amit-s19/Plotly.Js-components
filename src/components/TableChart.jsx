@@ -46,20 +46,19 @@ class TableChart extends Component {
         
           procData.forEach((d) => {
             let x = [];
-            for(let key in keys) {
-              d.header.values.push(keys[key]);
+
+            keys.forEach((key, i) => {
+              d.header.values.push(keys[i]);
               let y = []
-              let i = parseInt(key);
-              console.log(key);
               if(i%2 === 0 )
                 d.cells.fill.color.push(rowEvenColor);
               else
                 d.cells.fill.color.push(rowOddColor);
-              dataset.forEach((field, i) => {
-                y.push(field[keys[key]]);
+              dataset.forEach((field) => {
+                y.push(field[keys[i]]);
               });
               x.push(y);
-            }
+            })
             d.cells.values = x ; 
           });
       }

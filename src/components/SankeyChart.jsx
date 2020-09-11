@@ -23,8 +23,7 @@ class SankeyChart extends Component {
       let labels = [];
       let uniqueLabels = [];
       let dictLabels = {};
-      let k = 0;
-
+      
       const newColorArr = colorArray.split(',');
 
       if (dataset && dataset.length > 0) {
@@ -71,10 +70,9 @@ class SankeyChart extends Component {
         uniqueLabels = labels.filter((value, index, self) => self.indexOf(value) === index);
         procData[0].node.label = uniqueLabels;
 
-        for(const key of uniqueLabels) {
-          dictLabels[key] = k;
-          k += 1;
-        }
+        uniqueLabels.forEach((key,i) => {
+          dictLabels[uniqueLabels[i]] = i
+        })
         
         dataset.forEach((field) => {
           procData.forEach((d) => {

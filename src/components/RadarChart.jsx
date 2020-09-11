@@ -34,12 +34,12 @@ class RadarChart extends Component {
           texttemplate: textTemplate,
           hovertemplate: hoverTemplate,
           marker: {
-              symbol: markerType,
-              size: markerSize,
+            symbol: markerType,
+            size: markerSize,
           },
           line: {
-              dash: radarDash,
-              shape: radarShape, 
+            dash: radarDash,
+            shape: radarShape, 
           }
         }));
 

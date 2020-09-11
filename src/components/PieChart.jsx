@@ -23,7 +23,7 @@ class PieChart extends Component {
       if (dataset && dataset.length > 0) {
 
         const keys = Object.keys(dataset[0]);
-        console.log("keys", keys);
+        
         procData = [{
           values: [],
           labels: [],

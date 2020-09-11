@@ -37,24 +37,22 @@ class ParallelCategory extends Component {
         }];
 
         procData.forEach((d) => {
-          keys.forEach
-          for(let key in keys.slice(0, n)) {
+          keys.slice(0,n).forEach((key,i) => {
             let x = { 
               label: undefined, 
               values: [], 
               categoryorder: categoryOrder, 
             };
-            x.label = keys[key];
+            x.label = keys[i];
             d.dimensions.push(x);
-          }
+          })
           dataset.forEach((field) => {
-            for(let key in keys.slice(0, n)) {
-              d.dimensions[key].values.push(field[keys[key]]);
-            }
+            keys.slice(0,n).forEach((key,i) => {
+              d.dimensions[i].values.push(field[keys[i]]);
+            })
             d.counts.push(field[keys[n]]);
           });
         });
-        console.log(procData);
       }
 
       this.setState({ procData });

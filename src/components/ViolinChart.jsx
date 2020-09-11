@@ -77,13 +77,13 @@ class ViolinChart extends Component {
         });
 
         uniqueLabels = procData[0].x.filter((value, index, self) => self.indexOf(value) === index);
-        for(let i=0 ; i<uniqueLabels.length ; i++) {
+        uniqueLabels.forEach((key,i) => {
           let x = {
             target: uniqueLabels[i],
             value: { line: {color: newColorArr[i]}}
           }
           procData[0].transforms[0].styles.push(x)
-        }
+        })
       }
       this.setState({ procData });
     } catch (error) {

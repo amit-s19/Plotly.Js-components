@@ -22,7 +22,7 @@ class SunburstChar extends Component {
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
         if(setValue ==='enabled') {
-          procData = keys.slice(0, 1).map((d, i) => ({
+          procData = [{
             type: "sunburst",
             labels: [],
             parents: [],
@@ -38,7 +38,7 @@ class SunburstChar extends Component {
             },
             insidetextorientation: textOrientation,
             leaf: {opacity: leafOpacity},
-          }));
+          }];
         procData.forEach((d, i) => {
           dataset.forEach((field) => {
             d.labels.push(field[keys[i]]);
@@ -47,7 +47,7 @@ class SunburstChar extends Component {
           });
         });
       } else {
-          procData = keys.slice(0, 1).map((d, i) => ({
+          procData = [{
             type: "sunburst",
             labels: [],
             parents: [],
@@ -62,7 +62,7 @@ class SunburstChar extends Component {
             },
             insidetextorientation: textOrientation,
             leaf: {opacity: leafOpacity},
-        }));
+          }];
         procData.forEach((d, i) => {
           dataset.forEach((field) => {
             d.labels.push(field[keys[i]]);

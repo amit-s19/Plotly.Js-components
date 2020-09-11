@@ -21,7 +21,7 @@ class RadarChart extends Component {
       let newColorArray = colorArray.split(',');
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
-        procData = keys.slice(0, 1).map((d, i) => ({
+        procData = [{
           type: "treemap",
           labels: [],
           parents: [],
@@ -39,7 +39,7 @@ class RadarChart extends Component {
           tiling: {
               packing: treePacking,
           }
-        }));
+        }];
 
         procData.forEach((d) => {
           dataset.forEach((field) => {
