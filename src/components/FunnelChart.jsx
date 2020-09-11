@@ -27,11 +27,11 @@ class FunnelChart extends Component {
         
         const keys = Object.keys(dataset[0]);
         xcoord = keys[0];
-        procData = keys.slice(0, keys.length).map((d, i) => ({
+        procData = keys.slice(1, keys.length).map((d, i) => ({
           x: [],
           y: [],
           type: 'funnel',  
-          name: undefined,
+          name: d,
           width: barWidth,
           hovertemplate: hoverTemplate,
           textposition: textPosition,
@@ -43,13 +43,18 @@ class FunnelChart extends Component {
           textangle: textAngle,
         }));
 
-        procData.forEach((d, i) => {
-          let field = dataset[i];
-          d.name = field[keys[0]];
-          let elements = keys.slice(1, keys.length);
-          elements.forEach((key, i) => {
-            d.y.push(elements[i]);
-            d.x.push(field[elements[i]]);
+        // procData.forEach((d, i) => {
+        //   let field = dataset[i];
+        //   d.name = field[keys[0]];
+        //   keys.slice(1,keys.length).forEach((key, i) => {
+        //     d.y.push(keys[i]);
+        //     d.x.push(field[keys[i]]);
+        //   })
+        // });
+        dataset.forEach((field) => {
+          procData.forEach((d, i) => {
+            d.y.push(field[keys[0]]);
+            d.x.push(field[keys[i+1]]);
           })
         });
       }

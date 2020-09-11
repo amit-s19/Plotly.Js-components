@@ -35,7 +35,6 @@ class ViolinChart extends Component {
           y: [],
           name: keys[0],
           width: violinWidth,
-          text: 'hello world',
           opacity: violinOpacity,
           points: 'none',
           hovertext: hoverText,
@@ -68,10 +67,10 @@ class ViolinChart extends Component {
           procData.forEach((d) => {
             let x = field[keys[0]];
             let y = field[keys[1]];
-            if (violinOrientation === 'h')
+            d.transforms[0].groups.push(x);
+            if (violinOrientation === "h")
               [x, y] = [y, x];
             d.x.push(x);
-            d.transforms[0].groups.push(x);
             d.y.push(y);
           });
         });
@@ -145,11 +144,18 @@ class ViolinChart extends Component {
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-            pts = xcoord+' : '+data.points[i].x+'\n'+ycoord+' : '+data.points[i].y;
-          }
-          alert('The values are:\n'+pts);
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+            if(index.data.violinOrientation === "h") {
+              pts[xcoord] = index.y;
+              pts[ycoord] = index.x;
+            } else {
+              pts[xcoord] = index.x;
+              pts[ycoord] = index.y;
+            }
+          });
+          console.log(pts);
         }}
       />
     );

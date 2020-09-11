@@ -31,6 +31,7 @@ const PieChartForm = () => {
     dataset: pcd, textPosition: 'inside', textInfo: 'label+percent', holeVal: 0, 
     colorArray: '', hoverInfo: 'label+percent', insideTextOrientation: 'horizontal',
     sliceDirection: 'counterclockwise', pieOpacity: 0.9, pieRotation: 0, showLegend: true,
+    hoverTemplate: '',
   });
   const classes = useStyles();
   return (
@@ -139,6 +140,16 @@ const PieChartForm = () => {
               <MenuItem value="none">None</MenuItem>
               </Select>
             </FormControl>
+            <TextField
+              fullWidth
+              label="Hover Template"
+              name="hoverTemplate"
+              variant="outlined"
+              onChange={handleInputChange}
+              value={config.hoverTemplate}
+              size="small"
+              className={classes.root}
+            />
             <TextField
               fullWidth
               label="List of colors"

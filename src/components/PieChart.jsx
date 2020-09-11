@@ -13,7 +13,7 @@ class PieChart extends Component {
   processData = () => {
     const {
       dataset, textInfo,textPosition, holeVal, colorArray,hoverInfo, insideTextOrientation,
-      sliceDirection, pieOpacity, pieRotation, showLegend,
+      sliceDirection, pieOpacity, pieRotation, showLegend, hoverTemplate,
     } = this.props;
 
     try {
@@ -31,6 +31,7 @@ class PieChart extends Component {
           hole: holeVal,
           insidetextorientation: insideTextOrientation,
           hoverinfo: hoverInfo,
+          hovertemplate: hoverTemplate,
           textinfo: textInfo,
           opacity: pieOpacity,
           rotation : pieRotation,

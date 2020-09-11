@@ -9,7 +9,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import FunnelChart from '../components/FunnelChart';
 import { makeStyles } from '@material-ui/core/styles';
-import {barDummydata as bgd} from '../compDummyData';
+import {funnelDummydata as fdd} from '../compDummyData';
 import './Styles.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,7 @@ const FunnelChartForm = () => {
   };
 
   const [config, setConfig] = useState({
-    dataset: bgd, yAxisLabel:'', orientation: 'h', textPosition: 'inside', textAngle: 0, 
+    dataset: fdd, yAxisLabel:'', orientation: 'h', textPosition: 'inside', textAngle: 0, 
     colorArray: 'cornflowerblue,orange,pink,seagreen,yellow', hoverTemplate :'%{x}<br>%{y}', 
     showLegend : true, barWidth : 0.7, barOpacity : 0.8,textInfo: 'label+value+text+percent initial', 
   });

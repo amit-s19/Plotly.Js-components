@@ -138,12 +138,12 @@ class BoxPlot extends Component {
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-              pts = 'x : '+data.points[i].x +'\ny : '+
-              data.points[i].y + '\n\n';
-          }
-          alert('The coordinates are:\n'+pts);
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+            pts['x'] = index.x 
+          })
+          console.log(pts);
         }}
       />
     );

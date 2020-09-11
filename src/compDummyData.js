@@ -13,6 +13,20 @@ export const barDummydata = [
   },
 ];
 
+export const funnelDummydata = [
+  {
+    Year: '2014', Sales: 1500, Expenses: 800, Profit: 700,
+  },
+  {
+    Year: '2015', Sales: 1100, Expenses: 560, Profit: 540,
+  },
+  {
+    Year: '2016', Sales: 730, Expenses: 415, Profit: 315,
+  },
+  {
+    Year: '2017', Sales: 370, Expenses: 230, Profit: 140,
+  },
+];
 export const tableDummydata = [
   { boxname: 'box1', value1: 39, value2: 30 },
   { boxname: 'box1', value1: 49, value2: 40 },
@@ -1166,7 +1180,7 @@ export const histDummydata = [
 
 export const ParallelDummydata = [
   {
-    Hair: 'Black', Eye: 'Brown', Sex: 'Female', count: 6,
+    Hair: 'Black', Eye: 'Brown', Sex: 'Female',  count: 6,
   },
   {
     Hair: 'Brown', Eye: 'Brown', Sex: 'Male', count: 10,
