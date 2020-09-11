@@ -229,7 +229,7 @@ ViolinChartForm.propTypes = {
     markerSize: PropTypes.number, 
     Bandwidth: PropTypes.number,
     hoverOn: PropTypes.string, 
-    violinJitter: PropTypes.numer, 
+    violinJitter: PropTypes.number, 
     showLegend: PropTypes.bool
   }),
   // handleInputChange: PropTypes.func.isRequired,

@@ -52,7 +52,6 @@ class BankAccountCard extends Component {
           color: undefined,
           paddingLeft:"30px ",
           fontWeight: undefined,
-          letterSpacing: "0.10px",
           lineHeight: "1rem",
           fontSize: undefined,
           wordBreak: "break-all",

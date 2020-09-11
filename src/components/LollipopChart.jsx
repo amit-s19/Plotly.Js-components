@@ -53,7 +53,7 @@ class LollipopChart extends Component {
           procData.forEach((d) => {
             let y = field[keys[0]];
             let x = field[d.name];
-            if(orientation == 'v')
+            if(orientation === 'v')
               [y, x] = [x,y]
             markerData.y.push(y);
             markerData.x.push(x);

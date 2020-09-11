@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {candleDummydata as cdd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 
@@ -23,7 +22,7 @@ class CandleChart extends Component {
      
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
-        procData = keys.slice(1, 2).map(() => ({
+        procData = [{          
           x: [],
           open: [],
           close: [],
@@ -35,7 +34,7 @@ class CandleChart extends Component {
           whiskerwidth: 0,
           decreasing: {line: {color: newColorArr[2]}, fillcolor: newColorArr[3]},
           xcalendar: calType,
-        }));
+        }];
         
           procData.forEach((d) => {
             dataset.forEach((field) => {
@@ -133,7 +132,7 @@ CandleChart.propTypes = {
 };
 
 CandleChart.defaultProps = {
-  dataset: cdd, 
+  dataset: [], 
   colorArray:'black,orange', 
   xAxisLabel:'', 
   yAxisLabel:'', 

@@ -4,7 +4,7 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
-let xcoord, ycoord;
+let xcoord;
 
 class SankeyChart extends Component {
   constructor(props) {
@@ -31,7 +31,6 @@ class SankeyChart extends Component {
         
         const keys = Object.keys(dataset[0]);
         xcoord = keys[0];
-        ycoord = keys.slice(1, keys.length);
         procData = [{
           type: "sankey",
           mode: 'text',
@@ -127,8 +126,7 @@ class SankeyChart extends Component {
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-            pts = xcoord+' : '+data.points[i].x +'\n'+' : '+
-            data.points[i].y + '\n\n';
+            pts = xcoord+' : '+data.points[i].x +'\n : '+data.points[i].y + '\n\n';
           }
           alert('The values are:\n'+pts);
         }}

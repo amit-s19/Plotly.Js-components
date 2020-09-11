@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import { ContourDummydata as cdd } from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 let labels;
@@ -26,7 +25,7 @@ class ContourPlot extends Component {
         const keys = Object.keys(dataset[0]);
         labels = keys;
 
-        procData = keys.slice(0, 1).map((d, i) => ({
+        procData = [{
           z: [],
           type: 'contour',
           name: traceName,
@@ -46,14 +45,14 @@ class ContourPlot extends Component {
               showlabels: showLabels,
               labelfont: {color: 'white',}
           }
-        }));
+        }];
 
-        procData.forEach((d,i) => {
-          dataset.forEach((field, j) => {
+        procData.forEach((d) => {
+          dataset.forEach((field) => {
             let x = [];
-            for(let key in keys) {
-                x.push(field[keys[key]]);
-            }
+            keys.forEach((key, i) => {
+              x.push(field[keys[i]])
+            });
             d.z.push(x);
           });
         });
@@ -124,7 +123,7 @@ ContourPlot.propTypes = {
 };
 
 ContourPlot.defaultProps = {
-  dataset: cdd,
+  dataset: [],
   traceName: '', 
   contOpacity: 0.9, 
   hoverTemplate :'', 

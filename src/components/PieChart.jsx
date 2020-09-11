@@ -4,8 +4,6 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
-let xcoord, ycoord;
-
 class PieChart extends Component {
   constructor(props) {
     super(props);
@@ -25,8 +23,6 @@ class PieChart extends Component {
       if (dataset && dataset.length > 0) {
 
         const keys = Object.keys(dataset[0]);
-        xcoord = keys[0];
-        ycoord = keys[1];
         console.log("keys", keys);
         procData = [{
           values: [],

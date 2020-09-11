@@ -23,7 +23,7 @@ class OhlcChart extends Component {
         
         const keys = Object.keys(dataset[0]);
 
-        procData = keys.slice(1, 2).map(() => ({
+        procData = [{
           x: [],
           open: [],
           close: [],
@@ -35,7 +35,7 @@ class OhlcChart extends Component {
           whiskerwidth: 0,
           decreasing: {line: {color: newColorArr[1]} },
           xcalendar: calType,
-        }));
+        }];
         
         procData.forEach((d) => {
           dataset.forEach((field) => {

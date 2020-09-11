@@ -4,7 +4,7 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
-let xcoord, ycoord;
+let xcoord;
 
 class ScatterPlot extends Component {
   constructor(props) {
@@ -25,7 +25,6 @@ class ScatterPlot extends Component {
         
         const keys = Object.keys(dataset[0]);
         xcoord = keys[0];
-        ycoord = keys.slice(1, keys.length);
         procData = keys.slice(1, keys.length).map((d, i) => ({
           x: [],
           y: [],

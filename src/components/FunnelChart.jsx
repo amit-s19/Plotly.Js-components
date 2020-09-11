@@ -47,12 +47,11 @@ class FunnelChart extends Component {
           let field = dataset[i];
           d.name = field[keys[0]];
           let elements = keys.slice(1, keys.length);
-          for(let key in elements) {
-            d.y.push(elements[key]);
-            d.x.push(field[elements[key]]);
-          };
+          elements.forEach((key, i) => {
+            d.y.push(elements[i]);
+            d.x.push(field[elements[i]]);
+          })
         });
-        console.log(procData);
       }
       this.setState({ procData });
     } catch (error) {
@@ -101,7 +100,6 @@ class FunnelChart extends Component {
         onClick = {(data) => {
           var pts = '';
           for(var i=0; i < data.points.length; i++){
-            let index = data.points[i].pointNumber;
             pts = xcoord+' : ' +data.points[i].data.name+'\n'+
             data.points[i].y+' : '+data.points[i].x+ '\n\n';
           }

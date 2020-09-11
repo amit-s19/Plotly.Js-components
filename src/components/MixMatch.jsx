@@ -53,7 +53,7 @@ class MixMatch extends Component {
         const keys = Object.keys(dataset[0]);
 
         xcoord = keys[0];
-        newChartArr.forEach( (d, i) => {
+        newChartArr.forEach((d, i) => {
           switch(d) {
 
             case 'bar':
@@ -133,7 +133,6 @@ class MixMatch extends Component {
               break;
           }
         });
-        
         dataset.forEach((field) => {
           procData.forEach((d) => {
             d.x.push(field[keys[0]]);
@@ -162,7 +161,6 @@ class MixMatch extends Component {
             procData.push(dummyObj);
           }
         }
-
       }
     
       this.setState({ procData });

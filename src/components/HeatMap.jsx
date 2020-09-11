@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import { HeatDummydata as hdd } from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 let labels;
@@ -25,7 +24,7 @@ class HeatMap extends Component {
         
         const keys = Object.keys(dataset[0]);
         labels = keys;
-        procData = keys.slice(0, 1).map((d, i) => ({
+        procData = [{
             x: [],
             y: [],
             z: [],
@@ -35,24 +34,18 @@ class HeatMap extends Component {
             showlegend: true,
             opacity: contOpacity,
             colorscale: contColor,
+        }];
 
-        }));    
-
-        procData.forEach((d,i) => {
-            let newKeys = keys.slice(1, keys.length);
-            for(let key in newKeys )
-                d.x.push(newKeys[key]);
-            dataset.forEach((field, j) => {
+        let newKeys = keys.slice(1, keys.length);
+        procData.forEach((d) => {
+            newKeys.forEach((key, i) => {d.x.push(newKeys[i])})
+            dataset.forEach((field) => {
                 let vect = [];
                 d.y.push(field[keys[0]]);
-                for(let key in newKeys) {
-                    vect.push(field[newKeys[key]]);
-                }
+                newKeys.forEach((key, i) => {vect.push(field[newKeys[i]])})
                 d.z.push(vect);
           });
         });
-
-        console.log(procData);
       }
 
       this.setState({ procData });
@@ -83,9 +76,6 @@ class HeatMap extends Component {
 
   render() {
     const { procData } = this.state;
-    const {
-      help,
-    } = this.props;
     return (
       <Plot
         data={procData}
@@ -119,7 +109,7 @@ HeatMap.propTypes = {
 };
 
 HeatMap.defaultProps = {
-  dataset: hdd,
+  dataset: [],
   traceName: 'Trace 0', 
   showLegend: true, 
   contOpacity: 0.9, 

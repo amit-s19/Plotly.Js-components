@@ -65,12 +65,12 @@ class WaterfallChart extends Component {
           },
         }];
 
-        if(Measure == 'custom') {
+        if(Measure === 'custom') {
           dataset.forEach((field) => {
             procData.forEach((d) => {
               let X = field[keys[0]];
               let Y = field[keys[1]];
-              if(Orientation == 'h')
+              if(Orientation === 'h')
                 [X, Y] = [Y, X];
               d.x.push(X);
               d.y.push(Y);
@@ -84,7 +84,7 @@ class WaterfallChart extends Component {
             procData.forEach((d) => {
               let X = field[keys[0]];
               let Y = field[keys[1]];
-              if(Orientation == 'h')
+              if(Orientation === 'h')
                 [X, Y] = [Y, X];
               d.x.push(X);
               d.y.push(Y);
@@ -123,7 +123,7 @@ class WaterfallChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, showLegend,
+      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, 
     } = this.props;
 
     return (

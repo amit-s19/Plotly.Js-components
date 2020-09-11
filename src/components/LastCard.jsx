@@ -48,7 +48,6 @@ class LastCard extends Component {
           fontSize: cardSize2,
           fontWeight: cardWeight2,
           color: cardColor2,
-          letterSpacing: "0.10px",
           lineHeight: "1rem",                
           wordBreak: "break-all",
           wordWrap: "pre-wrap",
@@ -78,7 +77,6 @@ class LastCard extends Component {
           procData.titletext = field[keys[0]];
           procData.cardval = field[keys[1]];
         });
-
       }
 
       this.setState({ procData });

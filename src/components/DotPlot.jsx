@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {dotDummydata as ddd} from '../compDummyData';
 const Plot = createPlotlyComponent(Plotly);
 
 class DotPlot extends Component {
@@ -37,9 +36,6 @@ class DotPlot extends Component {
             size: dotSize
           },
         }));
-
-       console.log(procData);
-        
         dataset.forEach((field) => {
           procData.forEach((d, i) => {
             d.x.push(field[keys[i+1]]);
@@ -156,7 +152,7 @@ DotPlot.propTypes = {
 };
 
 DotPlot.defaultProps = {
-  dataset: ddd,
+  dataset: [],
   colorArray: '', 
   showLegend: 'true', 
   dotTitle: '', 

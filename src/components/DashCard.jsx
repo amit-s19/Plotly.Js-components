@@ -23,7 +23,7 @@ class DashCard extends Component {
   processData = () => {
     const {
       dataset, cardWidth, cardHeight, cardBackground, cardFamily1, cardSize1, cardWeight1, cardColor1, cardAlign1,
-      cardFamily2, cardSize2, cardWeight2, cardColor2, cardHrHeight, titleText, 
+      cardFamily2, cardSize2, cardWeight2, cardColor2, titleText, 
     } = this.props;
 
     try {

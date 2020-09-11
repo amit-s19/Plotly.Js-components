@@ -23,20 +23,21 @@ class ParallelCategory extends Component {
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
         let n = keys.length-1;
-        procData = keys.slice(0,1 ).map((d, i) => ({
+        procData = [{
           type: 'parcats',
           dimensions: [],
           counts: [],
           hoverinfo: hoverInfo,
           line: {
-            color: newColorArr[i], 
+            color: newColorArr[0], 
             shape: lineShape,
           },
           arrangement: chartArrangement,
           sortpaths: sortPath,
-        }));
+        }];
 
         procData.forEach((d) => {
+          keys.forEach
           for(let key in keys.slice(0, n)) {
             let x = { 
               label: undefined, 

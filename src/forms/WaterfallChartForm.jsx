@@ -39,7 +39,7 @@ const WaterfallChartForm = () => {
   const classes = useStyles();
 
   const checkCustom = () => {
-    if(config.Measure == 'custom')
+    if(config.Measure === 'custom')
       return (
         <TextField
         fullWidth
