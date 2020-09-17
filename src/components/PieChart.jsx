@@ -92,12 +92,12 @@ class PieChart extends Component {
           hovermode: 'closest',
         }}
         onClick = {(data) => {
-          var pts;
-          for(var i=0; i < data.points.length; i++){
-            let x = data.points[i].pointNumber;
-            pts = data.points[i].data.labels[x]+' : '+data.points[i].data.values[x];
-          }
-          alert('The values are:\n'+pts);
+          let pts = {};
+          data.points.forEach((d, i) => {
+            let index = data.points[i];
+            pts[index.data.labels[index.pointNumber]] = index.data.values[index.pointNumber]
+          })
+          console.log(pts);
         }}
       />
     );

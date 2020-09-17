@@ -105,12 +105,12 @@ class ScatterPlot extends Component {
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-            pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
-            data.points[i].y + '\n\n';
-          }
-          alert('The values are:\n'+pts);
+          let pts = {};
+          data.points.forEach((d, i) => {
+            pts[xcoord] = data.points[i].x;
+            pts[data.points[i].data.name] = data.points[i].y;
+          });
+          console.log(pts);
         }}
       />
     );

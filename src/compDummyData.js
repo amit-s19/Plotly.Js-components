@@ -27,6 +27,7 @@ export const funnelDummydata = [
     Year: '2017', Sales: 370, Expenses: 230, Profit: 140,
   },
 ];
+
 export const tableDummydata = [
   { boxname: 'box1', value1: 39, value2: 30 },
   { boxname: 'box1', value1: 49, value2: 40 },

@@ -5,6 +5,8 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
 let xcoord;
+let ycoord;
+let zcoord;
 
 class SankeyChart extends Component {
   constructor(props) {
@@ -30,6 +32,8 @@ class SankeyChart extends Component {
         
         const keys = Object.keys(dataset[0]);
         xcoord = keys[0];
+        ycoord = keys[1];
+        zcoord = keys[2];
         procData = [{
           type: "sankey",
           mode: 'text',
@@ -38,25 +42,25 @@ class SankeyChart extends Component {
           hovertemplate: hoverTemplate,
           textposition: textPosition,
           opacity: chartOpacity,
-            node: {
-              pad: nodePad,
-              thickness: nodeThickness,
-              line: {
-                color: 'black',
-                width: 0.5
-              },
-             label: undefined,
-             color: newColorArr,
-                },
-            link: {
-              source: [],
-              target: [], 
-              value:  [],
-              colorscales: {
-                colorscale: 'Earth' 
-              }  
+          node: {
+            pad: nodePad,
+            thickness: nodeThickness,
+            line: {
+              color: 'black',
+              width: 0.5
             },
-            arrangement: Arrangement,
+           label: undefined,
+           color: newColorArr,
+              },
+          link: {
+            source: [],
+            target: [], 
+            value:  [],
+            colorscales: {
+              colorscale: 'Earth' 
+            }  
+          },
+          arrangement: Arrangement,
         }];
         
         dataset.forEach((field) => {
@@ -98,7 +102,6 @@ class SankeyChart extends Component {
   componentDidUpdate = (prevProps) => {
     const { dataset } = this.props;
     const { procData } = this.state;
-    
     if ((Object.is(this.props, prevProps))) {
       return;
     }
@@ -122,11 +125,13 @@ class SankeyChart extends Component {
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-            pts = xcoord+' : '+data.points[i].x +'\n : '+data.points[i].y + '\n\n';
-          }
-          alert('The values are:\n'+pts);
+          let pts = {};
+          data.points.forEach((d) => {
+            pts[xcoord] = procData[0].link.source[d.pointNumber];
+            pts[ycoord] = 0;
+            pts[zcoord] = 0;
+          })
+          console.log(pts);
         }}
       />
     );

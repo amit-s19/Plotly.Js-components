@@ -68,14 +68,14 @@ class ViolinChart extends Component {
             let x = field[keys[0]];
             let y = field[keys[1]];
             d.transforms[0].groups.push(x);
-            if (violinOrientation === "h")
-              [x, y] = [y, x];
-            d.x.push(x);
-            d.y.push(y);
+            d.x.push(violinOrientation === 'h'? y : x);
+            d.y.push(violinOrientation === 'h'? x : y);
           });
         });
-
-        uniqueLabels = procData[0].x.filter((value, index, self) => self.indexOf(value) === index);
+        if(violinOrientation === 'v')
+          uniqueLabels = procData[0].x.filter((value, index, self) => self.indexOf(value) === index);
+        else
+          uniqueLabels = procData[0].y.filter((value, index, self) => self.indexOf(value) === index);
         uniqueLabels.forEach((key,i) => {
           let x = {
             target: uniqueLabels[i],

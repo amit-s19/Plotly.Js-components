@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
-
+let xcoord;
 class LollipopChart extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,7 @@ class LollipopChart extends Component {
   processData = () => {
     const {
       dataset, barOpacity, barWidth, hoverTemplate, orientation, colorArray, markerSize,  
-      textTemplate, markerMode, markerSymbol,
+      textTemplate, markerMode, markerSymbol, showLegend, 
     } = this.props;
 
     try {
@@ -23,19 +23,23 @@ class LollipopChart extends Component {
         x: [],
         y: [],
         type: 'scatter',
+        name: undefined,
         mode: markerMode,
         marker: {
         color:  newColorArr[0],
         symbol: markerSymbol,
+        hovertemplate: hoverTemplate,
+        texttemplate: textTemplate,
         size:  markerSize,
         opacity: barOpacity,
+        showlegend: showLegend,
         },
-        showlegend: false,
       };
 
       if (dataset && dataset.length > 0) {
         
         const keys = Object.keys(dataset[0]);
+        xcoord = keys[0];
 
         procData = keys.slice(1, 2).map((d, i) => ({
           x: [],
@@ -44,9 +48,9 @@ class LollipopChart extends Component {
           type: 'bar',  
           width: barWidth === 0 || !barWidth ? null : barWidth,
           name: d,
-          hovertemplate: hoverTemplate,
-          texttemplate: textTemplate,
+          hoverinfo: 'none',
           orientation: orientation,
+          showlegend: false, 
         }));
 
         dataset.forEach((field) => {
@@ -63,7 +67,7 @@ class LollipopChart extends Component {
         });
       }
 
-      markerData.name = procData.name;
+      markerData.name = procData[0].name;
       procData.push(markerData);
 
       this.setState({ procData });
@@ -94,7 +98,7 @@ class LollipopChart extends Component {
   render() {
     const { procData } = this.state;
     const {
-      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, barGap, showLegend, barMode,
+      xAxisLabel, yAxisLabel, xAxisTickAngle, yAxisTickAngle, barGap, barMode, orientation,
     } = this.props;
 
     return (
@@ -122,11 +126,19 @@ class LollipopChart extends Component {
           },
           bargap: barGap,
           barmode: barMode,
-          showlegend: showLegend,
+          hovermode: 'closest',
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
-        
+        onClick = {(data) => {
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+            pts[xcoord] = orientation === 'v' ? index.x : index.y;
+            pts[index.data.name] = orientation === 'v' ? index.y : index.x;
+          })
+          console.log(pts);
+        }}
       />
     );
   }

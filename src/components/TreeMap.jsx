@@ -83,6 +83,14 @@ class RadarChart extends Component {
         data={procData}
         layout={{    
         }}
+        onClick = {(data) => {
+          let pts = {};
+          data.points.forEach((d, i) => {
+            let index = data.points[i];
+            pts[index.data.labels[index.pointNumber]] = index.data.values[index.pointNumber];
+          })
+          console.log(pts);
+        }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
       />

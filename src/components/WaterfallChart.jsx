@@ -4,7 +4,8 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 
 const Plot = createPlotlyComponent(Plotly);
-
+let xcoord;
+let ycoord;
 class WaterfallChart extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,8 @@ class WaterfallChart extends Component {
 
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
+        xcoord = keys[0];
+        ycoord = keys[1];
         procData = [{
           name: traceName,
           type: 'waterfall',
@@ -140,10 +143,17 @@ class WaterfallChart extends Component {
                 tickangle: yAxisTickAngle
             },
             autosize: true,
+            hovermode: 'closest',
             showlegend: true
         }}
-        config= {{
-          responsive: true
+        onClick = {(data) => {
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+            pts[xcoord] = index.x;
+            pts[ycoord] = index.y;
+          });
+          console.log(pts);
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}

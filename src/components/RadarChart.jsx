@@ -4,7 +4,7 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 
 const Plot = createPlotlyComponent(Plotly);
-
+let xcoord;
 class RadarChart extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +22,7 @@ class RadarChart extends Component {
       
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
+        xcoord = keys[0];
         procData = keys.slice(1, keys.length).map((d, i) => ({
           r: [],
           theta : [],
@@ -88,6 +89,15 @@ class RadarChart extends Component {
               visible: true,
             }
          }
+        }}
+        onClick = {(data) => {
+          let pts = {};
+          data.points.forEach((d, i) => {
+            let index = data.points[i];
+            pts[xcoord] = index.data.r[index.pointNumber]
+            pts[index.data.name] = index.data.theta[index.pointNumber]
+          })
+          console.log(pts);
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}

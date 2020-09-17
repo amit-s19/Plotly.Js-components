@@ -209,19 +209,19 @@ class MixMatch extends Component {
           bargap: barGap,
           barmode: barMode,
           showlegend: showLegend,
-          hovermode: 'closest',
+          hovermode: 'x',
         }}
         onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-            pts = xcoord+' : '+data.points[i].x +'\n'+data.points[i].data.name+' : '+
-            data.points[i].y + '\n\n';
-          }
-          alert('The values are:\n'+pts);
+          var pts = {};
+          data.points.forEach((elem, i) => {
+            let index = data.points[i];
+              pts[xcoord] = index.x;
+              pts[index.data.name] = index.y;
+          })
+          console.log(pts);
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
-
       />
     );
   }

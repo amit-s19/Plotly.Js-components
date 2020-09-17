@@ -94,15 +94,6 @@ class ContourPlot extends Component {
         useResizeHandler
         style={{ width: '100%', height: '100%' }}
         onClick = {(data) => {
-          var pts = '';
-          for(var i=0; i < data.points.length; i++){
-            let Data = data.points[i];
-            pts = labels[Data.x]+' : '+Data.z+'\nX : '+Data.x +'\nY : '+
-            Data.y + '\n\n';
-          }
-          alert('The values are:\n'+pts);
-        }}
-        onClick = {(data) => {
           var pts = {};
           data.points.forEach((elem, i) => {
             let index = data.points[i];
