@@ -22,7 +22,7 @@ class ParallelCategory extends Component {
 
       if (dataset && dataset.length > 0) {
         const keys = Object.keys(dataset[0]);
-        let n = keys.length-1;
+        let n = keys.length-1;  
         procData = [{
           type: 'parcats',
           dimensions: [],
@@ -88,6 +88,17 @@ class ParallelCategory extends Component {
         data={procData}
         layout={{
           hovermode: 'closest',
+        }}
+        onClick={(data)=>{
+          let pts = {};
+          try {
+            data.points.forEach((d) => {
+              pts[procData[0].dimensions[d.pointNumber].label] = procData[0].dimensions[d.pointNumber].values[d.pointNumber]
+            });
+          } catch {
+            console.log()
+          }
+          console.log(pts);
         }}
         useResizeHandler
         style={{ width: '100%', height: '100%' }}

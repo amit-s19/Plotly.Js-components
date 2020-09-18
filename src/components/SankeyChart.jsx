@@ -122,17 +122,21 @@ class SankeyChart extends Component {
           autosize: true,
           hovermode: 'closest',
         }}
-        useResizeHandler
-        style={{ width: '100%', height: '100%' }}
-        onClick = {(data) => {
-          let pts = {};
-          data.points.forEach((d) => {
-            pts[xcoord] = procData[0].link.source[d.pointNumber];
-            pts[ycoord] = 0;
-            pts[zcoord] = 0;
-          })
+        onClick={(data)=>{
+          let pts={};
+          try{
+            data.points.forEach((d)=>{
+              pts[xcoord] = procData[0].node.label[procData[0].link.source[d.pointNumber]]
+              pts[ycoord] = procData[0].node.label[procData[0].link.target[d.pointNumber]]
+              pts[zcoord] = procData[0].link.value[d.pointNumber]
+            })
+          } catch{
+            console.log("Please click a valid point")
+          }
           console.log(pts);
         }}
+        useResizeHandler
+        style={{ width: '100%', height: '100%' }}
       />
     );
   }
