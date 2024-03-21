@@ -23,6 +23,8 @@ body:
 
   - type: textarea
     id: desired-state
+    validations:
+      required: true
     attributes:
       label: Desired State 
       description: Outline the ideal scenario or solution for addressing this problem statement. How should the product behave or what features should be implemented to enhance usability in this aspect?
@@ -49,7 +51,7 @@ body:
     attributes:
       label: Acceptance Criteria
       description: List the acceptance criteria for this feature.
-      
+
   - type: textarea
     id: ticket-mentors
     attributes:
